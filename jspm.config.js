@@ -47,7 +47,7 @@ SystemJS.config({
   transpiler: "plugin-babel",
   packages: {
     "jgw-mortgage-rate": {
-      "main": "jgw-mortgage-rate.js",
+      "main": "index.js",
       "meta": {
         "*.js": {
           "babelOptions": {

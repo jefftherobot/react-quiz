@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "React quiz test",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/delphic-digital/react-quiz.git"
@@ -17,7 +14,9 @@
   },
   "homepage": "https://github.com/delphic-digital/react-quiz#readme",
   "devDependencies": {
-    "jspm": "^0.17.0-beta.40"
+    "jspm": "^0.17.0-beta.40",
+    "npm-run-all": "^4.0.2",
+    "sane": "^1.6.0"
   },
   "jspm": {
     "name": "jgw-mortgage-rate",
@@ -74,5 +73,12 @@
         }
       }
     }
+  },
+  "scripts": {
+    "start": "npm-run-all --parallel server unbundle",
+    "build": "npm-run-all build:*",
+    "build:js": "jspm bundle src/main.js Static/dist/js/main.js --inject",
+    "server": "browser-sync start --server --files *.html, src/**/*.js --no-open",
+    "unbundle": "jspm unbundle Static/src/js/main.js"
   }
 }
