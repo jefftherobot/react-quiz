@@ -1,0 +1,140 @@
+{
+  "purchase": [
+    {
+      "question": "Are you or your spouse on active duty or veteran service member?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
+      "question": "Are you working with a realtor?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
+      "question": "What Zip Code is the home located in?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter Zip Code",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "question": "What is the sales price of the home?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter a dollar amount",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "question": "What is your down payment %?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter a number as a %",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "question": "What type of home?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Single Family home",
+          "value": "single"
+        },
+        {
+          "label": "Condominium",
+          "value": "condominium"
+        },
+        {
+          "label": "2-4 unit",
+          "value": "unit"
+        }
+      ]
+    },
+    {
+      "question": "How will you use the home?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Primary Home",
+          "value": "primary"
+        },
+        {
+          "label": "Vacation Home",
+          "value": "vacation"
+        },
+        {
+          "label": "Rental Property",
+          "value": "rental"
+        }
+      ]
+    },
+    {
+      "question": "Please estimate your Credit Score",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "740 - 850 Excellent",
+          "value": "excellent"
+        },
+        {
+          "label": "720 - 739 Very Good",
+          "value": "very-good-1"
+        },
+        {
+          "label": "700 – 719 Very Good",
+          "value": "very-good2"
+        },
+        {
+          "label": "680 - 699 Good",
+          "value": "good-1"
+        },
+        {
+          "label": "660 - 679 Good",
+          "value": "good-1"
+        },
+        {
+          "label": "640 - 659 Average",
+          "value": "average"
+        },
+        {
+          "label": "620 - 639 Poor",
+          "value": "poor"
+        },
+        {
+          "label": "600 – 619 Needs Work",
+          "value": "needs-work"
+        },
+        {
+          "label": "580 – 599 Credit repair",
+          "value": "repair"
+        }
+      ]
+    }
+  ]
+}

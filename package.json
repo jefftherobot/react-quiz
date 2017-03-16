@@ -23,7 +23,8 @@
     "main": "jgw-mortgage-rate.js",
     "dependencies": {
       "react-addons-update": "npm:react-addons-update@^15.4.2",
-      "react-dom": "npm:react-dom@^15.4.2"
+      "react-dom": "npm:react-dom@^15.4.2",
+      "whatwg-fetch": "npm:whatwg-fetch@^2.0.3"
     },
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.23.0",

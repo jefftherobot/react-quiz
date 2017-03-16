@@ -1,7 +1,8 @@
+import 'whatwg-fetch'
 import React from 'react';
 import update from 'react-addons-update';
 import Quiz from './components/Quiz';
-import quizQuestions from './api/quizQuestions';
+import Result from './components/Result';
 
 class App extends React.Component {
 
@@ -9,39 +10,46 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
+			questions:{},
 			counter: 0,
 			questionId: 1,
 			question: '',
 			answerOptions: [],
 			answer: '',
-			answersCount: {
-				nintendo: 0,
-				microsoft: 0,
-				sony: 0
-			},
-			result: ''
+			result: []
 		};
 
 		this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
 	}
 
-	componentWillMount() {
+	componentDidMount() {
+		//http://www.objgen.com/json/models/bZuG
 
-		this.setState({
-			question: quizQuestions[0].question,
-			answerOptions: quizQuestions[0].answers
+		fetch('./data/quiz.json')
+			.then(response => response.json())
+			.then(data => {
+				console.log(data)
+
+				this.state.questions.length = data.purchase.length;
+
+				this.setState({
+					questions: data.purchase,
+					question: data.purchase[0].question,
+					type: data.purchase[0].type,
+					answerOptions: data.purchase[0].answers
+				})
+
+				console.log(this.state)
+			})
+			.catch(function (error) {
+				console.log('Request failed', error);
 		});
 	}
 
 	setUserAnswer(answer) {
-		const updatedAnswersCount = update(this.state.answersCount, {
-			[answer]: {$apply: (currentValue) => currentValue + 1}
-		});
-
-		console.log(updatedAnswersCount)
+		console.log(`you picked ${answer}`)
 
 		this.setState({
-			answersCount: updatedAnswersCount,
 			answer: answer
 		});
 	}
@@ -62,6 +70,8 @@ class App extends React.Component {
 	getResults() {
 		//get results
 
+		console.log(this.state.results);
+
 		return 1;
 	}
 
@@ -77,7 +87,7 @@ class App extends React.Component {
 
 		this.setUserAnswer(event.currentTarget.value);
 
-		if (this.state.questionId < quizQuestions.length) {
+		if (this.state.questionId < this.state.questions.length) {
 			setTimeout(() => this.setNextQuestion(), 300);
 		} else {
 		// quiz is done!
@@ -92,7 +102,7 @@ class App extends React.Component {
 				answerOptions={this.state.answerOptions}
 				questionId={this.state.questionId}
 				question={this.state.question}
-				questionTotal={quizQuestions.length}
+				questionTotal={this.state.questions.length}
 				onAnswerSelected={this.handleAnswerSelected}
 			/>
 		);
@@ -107,11 +117,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="App-header">
-					{/*<img src={logo} className="App-logo" alt="logo" />*/}
-					{/*<h2>React Quiz</h2>*/}
-				</div>
-				{this.state.result ? this.renderResult() : this.renderQuiz()}
+				{this.renderQuiz()}
 			</div>
 		);
 	}
