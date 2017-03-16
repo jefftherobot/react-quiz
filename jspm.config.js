@@ -51,7 +51,9 @@ SystemJS.config({
       "meta": {
         "*.js": {
           "babelOptions": {
-            "plugins": ["babel-plugin-transform-react-jsx"]
+            "plugins": [
+              "babel-plugin-transform-react-jsx"
+            ]
           }
         }
       }
@@ -79,6 +81,7 @@ SystemJS.config({
     "path": "npm:jspm-nodelibs-path@0.2.1",
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "react": "npm:react@15.4.2",
+    "react-addons-update": "npm:react-addons-update@15.4.2",
     "react-dom": "npm:react-dom@15.4.2",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
@@ -389,6 +392,12 @@ SystemJS.config({
     "npm:hash.js@1.0.3": {
       "map": {
         "inherits": "npm:inherits@2.0.3"
+      }
+    },
+    "npm:react-addons-update@15.4.2": {
+      "map": {
+        "fbjs": "npm:fbjs@0.8.9",
+        "object-assign": "npm:object-assign@4.1.1"
       }
     }
   }

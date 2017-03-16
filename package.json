@@ -22,6 +22,7 @@
     "name": "jgw-mortgage-rate",
     "main": "jgw-mortgage-rate.js",
     "dependencies": {
+      "react-addons-update": "npm:react-addons-update@^15.4.2",
       "react-dom": "npm:react-dom@^15.4.2"
     },
     "devDependencies": {
