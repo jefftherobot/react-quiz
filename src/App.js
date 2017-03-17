@@ -36,7 +36,8 @@ class App extends React.Component {
 					questions: data.purchase,
 					question: data.purchase[0].question,
 					type: data.purchase[0].type,
-					answerOptions: data.purchase[0].answers
+					answerOptions: data.purchase[0].answers,
+					answerType: data.purchase[0].type
 				})
 
 				console.log(this.state)
@@ -63,6 +64,7 @@ class App extends React.Component {
 			questionId: questionId,
 			question: this.state.questions[counter].question,
 			answerOptions: this.state.questions[counter].answers,
+			answerType: this.state.questions[counter].type,
 			answer: ''
 		});
 	}
@@ -100,6 +102,7 @@ class App extends React.Component {
 			<Quiz
 				answer={this.state.answer}
 				answerOptions={this.state.answerOptions}
+				answerType={this.state.answerType}
 				questionId={this.state.questionId}
 				question={this.state.question}
 				questionTotal={this.state.questions.length}
@@ -117,6 +120,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
+				{/*this.state.result ? this.renderResult() : this.renderQuiz()*/}
 				{this.renderQuiz()}
 			</div>
 		);

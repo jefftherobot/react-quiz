@@ -13,6 +13,7 @@ function Quiz(props) {
 				answerValue={key.value}
 				answerLabel={key.label}
 				answer={props.answer}
+				answerType={props.answerType}
 				questionId={props.questionId}
 				onAnswerSelected={props.onAnswerSelected}
 			/>
