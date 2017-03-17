@@ -61,8 +61,8 @@ class App extends React.Component {
 		this.setState({
 			counter: counter,
 			questionId: questionId,
-			question: quizQuestions[counter].question,
-			answerOptions: quizQuestions[counter].answers,
+			question: this.state.questions[counter].question,
+			answerOptions: this.state.questions[counter].answers,
 			answer: ''
 		});
 	}
