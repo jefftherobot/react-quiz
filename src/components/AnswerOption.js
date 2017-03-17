@@ -2,6 +2,8 @@ import React from 'react';
 
 function AnswerOption(props) {
 
+	//Need a range picker for credit score
+
 	function renderRadioType(){
 		return (
 			<div>
@@ -36,8 +38,12 @@ function AnswerOption(props) {
 					id={props.answerValue}
 					value={props.answerValue}
 					disabled={props.userAnswer}
-					onChange={props.onAnswerSelected}
+					onChange={props.onChange}
 				/>
+				<button
+					onClick={props.onAnswerSelected}>
+						Next
+				</button>
 			</div>
 		);
 	}
