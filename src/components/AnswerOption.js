@@ -25,6 +25,7 @@ function AnswerOption(props) {
 	}
 
 	function renderTextType(){
+		//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
 		return (
 			<div>
 				<label className="radioCustomLabel" htmlFor={props.answerValue}>
@@ -36,9 +37,8 @@ function AnswerOption(props) {
 					name="radioGroup"
 					checked={props.answerValue === props.userAnswer}
 					id={props.answerValue}
-					value={props.answerValue}
-					disabled={props.userAnswer}
-					onChange={props.onChange}
+					value={props.answer}
+					onChange={props.onTextTypeChange}
 				/>
 				<button
 					onClick={props.onAnswerSelected}>

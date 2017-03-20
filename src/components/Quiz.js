@@ -16,6 +16,7 @@ function Quiz(props) {
 				answerType={props.answerType}
 				questionId={props.questionId}
 				onAnswerSelected={props.onAnswerSelected}
+				onTextTypeChange={props.onTextTypeChange}
 			/>
 		);
 	}

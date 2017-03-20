@@ -20,6 +20,7 @@ class App extends React.Component {
 		};
 
 		this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+		this.handleTextTypeChange = this.handleTextTypeChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -97,6 +98,10 @@ class App extends React.Component {
 		}
 	}
 
+	handleTextTypeChange(event) {
+		this.setUserAnswer(event.currentTarget.value);
+	}
+
 	renderQuiz() {
 		return (
 			<Quiz
@@ -107,6 +112,7 @@ class App extends React.Component {
 				question={this.state.question}
 				questionTotal={this.state.questions.length}
 				onAnswerSelected={this.handleAnswerSelected}
+				onTextTypeChange={this.handleTextTypeChange}
 			/>
 		);
 	}
