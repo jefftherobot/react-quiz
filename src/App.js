@@ -14,8 +14,10 @@ class App extends React.Component {
 			counter: 0,
 			questionId: 1,
 			question: '',
+			questionName: '',
 			answerOptions: [],
 			answer: '',
+			answers: {},
 			result: []
 		};
 
@@ -38,7 +40,8 @@ class App extends React.Component {
 					question: data.purchase[0].question,
 					type: data.purchase[0].type,
 					answerOptions: data.purchase[0].answers,
-					answerType: data.purchase[0].type
+					answerType: data.purchase[0].type,
+					questionName: data.purchase[0].name
 				})
 
 				//console.log(this.state)
@@ -51,8 +54,14 @@ class App extends React.Component {
 	setUserAnswer(answer) {
 		console.log(`you picked ${answer}`)
 
+		//https://facebook.github.io/react/docs/update.html
+		const updatedAnswers = update(this.state.answers, {
+			$merge: {[this.state.questionName] : answer}
+		});
+
 		this.setState({
-			answer: answer
+			answer: answer,
+			answers: updatedAnswers
 		});
 	}
 
@@ -64,6 +73,7 @@ class App extends React.Component {
 			counter: counter,
 			questionId: questionId,
 			question: this.state.questions[counter].question,
+			questionName: this.state.questions[counter].name,
 			answerOptions: this.state.questions[counter].answers,
 			answerType: this.state.questions[counter].type,
 			answer: ''
@@ -73,7 +83,10 @@ class App extends React.Component {
 	getResults() {
 		//get results
 
-		console.log(this.state.results);
+		console.log(this.state.answers);
+
+		//TODO: fetch results
+		this.state.results = this.state.answers
 
 		return this.state.results;
 	}

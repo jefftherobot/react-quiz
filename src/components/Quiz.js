@@ -9,7 +9,7 @@ function Quiz(props) {
 	function renderAnswerOptions(key) {
 		return (
 			<AnswerOption
-				key={key.value}
+				key={key.value} //need to figure out a better way to set this value
 				answerValue={key.value}
 				answerLabel={key.label}
 				answer={props.answer}

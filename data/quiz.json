@@ -1,6 +1,7 @@
 {
   "purchase": [
     {
+      "name": "ServiceMember",
       "question": "Are you or your spouse on active duty or veteran service member?",
       "type": "radio",
       "answers": [
@@ -15,20 +16,7 @@
       ]
     },
     {
-      "question": "Are you working with a realtor?",
-      "type": "radio",
-      "answers": [
-        {
-          "label": "Yes",
-          "value": true
-        },
-        {
-          "label": "No",
-          "value": false
-        }
-      ]
-    },
-    {
+      "name": "ZipCode",
       "question": "What Zip Code is the home located in?",
       "type": "text",
       "answers": [
@@ -39,6 +27,7 @@
       ]
     },
     {
+      "name": "SalesPrice",
       "question": "What is the sales price of the home?",
       "type": "text",
       "answers": [
@@ -49,6 +38,7 @@
       ]
     },
     {
+      "name": "DownPaymentPercentage",
       "question": "What is your down payment %?",
       "type": "text",
       "answers": [
@@ -59,80 +49,75 @@
       ]
     },
     {
+      "name": "HomeType",
       "question": "What type of home?",
       "type": "radio",
       "answers": [
         {
           "label": "Single Family home",
-          "value": "single"
+          "value": 0
         },
         {
           "label": "Condominium",
-          "value": "condominium"
+          "value": 3
         },
         {
           "label": "2-4 unit",
-          "value": "unit"
+          "value": 20
         }
       ]
     },
     {
+      "name": "HomeUse",
       "question": "How will you use the home?",
       "type": "radio",
       "answers": [
         {
           "label": "Primary Home",
-          "value": "primary"
+          "value": 0
         },
         {
           "label": "Vacation Home",
-          "value": "vacation"
+          "value": 2
         },
         {
           "label": "Rental Property",
-          "value": "rental"
+          "value": 1
         }
       ]
     },
     {
+      "name": "CreditScore",
       "question": "Please estimate your Credit Score",
       "type": "radio",
       "answers": [
         {
-          "label": "740 - 850 Excellent",
-          "value": "excellent"
+          "label": "Excellent",
+          "value": "850"
         },
         {
-          "label": "720 - 739 Very Good",
-          "value": "very-good-1"
+          "label": "Very Good",
+          "value": "739"
         },
         {
-          "label": "700 – 719 Very Good",
-          "value": "very-good2"
+          "label": "Good",
+          "value": "699"
         },
         {
-          "label": "680 - 699 Good",
-          "value": "good-1"
+          "label": "Average",
+          "value": "659"
         },
         {
-          "label": "660 - 679 Good",
-          "value": "good-2"
+          "label": "Poor",
+          "value": "639"
         },
         {
-          "label": "640 - 659 Average",
-          "value": "average"
+          "label": "Needs Work",
+          "value": "619"
         },
         {
-          "label": "620 - 639 Poor",
-          "value": "poor"
-        },
-        {
-          "label": "600 – 619 Needs Work",
-          "value": "needs-work"
-        },
-        {
-          "label": "580 – 599 Credit repair",
-          "value": "repair"
+          "label": "Credit Repair",
+          "value": "599"
         }
       ]
     }
