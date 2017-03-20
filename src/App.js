@@ -19,7 +19,7 @@ class App extends React.Component {
 			result: []
 		};
 
-		this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+		this.handleInputSelected = this.handleInputSelected.bind(this);
 		this.handleTextTypeChange = this.handleTextTypeChange.bind(this);
 	}
 
@@ -29,7 +29,7 @@ class App extends React.Component {
 		fetch('./data/quiz.json')
 			.then(response => response.json())
 			.then(data => {
-				console.log(data)
+				//console.log(data)
 
 				this.state.questions.length = data.purchase.length;
 
@@ -41,7 +41,7 @@ class App extends React.Component {
 					answerType: data.purchase[0].type
 				})
 
-				console.log(this.state)
+				//console.log(this.state)
 			})
 			.catch(function (error) {
 				console.log('Request failed', error);
@@ -75,31 +75,44 @@ class App extends React.Component {
 
 		console.log(this.state.results);
 
-		return 1;
+		return this.state.results;
 	}
 
 	setResults (result) {
-		if (result.length === 1) {
-			this.setState({ result: result });
-		} else {
-			this.setState({ result: 'Undetermined' });
-		}
+		this.setState({ result: result });
 	}
 
-	handleAnswerSelected(event) {
+	handleInputSelected(event) {
 
-		this.setUserAnswer(event.currentTarget.value);
+		const inputType = event.currentTarget.type;
 
-		if (this.state.questionId < this.state.questions.length) {
-			setTimeout(() => this.setNextQuestion(), 300);
-		} else {
-		// quiz is done!
-			setTimeout(() => this.setResults(this.getResults()), 300);
+		var inputs = {
+			'radio':() => {
+				this.setUserAnswer(event.currentTarget.value);
+				this.showNextScreen();
+			},
+			'submit': () => {
+				this.showNextScreen();
+			},
+			'default': () => {
+				console.log(`${type} doesn't have a function assigned to it`)
+			}
 		}
+
+		return (inputs[inputType] || inputs['default'])();
 	}
 
 	handleTextTypeChange(event) {
 		this.setUserAnswer(event.currentTarget.value);
+	}
+
+	showNextScreen(){
+		if (this.state.questionId < this.state.questions.length) {
+			setTimeout(() => this.setNextQuestion(), 300);
+		} else {
+			// quiz is done!
+			setTimeout(() => this.setResults(this.getResults()), 300);
+		}
 	}
 
 	renderQuiz() {
@@ -111,7 +124,7 @@ class App extends React.Component {
 				questionId={this.state.questionId}
 				question={this.state.question}
 				questionTotal={this.state.questions.length}
-				onAnswerSelected={this.handleAnswerSelected}
+				onAnswerSelected={this.handleInputSelected}
 				onTextTypeChange={this.handleTextTypeChange}
 			/>
 		);
