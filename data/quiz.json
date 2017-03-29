@@ -2,7 +2,22 @@
   "purchase": [
     {
       "name": "ServiceMember",
-      "question": "Are you or your spouse on active duty or veteran service member?",
+      "question": "Have you or your spouse served in the military?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "Realtor",
+      "question": "Are you currently working with a realtor?",
       "type": "radio",
       "answers": [
         {
@@ -17,7 +32,7 @@
     },
     {
       "name": "ZipCode",
-      "question": "What Zip Code is the home located in?",
+      "question": "In what ZIP Code is the home located?",
       "type": "text",
       "answers": [
         {
@@ -39,7 +54,147 @@
     },
     {
       "name": "DownPaymentPercentage",
-      "question": "What is your down payment %?",
+      "question": "What is your down payment percent?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter a number as a %",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "HomeType",
+      "question": "What type of home?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Single Family home",
+          "value": 0
+        },
+        {
+          "label": "Condominium",
+          "value": 3
+        },
+        {
+          "label": "2-4 unit",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "name": "HomeUse",
+      "question": "How will you use the home?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Primary Home",
+          "value": 0
+        },
+        {
+          "label": "Vacation Home",
+          "value": 2
+        },
+        {
+          "label": "Rental Property",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "name": "CreditScore",
+      "question": "Please estimate your Credit Score",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Excellent",
+          "value": "850"
+        },
+        {
+          "label": "Very Good",
+          "value": "739"
+        },
+        {
+          "label": "Good",
+          "value": "699"
+        },
+        {
+          "label": "Average",
+          "value": "659"
+        },
+        {
+          "label": "Poor",
+          "value": "639"
+        },
+        {
+          "label": "Needs Work",
+          "value": "619"
+        },
+        {
+          "label": "Credit Repair",
+          "value": "599"
+        }
+      ]
+    }
+  ],
+
+  "refinance": [
+    {
+      "name": "ServiceMember",
+      "question": "Have you or your spouse served in the military?",
+      "type": "radio",
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true,
+          "conditional": [
+            {
+              "question:Is your current loan to be refinanced as a VA loan?": {},
+              "type": "radio",
+              "answers": [
+                {
+                  "label": "Yes",
+                  "value": true
+                },
+                {
+                  "label": "No",
+                  "value": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "ZipCode",
+      "question": "In what Zip Code is the home located?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter Zip Code",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "SalesPrice",
+      "question": "What is the sales price of the home?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter a dollar amount",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "DownPaymentPercentage",
+      "question": "What is your down payment percent?",
       "type": "text",
       "answers": [
         {

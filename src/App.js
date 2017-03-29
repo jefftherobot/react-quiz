@@ -31,17 +31,20 @@ class App extends React.Component {
 		fetch('./data/quiz.json')
 			.then(response => response.json())
 			.then(data => {
-				//console.log(data)
+				// console.log(data)
 
-				this.state.questions.length = data.purchase.length;
+				// get data attr stating user selection of purchase or refinance
+				let $type = document.getElementById('container').getAttribute('data-type');
 
+				this.state.questions.length = data[$type].length;
+			
 				this.setState({
-					questions: data.purchase,
-					question: data.purchase[0].question,
-					type: data.purchase[0].type,
-					answerOptions: data.purchase[0].answers,
-					answerType: data.purchase[0].type,
-					questionName: data.purchase[0].name
+					questions: data[$type],
+					question: data[$type][0].question,
+					type: data[$type][0].type,
+					answerOptions: data[$type][0].answers,
+					answerType: data[$type][0].type,
+					questionName: data[$type][0].name
 				})
 
 				//console.log(this.state)
