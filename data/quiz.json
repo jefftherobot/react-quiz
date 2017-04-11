@@ -1,39 +1,10 @@
 {
   "purchase": [
     {
-      "name": "ServiceMember",
-      "question": "Have you or your spouse served in the military?",
-      "type": "radio",
-      "answers": [
-        {
-          "label": "Yes",
-          "value": true
-        },
-        {
-          "label": "No",
-          "value": false
-        }
-      ]
-    },
-    {
-      "name": "Realtor",
-      "question": "Are you currently working with a realtor?",
-      "type": "radio",
-      "answers": [
-        {
-          "label": "Yes",
-          "value": true
-        },
-        {
-          "label": "No",
-          "value": false
-        }
-      ]
-    },
-    {
       "name": "ZipCode",
-      "question": "In what ZIP Code is the home located?",
+      "question": "Where is the property located?",
       "type": "text",
+      "progress": 0,
       "answers": [
         {
           "label": "Enter Zip Code",
@@ -42,31 +13,10 @@
       ]
     },
     {
-      "name": "SalesPrice",
-      "question": "What is the sales price of the home?",
-      "type": "text",
-      "answers": [
-        {
-          "label": "Enter a dollar amount",
-          "value": ""
-        }
-      ]
-    },
-    {
-      "name": "DownPaymentPercentage",
-      "question": "What is your down payment percent?",
-      "type": "text",
-      "answers": [
-        {
-          "label": "Enter a number as a %",
-          "value": ""
-        }
-      ]
-    },
-    {
       "name": "HomeType",
       "question": "What type of home?",
       "type": "radio",
+      "progress": 11.11,
       "answers": [
         {
           "label": "Single Family home",
@@ -86,6 +36,7 @@
       "name": "HomeUse",
       "question": "How will you use the home?",
       "type": "radio",
+      "progress": 22.22,
       "answers": [
         {
           "label": "Primary Home",
@@ -102,9 +53,62 @@
       ]
     },
     {
+      "name": "SalesPrice",
+      "question": "What is the purchase price and down payment?",
+      "type": "textGroup",
+      "progress": 33.33,
+      "answers": [
+        {
+          "label": "Purchase Price",
+          "value": 0
+        },
+        {
+          "label": "Down Payment Percent",
+          "value": 1
+        },
+        {
+          "label": "Down Payment Dollar Amount",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "ServiceMember",
+      "question": "Have you or your spouse served in the military?",
+      "type": "radio",
+      "progress": 66.66,
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "Realtor",
+      "question": "Are you currently working with a realtor?",
+      "type": "radio",
+      "progress": 83.235,
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
       "name": "CreditScore",
       "question": "Please estimate your Credit Score",
       "type": "radio",
+      "progress": 90,
       "answers": [
         {
           "label": "Excellent",
@@ -143,6 +147,7 @@
       "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
+      "progress": 0,
       "answers": [
         {
           "label": "Yes",
@@ -174,6 +179,7 @@
       "name": "ZipCode",
       "question": "In what Zip Code is the home located?",
       "type": "text",
+      "progress": 0,
       "answers": [
         {
           "label": "Enter Zip Code",
@@ -185,6 +191,7 @@
       "name": "SalesPrice",
       "question": "What is the sales price of the home?",
       "type": "text",
+      "progress": 0,
       "answers": [
         {
           "label": "Enter a dollar amount",
@@ -196,6 +203,7 @@
       "name": "DownPaymentPercentage",
       "question": "What is your down payment percent?",
       "type": "text",
+      "progress": 0,
       "answers": [
         {
           "label": "Enter a number as a %",
@@ -207,6 +215,7 @@
       "name": "HomeType",
       "question": "What type of home?",
       "type": "radio",
+      "progress": 0,
       "answers": [
         {
           "label": "Single Family home",
@@ -226,6 +235,7 @@
       "name": "HomeUse",
       "question": "How will you use the home?",
       "type": "radio",
+      "progress": 0,
       "answers": [
         {
           "label": "Primary Home",
@@ -245,6 +255,7 @@
       "name": "CreditScore",
       "question": "Please estimate your Credit Score",
       "type": "radio",
+      "progress": 0,
       "answers": [
         {
           "label": "Excellent",

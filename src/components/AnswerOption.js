@@ -28,13 +28,13 @@ function AnswerOption(props) {
 		//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
 		return (
 			<div>
-				<label className="radioCustomLabel" htmlFor={props.answerValue}>
+				<label className="textCustomLabel" htmlFor={props.answerValue}>
 					{props.answerLabel}
 				</label>
 				<input
 					type="text"
-					className="radioCustomButton"
-					name="radioGroup"
+					className="textCustomButton"
+					name="textGroup"
 					checked={props.answerValue === props.userAnswer}
 					id={props.answerValue}
 					value={props.answer}
@@ -42,15 +42,54 @@ function AnswerOption(props) {
 				/>
 				<button
 					onClick={props.onAnswerSelected}>
-						Next
+						Continue
 				</button>
 			</div>
 		);
 	}
 
+	function renderTextGroupType() {
+		return (
+			<div>
+				<label className="textGroupCustomLabel" htmlFor={props.answerValue}>
+					{props.answerLabel}
+				</label>
+				<input
+					type="textGroup"
+					className="textGroupCustomButton"
+					name="textGroupGroup"
+					checked={props.answerValue === props.userAnswer}
+					id={props.answerValue}
+					value={props.answer}
+					onChange={props.onTextTypeChange}
+				/>
+				<button
+					onClick={props.onAnswerSelected}>
+						Continue
+				</button>
+			</div>
+		)
+	}
+
+	function chooseAnswerType() {
+		if ( props.answerType === "radio" ) {
+			return ( 
+				renderRadioType() 
+			);
+		} else if ( props.answerType === "text") {
+			return ( 
+				renderTextType() 
+			);
+		} else {
+			return ( 
+				renderTextGroupType()
+			);
+		}
+	}
+
 	return (
 		<li className="answerOption">
-			{ props.answerType === "radio" ? renderRadioType() : renderTextType() }
+			{ chooseAnswerType() }
 		</li>
 	);
 }
