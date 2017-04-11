@@ -16,6 +16,7 @@ class App extends React.Component {
 			question: '',
 			questionName: '',
 			answerOptions: [],
+			answerConditional: [],
 			answer: '',
 			answers: {},
 			result: []
@@ -45,6 +46,7 @@ class App extends React.Component {
 					type: data[$type][0].type,
 					progress: data[$type][0].progress,
 					answerOptions: data[$type][0].answers,
+					answerConditional: data[$type][0].answers[0].conditional,
 					answerType: data[$type][0].type,
 					questionName: data[$type][0].name
 				})
@@ -81,6 +83,7 @@ class App extends React.Component {
 			questionName: this.state.questions[counter].name,
 			progress: this.state.questions[counter].progress,
 			answerOptions: this.state.questions[counter].answers,
+			answerConditional: this.state.questions[counter].answers[0].conditional,
 			answerType: this.state.questions[counter].type,
 			answer: ''
 		});
@@ -121,6 +124,10 @@ class App extends React.Component {
 		return (inputs[inputType] || inputs['default'])();
 	}
 
+	handleConditionalSelected(event) {
+		console.log('there is a conditional!');
+	}
+
 	handleTextTypeChange(event) {
 		this.setUserAnswer(event.currentTarget.value);
 	}
@@ -139,12 +146,14 @@ class App extends React.Component {
 			<Quiz
 				answer={this.state.answer}
 				answerOptions={this.state.answerOptions}
+				answerConditional={this.state.answerConditional}
 				answerType={this.state.answerType}
 				questionId={this.state.questionId}
 				question={this.state.question}
 				questionTotal={this.state.questions.length}
 				progress={this.state.progress}
 				onAnswerSelected={this.handleInputSelected}
+				onConditionalSelected={this.handleConditionalSelected}
 				onTextTypeChange={this.handleTextTypeChange}
 			/>
 		);
