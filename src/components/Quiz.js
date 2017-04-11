@@ -24,7 +24,7 @@ function Quiz(props) {
 	return (
 		<div className="quiz">
 
-			<QuestionCount counter={props.questionId} total={props.questionTotal}/>
+			<QuestionCount counter={props.questionId} total={props.questionTotal} progress={props.progress}/>
 
 			<Question content={props.question} />
 

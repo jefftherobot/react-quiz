@@ -35,6 +35,7 @@ class App extends React.Component {
 
 				// get data attr stating user selection of purchase or refinance
 				let $type = document.getElementById('container').getAttribute('data-type');
+				console.log("You're taking the " + $type + " quiz!");
 
 				this.state.questions.length = data[$type].length;
 			
@@ -42,6 +43,7 @@ class App extends React.Component {
 					questions: data[$type],
 					question: data[$type][0].question,
 					type: data[$type][0].type,
+					progress: data[$type][0].progress,
 					answerOptions: data[$type][0].answers,
 					answerType: data[$type][0].type,
 					questionName: data[$type][0].name
@@ -77,6 +79,7 @@ class App extends React.Component {
 			questionId: questionId,
 			question: this.state.questions[counter].question,
 			questionName: this.state.questions[counter].name,
+			progress: this.state.questions[counter].progress,
 			answerOptions: this.state.questions[counter].answers,
 			answerType: this.state.questions[counter].type,
 			answer: ''
@@ -140,6 +143,7 @@ class App extends React.Component {
 				questionId={this.state.questionId}
 				question={this.state.question}
 				questionTotal={this.state.questions.length}
+				progress={this.state.progress}
 				onAnswerSelected={this.handleInputSelected}
 				onTextTypeChange={this.handleTextTypeChange}
 			/>
