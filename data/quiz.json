@@ -14,7 +14,7 @@
     },
     {
       "name": "HomeType",
-      "question": "What type of home?",
+      "question": "What type of property?",
       "type": "radio",
       "progress": 11.11,
       "answers": [
@@ -34,7 +34,7 @@
     },
     {
       "name": "HomeUse",
-      "question": "How will you use the home?",
+      "question": "How will you use the property?",
       "type": "radio",
       "progress": 22.22,
       "answers": [
@@ -90,7 +90,7 @@
     },
     {
       "name": "Realtor",
-      "question": "Are you currently working with a realtor?",
+      "question": "Are you working with a realtor?",
       "type": "radio",
       "progress": 83.235,
       "answers": [
@@ -106,7 +106,7 @@
     },
     {
       "name": "CreditScore",
-      "question": "Please estimate your Credit Score",
+      "question": "What is your estimated credit score?",
       "type": "radio",
       "progress": 90,
       "answers": [
@@ -144,6 +144,110 @@
 
   "refinance": [
     {
+      "name": "ZipCode",
+      "question": "Where is the property located?",
+      "type": "text",
+      "progress": 0,
+      "answers": [
+        {
+          "label": "Enter Zip Code",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "HomeType",
+      "question": "What type of property?",
+      "type": "radio",
+      "progress": 11.11,
+      "answers": [
+        {
+          "label": "Single Family home",
+          "value": 0
+        },
+        {
+          "label": "Condominium",
+          "value": 3
+        },
+        {
+          "label": "Multi-unit",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "name": "HomeUse",
+      "question": "How will you use the property?",
+      "type": "radio",
+      "progress": 22.22,
+      "answers": [
+        {
+          "label": "Primary Home",
+          "value": 0
+        },
+        {
+          "label": "Vacation Home",
+          "value": 2
+        },
+        {
+          "label": "Rental Property",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "name": "SalesPrice",
+      "question": "What is the estimated value of the property?",
+      "type": "text",
+      "progress": 0,
+      "answers": [
+        {
+          "label": "Enter Dollar Amount",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "MortgageBalance",
+      "question": "What is the balance of the current mortgage?",
+      "type": "text",
+      "progress": 0,
+      "answers": [
+        {
+          "label": "Enter Dollar Amount",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "AdditionalCash",
+      "question": "Would you like to borrow additional cash?",
+      "type": "radio",
+      "progress": 0,
+      "answers": [
+        {
+          "label": "Yes",
+          "value": true,
+          "conditional": [
+            {
+              "question:": "How much additional cash?",
+              "type": "text",
+              "answers": [
+                {
+                  "label": "Enter Dollar Amount",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    {
       "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
@@ -154,7 +258,7 @@
           "value": true,
           "conditional": [
             {
-              "question:Is your current loan to be refinanced as a VA loan?": {},
+              "question": "Is your current loan to be refinanced a VA loan?",
               "type": "radio",
               "answers": [
                 {
@@ -176,84 +280,8 @@
       ]
     },
     {
-      "name": "ZipCode",
-      "question": "In what Zip Code is the home located?",
-      "type": "text",
-      "progress": 0,
-      "answers": [
-        {
-          "label": "Enter Zip Code",
-          "value": ""
-        }
-      ]
-    },
-    {
-      "name": "SalesPrice",
-      "question": "What is the sales price of the home?",
-      "type": "text",
-      "progress": 0,
-      "answers": [
-        {
-          "label": "Enter a dollar amount",
-          "value": ""
-        }
-      ]
-    },
-    {
-      "name": "DownPaymentPercentage",
-      "question": "What is your down payment percent?",
-      "type": "text",
-      "progress": 0,
-      "answers": [
-        {
-          "label": "Enter a number as a %",
-          "value": ""
-        }
-      ]
-    },
-    {
-      "name": "HomeType",
-      "question": "What type of home?",
-      "type": "radio",
-      "progress": 0,
-      "answers": [
-        {
-          "label": "Single Family home",
-          "value": 0
-        },
-        {
-          "label": "Condominium",
-          "value": 3
-        },
-        {
-          "label": "2-4 unit",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "name": "HomeUse",
-      "question": "How will you use the home?",
-      "type": "radio",
-      "progress": 0,
-      "answers": [
-        {
-          "label": "Primary Home",
-          "value": 0
-        },
-        {
-          "label": "Vacation Home",
-          "value": 2
-        },
-        {
-          "label": "Rental Property",
-          "value": 1
-        }
-      ]
-    },
-    {
       "name": "CreditScore",
-      "question": "Please estimate your Credit Score",
+      "question": "What is your estimated credit score?",
       "type": "radio",
       "progress": 0,
       "answers": [
