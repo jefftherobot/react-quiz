@@ -72,19 +72,37 @@ class App extends React.Component {
 		});
 	}
 
-	setNextQuestion() {
-		const counter = this.state.counter + 1;
-		const questionId = this.state.questionId + 1;
+	setNextQuestion(answerValue) {
+		const conditional = this.state.questions[this.state.counter].answers[0].conditional;
+
+		// check whether answer is yes and has follow up question
+		if ( typeof conditional == 'object' && this.state.question !== conditional[0].question && answerValue == 'true' ) {
+			console.log('true');
+			var counter = this.state.counter;
+			var questionId = this.state.questionId;
+			var question = conditional[0].question;
+			var questionName = conditional[0].name;
+			var answerOptions = conditional[0].answers;
+			var answerType = conditional[0].type;
+		} else { 
+			console.log('false'); 
+			var counter = this.state.counter + 1;
+			var questionId = this.state.questionId + 1;
+			var question = this.state.questions[counter].question;
+			var questionName = this.state.questions[counter].name;
+			var answerOptions = this.state.questions[counter].answers;
+			var answerType = this.state.questions[counter].type;
+		}
 
 		this.setState({
 			counter: counter,
 			questionId: questionId,
-			question: this.state.questions[counter].question,
-			questionName: this.state.questions[counter].name,
+			question: question,
+			questionName: questionName,
 			progress: this.state.questions[counter].progress,
-			answerOptions: this.state.questions[counter].answers,
+			answerOptions: answerOptions,
 			answerConditional: this.state.questions[counter].answers[0].conditional,
-			answerType: this.state.questions[counter].type,
+			answerType: answerType,
 			answer: ''
 		});
 	}
@@ -111,10 +129,10 @@ class App extends React.Component {
 		var inputs = {
 			'radio':() => {
 				this.setUserAnswer(event.currentTarget.value);
-				this.showNextScreen();
+				this.showNextScreen(event.currentTarget.value);
 			},
 			'submit': () => {
-				this.showNextScreen();
+				this.showNextScreen(event.currentTarget.value);
 			},
 			'default': () => {
 				console.log(`${type} doesn't have a function assigned to it`)
@@ -124,17 +142,13 @@ class App extends React.Component {
 		return (inputs[inputType] || inputs['default'])();
 	}
 
-	handleConditionalSelected(event) {
-		console.log('there is a conditional!');
-	}
-
 	handleTextTypeChange(event) {
 		this.setUserAnswer(event.currentTarget.value);
 	}
 
-	showNextScreen(){
+	showNextScreen(answerValue){
 		if (this.state.questionId < this.state.questions.length) {
-			setTimeout(() => this.setNextQuestion(), 300);
+			setTimeout(() => this.setNextQuestion(answerValue), 300);
 		} else {
 			// quiz is done!
 			setTimeout(() => this.setResults(this.getResults()), 300);
@@ -153,7 +167,6 @@ class App extends React.Component {
 				questionTotal={this.state.questions.length}
 				progress={this.state.progress}
 				onAnswerSelected={this.handleInputSelected}
-				onConditionalSelected={this.handleConditionalSelected}
 				onTextTypeChange={this.handleTextTypeChange}
 			/>
 		);

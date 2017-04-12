@@ -5,12 +5,6 @@ function AnswerOption(props) {
 	//Need a range picker for credit score
 
 	function renderRadioType(){
-		if ( props.hasConditional == true ) {
-			var onChangeTest = props.onConditionalSelected;
-		} else {
-			var onChangeTest = props.onAnswerSelected;
-		}
-
 		return (
 			<div>
 				<input
@@ -21,7 +15,7 @@ function AnswerOption(props) {
 					id={props.answerValue}
 					value={props.answerValue}
 					disabled={props.userAnswer}
-					onChange={onChangeTest}
+					onChange={props.onAnswerSelected}
 				/>
 				<label className="radioCustomLabel" htmlFor={props.answerValue}>
 					{props.answerLabel}

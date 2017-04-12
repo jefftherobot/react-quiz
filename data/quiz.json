@@ -230,7 +230,8 @@
           "value": true,
           "conditional": [
             {
-              "question:": "How much additional cash?",
+              "name": "AdditionalCashAmount",
+              "question": "How much additional cash?",
               "type": "text",
               "answers": [
                 {
@@ -258,6 +259,7 @@
           "value": true,
           "conditional": [
             {
+              "name": "ServiceMemberVALoan",
               "question": "Is your current loan to be refinanced a VA loan?",
               "type": "radio",
               "answers": [
