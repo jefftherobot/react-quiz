@@ -80,11 +80,11 @@
       "answers": [
         {
           "label": "Yes",
-          "value": true
+          "value": "true"
         },
         {
           "label": "No",
-          "value": false
+          "value": "false"
         }
       ]
     },
@@ -96,11 +96,11 @@
       "answers": [
         {
           "label": "Yes",
-          "value": true
+          "value": "true"
         },
         {
           "label": "No",
-          "value": false
+          "value": "false"
         }
       ]
     },
@@ -187,11 +187,37 @@
         },
         {
           "label": "Vacation Home",
-          "value": 2
+          "value": 2,
+          "conditional": [
+            {
+              "name": "PrimaryResidenceZIP",
+              "question": "What is your current zip code?",
+              "type": "text",
+              "answers": [
+                {
+                  "label": "Enter Zip Code",
+                  "value": ""
+                }
+              ]
+            }
+          ]
         },
         {
           "label": "Rental Property",
-          "value": 1
+          "value": 1,
+          "conditional": [
+            {
+              "name": "PrimaryResidenceZIP",
+              "question": "What is your current zip code?",
+              "type": "text",
+              "answers": [
+                {
+                  "label": "Enter Zip Code",
+                  "value": ""
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -199,7 +225,7 @@
       "name": "SalesPrice",
       "question": "What is the estimated value of the property?",
       "type": "text",
-      "progress": 0,
+      "progress": 33.33,
       "answers": [
         {
           "label": "Enter Dollar Amount",
@@ -211,7 +237,7 @@
       "name": "MortgageBalance",
       "question": "What is the balance of the current mortgage?",
       "type": "text",
-      "progress": 0,
+      "progress": 44.44,
       "answers": [
         {
           "label": "Enter Dollar Amount",
@@ -223,11 +249,11 @@
       "name": "AdditionalCash",
       "question": "Would you like to borrow additional cash?",
       "type": "radio",
-      "progress": 0,
+      "progress": 55.55,
       "answers": [
         {
           "label": "Yes",
-          "value": true,
+          "value": "true",
           "conditional": [
             {
               "name": "AdditionalCashAmount",
@@ -244,7 +270,7 @@
         },
         {
           "label": "No",
-          "value": false
+          "value": "false"
         }
       ]
     },
@@ -252,11 +278,11 @@
       "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
-      "progress": 0,
+      "progress": 66.66,
       "answers": [
         {
           "label": "Yes",
-          "value": true,
+          "value": "true",
           "conditional": [
             {
               "name": "ServiceMemberVALoan",
@@ -265,11 +291,11 @@
               "answers": [
                 {
                   "label": "Yes",
-                  "value": true
+                  "value": "true"
                 },
                 {
                   "label": "No",
-                  "value": false
+                  "value": "false"
                 }
               ]
             }
@@ -277,7 +303,7 @@
         },
         {
           "label": "No",
-          "value": false
+          "value": "false"
         }
       ]
     },
@@ -285,34 +311,34 @@
       "name": "CreditScore",
       "question": "What is your estimated credit score?",
       "type": "radio",
-      "progress": 0,
+      "progress": 83.33,
       "answers": [
         {
-          "label": "Excellent",
+          "label": "740 - 850 (Excellent)",
           "value": "850"
         },
         {
-          "label": "Very Good",
+          "label": "700 - 739 (Very Good)",
           "value": "739"
         },
         {
-          "label": "Good",
+          "label": "660 - 699 (Good)",
           "value": "699"
         },
         {
-          "label": "Average",
+          "label": "640 - 659 (Average)",
           "value": "659"
         },
         {
-          "label": "Poor",
+          "label": "620 - 639 (Poor)",
           "value": "639"
         },
         {
-          "label": "Needs Work",
+          "label": "600 - 619 (Needs Work)",
           "value": "619"
         },
         {
-          "label": "Credit Repair",
+          "label": "599 & below (Credit Repair)",
           "value": "599"
         }
       ]

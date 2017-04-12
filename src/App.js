@@ -73,10 +73,17 @@ class App extends React.Component {
 	}
 
 	setNextQuestion(answerValue) {
-		const conditional = this.state.questions[this.state.counter].answers[0].conditional;
+		const answers = this.state.questions[this.state.counter].answers;
+		
+		for ( var i = 0; i < answers.length; i++ ) {
+			if ( answers[i].value == answerValue ) {
+				var position = i;
+				var conditional = this.state.questions[this.state.counter].answers[position].conditional;
+			}
+		}
 
-		// check whether answer is yes and has follow up question
-		if ( typeof conditional == 'object' && this.state.question !== conditional[0].question && answerValue == 'true' ) {
+		// check whether answer is conditional and has follow up question
+		if ( typeof conditional == 'object' && this.state.question !== conditional[0].question ) {
 			console.log('true');
 			var counter = this.state.counter;
 			var questionId = this.state.questionId;
@@ -123,7 +130,6 @@ class App extends React.Component {
 	}
 
 	handleInputSelected(event) {
-
 		const inputType = event.currentTarget.type;
 
 		var inputs = {
