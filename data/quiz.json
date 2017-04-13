@@ -4,6 +4,7 @@
       "name": "ZipCode",
       "question": "Where is the property located?",
       "type": "text",
+      "validation": "zip",
       "progress": 0,
       "answers": [
         {
@@ -16,6 +17,7 @@
       "name": "HomeType",
       "question": "What type of property?",
       "type": "radio",
+      "validation": "none",
       "progress": 11.11,
       "answers": [
         {
@@ -36,6 +38,7 @@
       "name": "HomeUse",
       "question": "How will you use the property?",
       "type": "radio",
+      "validation": "none",
       "progress": 22.22,
       "answers": [
         {
@@ -56,6 +59,7 @@
       "name": "PrimaryResidenceZIP",
       "question": "What is your current zip code?",
       "type": "text",
+      "validation": "zip",
       "answers": [
         {
           "label": "Enter Zip Code",
@@ -67,6 +71,7 @@
       "name": "SalesPrice",
       "question": "What is the purchase price and down payment?",
       "type": "textGroup",
+      "validation": "none",
       "progress": 33.33,
       "answers": [
         {
@@ -87,6 +92,7 @@
       "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
+      "validation": "none",
       "progress": 66.66,
       "answers": [
         {
@@ -103,6 +109,7 @@
       "name": "Realtor",
       "question": "Are you working with a realtor?",
       "type": "radio",
+      "validation": "none",
       "progress": 83.235,
       "answers": [
         {
@@ -119,6 +126,7 @@
       "name": "CreditScore",
       "question": "What is your estimated credit score?",
       "type": "radio",
+      "validation": "none",
       "progress": 90,
       "answers": [
         {
@@ -158,6 +166,7 @@
       "name": "ZipCode",
       "question": "Where is the property located?",
       "type": "text",
+      "validation": "zip",
       "progress": 0,
       "answers": [
         {
@@ -170,6 +179,7 @@
       "name": "HomeType",
       "question": "What type of property?",
       "type": "radio",
+      "validation": "none",
       "progress": 11.11,
       "answers": [
         {
@@ -190,6 +200,7 @@
       "name": "HomeUse",
       "question": "How will you use the property?",
       "type": "radio",
+      "validation": "none",
       "progress": 22.22,
       "answers": [
         {
@@ -204,6 +215,7 @@
               "name": "PrimaryResidenceZIP",
               "question": "What is your current zip code?",
               "type": "text",
+              "validation": "zip",
               "answers": [
                 {
                   "label": "Enter Zip Code",
@@ -221,6 +233,7 @@
               "name": "PrimaryResidenceZIP",
               "question": "What is your current zip code?",
               "type": "text",
+              "validation": "zip",
               "answers": [
                 {
                   "label": "Enter Zip Code",
@@ -236,6 +249,7 @@
       "name": "SalesPrice",
       "question": "What is the estimated value of the property?",
       "type": "text",
+      "validation": "number",
       "progress": 33.33,
       "answers": [
         {
@@ -248,6 +262,7 @@
       "name": "MortgageBalance",
       "question": "What is the balance of the current mortgage?",
       "type": "text",
+      "validation": "number",
       "progress": 44.44,
       "answers": [
         {
@@ -260,6 +275,7 @@
       "name": "AdditionalCash",
       "question": "Would you like to borrow additional cash?",
       "type": "radio",
+      "validation": "none",
       "progress": 55.55,
       "answers": [
         {
@@ -270,6 +286,7 @@
               "name": "AdditionalCashAmount",
               "question": "How much additional cash?",
               "type": "text",
+              "validation": "number",
               "answers": [
                 {
                   "label": "Enter Dollar Amount",
@@ -289,6 +306,7 @@
       "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
+      "validation": "none",
       "progress": 66.66,
       "answers": [
         {
@@ -299,6 +317,7 @@
               "name": "ServiceMemberVALoan",
               "question": "Is your current loan to be refinanced a VA loan?",
               "type": "radio",
+              "validation": "none",
               "answers": [
                 {
                   "label": "Yes",
@@ -322,6 +341,7 @@
       "name": "CreditScore",
       "question": "What is your estimated credit score?",
       "type": "radio",
+      "validation": "none",
       "progress": 83.33,
       "answers": [
         {

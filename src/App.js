@@ -3,6 +3,8 @@ import React from 'react';
 import update from 'react-addons-update';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
+import NotLicensed from './components/NotLicensed';
+import validate from './helpers/validate';
 
 class App extends React.Component {
 
@@ -43,7 +45,7 @@ class App extends React.Component {
 				this.setState({
 					questions: data[$type],
 					question: data[$type][0].question,
-					type: data[$type][0].type,
+					validation: data[$type][0].validation,
 					progress: data[$type][0].progress,
 					answerOptions: data[$type][0].answers,
 					answerConditional: data[$type][0].answers[0].conditional,
@@ -56,6 +58,32 @@ class App extends React.Component {
 			.catch(function (error) {
 				console.log('Request failed', error);
 		});
+	}
+
+	// HANDLE USER INPUT ==============================================================================
+
+	// handlers called from AnswerOption
+	handleTextTypeChange(event) {
+		this.setUserAnswer(event.currentTarget.value);
+	}
+
+	handleInputSelected(event) {
+		const inputType = event.currentTarget.type;
+
+		var inputs = {
+			'radio':() => {
+				this.setUserAnswer(event.currentTarget.value);
+				this.showNextScreen(event.currentTarget.value);
+			},
+			'submit': () => {
+				this.validateInput(event.currentTarget.value);
+			},
+			'default': () => {
+				console.log(`${type} doesn't have a function assigned to it`)
+			}
+		}
+
+		return (inputs[inputType] || inputs['default'])();
 	}
 
 	setUserAnswer(answer) {
@@ -72,9 +100,39 @@ class App extends React.Component {
 		});
 	}
 
+	validateInput(input) {
+		const validation = this.state.validation;
+		const answer = this.state.answer;
+
+		if ( validation == 'zip' ) {
+			if ( validate.zip(answer) == true ) {
+				// BEFORE SHOWING NEXT SCREEN, need to check which zip field we're testing, for zip to state conversion
+				this.showNextScreen(event.currentTarget.value);
+			} else {
+				console.log('Please enter a 5-digit zip code');
+			}	
+		} else if ( validation == 'number' ) {
+			if ( validate.number(answer) == true ) {
+				this.showNextScreen(event.currentTarget.value);
+			} else {
+				console.log('Please enter numbers only');
+			}	
+		} 
+	}
+
+	showNextScreen(answerValue){
+		if (this.state.questionId < this.state.questions.length) {
+			setTimeout(() => this.setNextQuestion(answerValue), 300);
+		} else {
+			// quiz is done!
+			setTimeout(() => this.setResults(this.getResults()), 300);
+		}
+	}
+
 	setNextQuestion(answerValue) {
 		const answers = this.state.questions[this.state.counter].answers;
 		
+		// identify which answer option is conditional
 		for ( var i = 0; i < answers.length; i++ ) {
 			if ( answers[i].value == answerValue ) {
 				var position = i;
@@ -91,6 +149,7 @@ class App extends React.Component {
 			var questionName = conditional[0].name;
 			var answerOptions = conditional[0].answers;
 			var answerType = conditional[0].type;
+			var validation = conditional[0].validation;
 		} else { 
 			var counter = this.state.counter + 1;
 			var questionId = this.state.questionId + 1;
@@ -98,6 +157,7 @@ class App extends React.Component {
 			var questionName = this.state.questions[counter].name;
 			var answerOptions = this.state.questions[counter].answers;
 			var answerType = this.state.questions[counter].type;
+			var validation = this.state.questions[counter].validation;
 		}
 
 		this.setState({
@@ -109,8 +169,13 @@ class App extends React.Component {
 			answerOptions: answerOptions,
 			answerConditional: this.state.questions[counter].answers[0].conditional,
 			answerType: answerType,
+			validation: validation,
 			answer: ''
 		});
+	}
+
+	setResults (result) {
+		this.setState({ result: result });
 	}
 
 	getResults() {
@@ -122,42 +187,6 @@ class App extends React.Component {
 		this.state.results = this.state.answers
 
 		return this.state.results;
-	}
-
-	setResults (result) {
-		this.setState({ result: result });
-	}
-
-	handleInputSelected(event) {
-		const inputType = event.currentTarget.type;
-
-		var inputs = {
-			'radio':() => {
-				this.setUserAnswer(event.currentTarget.value);
-				this.showNextScreen(event.currentTarget.value);
-			},
-			'submit': () => {
-				this.showNextScreen(event.currentTarget.value);
-			},
-			'default': () => {
-				console.log(`${type} doesn't have a function assigned to it`)
-			}
-		}
-
-		return (inputs[inputType] || inputs['default'])();
-	}
-
-	handleTextTypeChange(event) {
-		this.setUserAnswer(event.currentTarget.value);
-	}
-
-	showNextScreen(answerValue){
-		if (this.state.questionId < this.state.questions.length) {
-			setTimeout(() => this.setNextQuestion(answerValue), 300);
-		} else {
-			// quiz is done!
-			setTimeout(() => this.setResults(this.getResults()), 300);
-		}
 	}
 
 	renderQuiz() {
