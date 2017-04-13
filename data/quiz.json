@@ -27,7 +27,7 @@
           "value": 3
         },
         {
-          "label": "2-4 unit",
+          "label": "Multi-unit",
           "value": 20
         }
       ]
@@ -49,6 +49,17 @@
         {
           "label": "Rental Property",
           "value": 1
+        }
+      ]
+    },
+    {
+      "name": "PrimaryResidenceZIP",
+      "question": "What is your current zip code?",
+      "type": "text",
+      "answers": [
+        {
+          "label": "Enter Zip Code",
+          "value": ""
         }
       ]
     },
@@ -111,31 +122,31 @@
       "progress": 90,
       "answers": [
         {
-          "label": "Excellent",
+          "label": "740 - 850 (Excellent)",
           "value": "850"
         },
         {
-          "label": "Very Good",
+          "label": "700 - 739 (Very Good)",
           "value": "739"
         },
         {
-          "label": "Good",
+          "label": "660 - 699 (Good)",
           "value": "699"
         },
         {
-          "label": "Average",
+          "label": "640 - 659 (Average)",
           "value": "659"
         },
         {
-          "label": "Poor",
+          "label": "620 - 639 (Poor)",
           "value": "639"
         },
         {
-          "label": "Needs Work",
+          "label": "600 - 619 (Needs Work)",
           "value": "619"
         },
         {
-          "label": "Credit Repair",
+          "label": "599 & below (Credit Repair)",
           "value": "599"
         }
       ]

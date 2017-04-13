@@ -84,7 +84,7 @@ class App extends React.Component {
 
 		// check whether answer is conditional and has follow up question
 		if ( typeof conditional == 'object' && this.state.question !== conditional[0].question ) {
-			console.log('true');
+			console.log('conditional question');
 			var counter = this.state.counter;
 			var questionId = this.state.questionId;
 			var question = conditional[0].question;
@@ -92,7 +92,6 @@ class App extends React.Component {
 			var answerOptions = conditional[0].answers;
 			var answerType = conditional[0].type;
 		} else { 
-			console.log('false'); 
 			var counter = this.state.counter + 1;
 			var questionId = this.state.questionId + 1;
 			var question = this.state.questions[counter].question;
