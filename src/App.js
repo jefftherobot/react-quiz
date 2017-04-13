@@ -17,6 +17,7 @@ class App extends React.Component {
 			questionId: 1,
 			question: '',
 			questionName: '',
+			view: 'Quiz',
 			answerOptions: [],
 			answerConditional: [],
 			answer: '',
@@ -76,7 +77,7 @@ class App extends React.Component {
 				this.showNextScreen(event.currentTarget.value);
 			},
 			'submit': () => {
-				this.validateInput(event.currentTarget.value);
+				this.validateInput();
 			},
 			'default': () => {
 				console.log(`${type} doesn't have a function assigned to it`)
@@ -100,14 +101,16 @@ class App extends React.Component {
 		});
 	}
 
-	validateInput(input) {
+	validateInput() {
 		const validation = this.state.validation;
 		const answer = this.state.answer;
 
 		if ( validation == 'zip' ) {
 			if ( validate.zip(answer) == true ) {
-				// BEFORE SHOWING NEXT SCREEN, need to check which zip field we're testing, for zip to state conversion
-				this.showNextScreen(event.currentTarget.value);
+				// Check which zip field we're testing, for zip to state conversion
+				if ( this.state.questionName == "ZipCode" ) {
+					this.checkLicense(answer);
+				} else { this.showNextScreen(event.currentTarget.value); };
 			} else {
 				console.log('Please enter a 5-digit zip code');
 			}	
@@ -118,6 +121,14 @@ class App extends React.Component {
 				console.log('Please enter numbers only');
 			}	
 		} 
+	}
+
+	checkLicense(answer) {
+		// SEND ZIP TO MORTECH AND CHECK IF USER IS IN LICENSED STATE
+		// if yes:
+		this.showNextScreen(event.currentTarget.value);
+		// if no:
+		// this.setState({ view: 'NotLicensed' });
 	}
 
 	showNextScreen(answerValue){
@@ -175,7 +186,10 @@ class App extends React.Component {
 	}
 
 	setResults (result) {
-		this.setState({ result: result });
+		this.setState({ 
+			result: result,
+			view: 'Result' 
+		});
 	}
 
 	getResults() {
@@ -213,10 +227,17 @@ class App extends React.Component {
 	}
 
 	render() {
+		if ( this.state.view == 'NotLicensed' ) {
+			var component = <NotLicensed />;
+		} else if ( this.state.view == 'Result' ) {
+			var component = <Result />;
+		} else {
+			var component = this.renderQuiz();
+		}
+
 		return (
 			<div className="App">
-				{/*this.state.result ? this.renderResult() : this.renderQuiz()*/}
-				{this.renderQuiz()}
+				{component}
 			</div>
 		);
 	}
