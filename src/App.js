@@ -230,7 +230,7 @@ class App extends React.Component {
 		if ( this.state.view == 'NotLicensed' ) {
 			var component = <NotLicensed />;
 		} else if ( this.state.view == 'Result' ) {
-			var component = <Result />;
+			var component = this.renderResult();
 		} else {
 			var component = this.renderQuiz();
 		}

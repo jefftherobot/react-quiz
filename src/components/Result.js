@@ -1,9 +1,17 @@
 import React from 'react';
 
 function Result(props) {
+	const resultObj = props.quizResult;
+	const results = Object.keys(resultObj).map(function(key) {
+				    return <li key={key}>{key}: {resultObj[key]}</li>
+				  });
+
 	return (
-		<div className="result">
-			You prefer <strong>{props.quizResult}</strong>!
+		<div>
+			<p>Your answers:</p>
+			<ul className="result__list">
+				{ results }
+			</ul>
 		</div>
 	);
 }
