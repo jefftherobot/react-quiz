@@ -217,6 +217,7 @@ class App extends React.Component {
 				answerConditional={this.state.answerConditional}
 				answerType={this.state.answerType}
 				questionId={this.state.questionId}
+				questionName={this.state.questionName}
 				question={this.state.question}
 				questionTotal={this.state.questions.length}
 				progress={this.state.progress}

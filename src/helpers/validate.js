@@ -23,6 +23,7 @@ var validate = {
 		const textTitle = document.createTextNode('Error Messages');
 		
 		// create error container title
+		errorTitle.setAttribute('tabindex', -1);
 		errorTitle.appendChild(textTitle);
 
 		// create the error element with message
@@ -35,7 +36,7 @@ var validate = {
 		// append the error message and focus on it
 		errorContainer.appendChild(errorTitle);
 		errorContainer.appendChild(spanError);
-		errorContainer.focus();
+		errorTitle.focus();
 	}
 }
 

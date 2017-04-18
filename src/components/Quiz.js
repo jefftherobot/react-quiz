@@ -34,10 +34,10 @@ function Quiz(props) {
 
 			<Question content={props.question} />
 
-			<ul className="answerOptions">
-				<div id="error-messages" tabIndex={-1}></div>
+			<div className="answerOptions">
+				<div id="error-messages"></div>
 				{props.answerOptions.map(renderAnswerOptions)}
-			</ul>
+			</div>
 
 		</div>
 	);
