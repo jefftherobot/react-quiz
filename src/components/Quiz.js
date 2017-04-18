@@ -35,6 +35,7 @@ function Quiz(props) {
 			<Question content={props.question} />
 
 			<ul className="answerOptions">
+				<div id="error-messages" tabIndex={-1}></div>
 				{props.answerOptions.map(renderAnswerOptions)}
 			</ul>
 
