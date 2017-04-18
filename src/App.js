@@ -18,6 +18,7 @@ class App extends React.Component {
 			question: '',
 			questionName: '',
 			view: 'Quiz',
+			quizType: '',
 			answerOptions: [],
 			answerConditional: [],
 			answer: '',
@@ -44,6 +45,7 @@ class App extends React.Component {
 				this.state.questions.length = data[$type].length;
 			
 				this.setState({
+					quizType: $type,
 					questions: data[$type],
 					question: data[$type][0].question,
 					validation: data[$type][0].validation,
@@ -222,7 +224,12 @@ class App extends React.Component {
 
 	renderResult() {
 		return (
-			<Result quizResult={this.state.result} />
+			<Result 
+				quizResult={this.state.result}
+				quizType={this.state.quizType}
+				quizQuestions={this.state.questions} 
+				answerOptions={this.state.answerOptions}
+			/>
 		);
 	}
 
