@@ -12,12 +12,12 @@ function AnswerOption(props) {
 					className="radioCustomButton"
 					name="radioGroup"
 					checked={props.answerValue === props.userAnswer}
-					id={props.answerValue}
+					id={props.id}
 					value={props.answerValue}
 					disabled={props.userAnswer}
 					onChange={props.onAnswerSelected}
 				/>
-				<label className="radioCustomLabel" htmlFor={props.answerValue}>
+				<label className="radioCustomLabel" htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 			</div>
@@ -28,7 +28,7 @@ function AnswerOption(props) {
 		//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
 		return (
 			<div>
-				<label className="textCustomLabel" htmlFor={props.answerValue}>
+				<label className="textCustomLabel" htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 				<input
@@ -36,7 +36,7 @@ function AnswerOption(props) {
 					className="textCustomButton"
 					name="textGroup"
 					checked={props.answerValue === props.userAnswer}
-					id={props.answerValue}
+					id={props.id}
 					value={props.answer}
 					onChange={props.onTextTypeChange}
 				/>
@@ -51,7 +51,7 @@ function AnswerOption(props) {
 	function renderTextGroupType() {
 		return (
 			<div>
-				<label className="textGroupCustomLabel" htmlFor={props.answerValue}>
+				<label className="textGroupCustomLabel" htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 				<input
@@ -59,29 +59,29 @@ function AnswerOption(props) {
 					className="textGroupCustomButton"
 					name="textGroupGroup"
 					checked={props.answerValue === props.userAnswer}
-					id={props.answerValue}
+					id={props.id}
 					value={props.answer}
 					onChange={props.onTextTypeChange}
 				/>
-				<button
+{/*				<button
 					onClick={props.onAnswerSelected}>
 						Continue
-				</button>
+				</button>*/}
 			</div>
 		)
 	}
 
 	function chooseAnswerType() {
 		if ( props.answerType === "radio" ) {
-			return ( 
-				renderRadioType() 
+			return (
+				renderRadioType()
 			);
 		} else if ( props.answerType === "text") {
-			return ( 
-				renderTextType() 
+			return (
+				renderTextType()
 			);
 		} else {
-			return ( 
+			return (
 				renderTextGroupType()
 			);
 		}

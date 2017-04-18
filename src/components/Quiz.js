@@ -5,11 +5,16 @@ import AnswerOption from '../components/AnswerOption';
 
 
 function Quiz(props) {
+	let counter = 0;
 
 	function renderAnswerOptions(key) {
+
+		counter++
+
 		return (
 			<AnswerOption
-				key={key.value} //need to figure out a better way to set this value
+				key={props.questionName + counter}
+				id={props.questionName + counter}
 				answerValue={key.value}
 				answerLabel={key.label}
 				answer={props.answer}
@@ -36,4 +41,5 @@ function Quiz(props) {
 		</div>
 	);
 }
+
 export default Quiz;
