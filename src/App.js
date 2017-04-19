@@ -156,27 +156,37 @@ class App extends React.Component {
 
 	validateInput() {
 		const validation = this.state.validation;
-		const answer = this.state.answer;console.log(validation)
+		const answer = this.state.answer;console.log(validation);
 
-		if ( validation == 'zip' ) {
-			if ( validate.zip(answer) == true ) {
+		let validationType = {
+			'zip':() => {
+				if ( validate.zip(answer) == true ) {
 				// Check which zip field we're testing, for zip to state conversion
-				if ( this.state.questionName == "ZipCode" ) {
-					this.checkLicense(answer);
-				} else { this.showNextScreen(event.currentTarget.value); };
-			} else {
-				validate.addError('error-messages', 'Please enter a 5-digit zip code');
-			}
-		} else if ( validation == 'number' ) {
-			if ( validate.number(answer) == true ) {
+					if ( this.state.questionName == "ZipCode" ) {
+						this.checkLicense(answer);
+					} else { this.showNextScreen(event.currentTarget.value); };
+				} else {
+					validate.addError('error-messages', 'Please enter a 5-digit zip code');
+				}
+			},
+			'number': () => {
+				if ( validate.number(answer) == true ) {
+					this.showNextScreen(event.currentTarget.value);
+				} else {
+					validate.addError('error-messages', 'Please enter numbers only');
+				}
+			},
+			'textGroup': () => {
+				//TODO: validate multiple answers in object
 				this.showNextScreen(event.currentTarget.value);
-			} else {
-				validate.addError('error-messages', 'Please enter numbers only');
+			},
+			'default': () => {
+				console.log(`${type} doesn't have a validation function assigned to it`)
+				this.showNextScreen(event.currentTarget.value);
 			}
-		} else if ( validation == 'textGroup' ) {
-			//TODO: validate multiple answers in object
-			this.showNextScreen(event.currentTarget.value);
-		}
+		};
+
+		(validationType[validation] || validationType['default'])();
 	}
 
 	checkLicense(answer) {
@@ -283,10 +293,10 @@ class App extends React.Component {
 
 	renderResult() {
 		return (
-			<Result 
+			<Result
 				quizResult={this.state.result}
 				quizType={this.state.quizType}
-				quizQuestions={this.state.questions} 
+				quizQuestions={this.state.questions}
 				answerOptions={this.state.answerOptions}
 			/>
 		);
