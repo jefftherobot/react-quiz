@@ -81,14 +81,14 @@ class App extends React.Component {
 			//first set user input value for form field
 			//this.setUserAnswer({[target.id]:target.value,'SalesPrice2':25000});
 
-			let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
+			let purchasePrice          = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
 		      downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
 		      downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
 
 			if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
 				downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
 			}else if (target.id.indexOf('SalesPrice3')!=-1){
-				 downpaymentPercent      = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+				 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
 			}
 
 			this.setUserAnswer({

@@ -1,0 +1,14 @@
+// Scaffolding styles are declared here. e.g containers, grid
+// ------------------------------------------------------------------------------
+
+html {
+	font-family: "mobile";
+
+	@include breakpoint($medium) {
+	 	font-family: "tablet";
+  }
+
+	@include breakpoint($large) {
+		font-family: "desktop";
+	}
+}

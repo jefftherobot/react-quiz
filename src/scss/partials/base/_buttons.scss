@@ -1,0 +1,32 @@
+/*
+Buttons
+
+Your standard button suitable for clicking.
+
+.btn-primary - Primary button
+
+markup:
+<button class="{$modifiers}">Button text</button>
+
+Styleguide 2.2
+*/
+
+%btn-base {
+	display: inline-block;
+	padding: 10px 15px;
+	font-size: 18px;
+	line-height: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	border: none;
+	transition: background .45s;
+
+	&:hover {
+		text-decoration: none;
+		// color: $link-hover-color;
+	}
+}
+
+.btn-primary {
+	@extend %btn-base;
+}
