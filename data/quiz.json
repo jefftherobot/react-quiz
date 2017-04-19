@@ -71,7 +71,7 @@
       "name": "SalesPrice",
       "question": "What is the purchase price and down payment?",
       "type": "textGroup",
-      "validation": "none",
+      "validation": "textGroup",
       "progress": 33.33,
       "answers": [
         {

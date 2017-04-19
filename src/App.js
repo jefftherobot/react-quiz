@@ -21,7 +21,13 @@ class App extends React.Component {
 			answerOptions: [],
 			answerConditional: [],
 			answer: '',
-			answers: {},
+			answers: {
+				SalesPrice: {
+					SalesPrice1:'',
+					SalesPrice2:'',
+					SalesPrice3:''
+				}
+			},
 			result: []
 		};
 
@@ -42,7 +48,7 @@ class App extends React.Component {
 				console.log("You're taking the " + $type + " quiz!");
 
 				this.state.questions.length = data[$type].length;
-			
+
 				this.setState({
 					questions: data[$type],
 					question: data[$type][0].question,
@@ -64,14 +70,41 @@ class App extends React.Component {
 	// HANDLE USER INPUT ==============================================================================
 
 	// handlers called from AnswerOption
-	handleTextTypeChange(event) {
-		this.setUserAnswer(event.currentTarget.value);
+	handleTextTypeChange(event) {// console.log(event)
+		let target = event.currentTarget;
+
+		//Check for salesprice input group and do down payment calculations
+		if(target.id.indexOf('SalesPrice')!=-1){
+
+			//first set user input value for form field
+			//this.setUserAnswer({[target.id]:target.value,'SalesPrice2':25000});
+
+			let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
+		      downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
+		      downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
+
+			if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
+				downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+			}else if (target.id.indexOf('SalesPrice3')!=-1){
+				 downpaymentPercent      = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+			}
+
+			this.setUserAnswer({
+				'SalesPrice1':purchasePrice,
+				'SalesPrice2':downpaymentPercent,
+				'SalesPrice3':downpaymentDollarAmount
+
+			}, true)
+
+		}else{
+			this.setUserAnswer(target.value);
+		}
 	}
 
 	handleInputSelected(event) {
 		const inputType = event.currentTarget.type;
 
-		var inputs = {
+		let inputs = {
 			'radio':() => {
 				this.setUserAnswer(event.currentTarget.value);
 				this.showNextScreen(event.currentTarget.value);
@@ -87,13 +120,31 @@ class App extends React.Component {
 		return (inputs[inputType] || inputs['default'])();
 	}
 
-	setUserAnswer(answer) {
-		console.log(`you picked ${answer}`)
+	setUserAnswer(answer, isTextGroup=false) {
+		console.log('you picked',answer)
 
 		//https://facebook.github.io/react/docs/update.html
-		const updatedAnswers = update(this.state.answers, {
-			$merge: {[this.state.questionName] : answer}
-		});
+		let updatedAnswers = {};
+
+		if(!isTextGroup){
+			updatedAnswers = update(this.state.answers, {
+				$merge: {[this.state.questionName] : answer}
+			});
+		}else{
+			updatedAnswers = update(this.state.answers, {
+				[this.state.questionName] : {
+					$apply: function(x){
+						let _answer = answer;
+						if(x){
+							return update(x, {$merge: answer});
+						}
+						return _answer;
+					}
+				}
+			});
+		}
+
+		//console.log(updatedAnswers)
 
 		this.setState({
 			answer: answer,
@@ -103,7 +154,7 @@ class App extends React.Component {
 
 	validateInput() {
 		const validation = this.state.validation;
-		const answer = this.state.answer;
+		const answer = this.state.answer;console.log(validation)
 
 		if ( validation == 'zip' ) {
 			if ( validate.zip(answer) == true ) {
@@ -113,14 +164,17 @@ class App extends React.Component {
 				} else { this.showNextScreen(event.currentTarget.value); };
 			} else {
 				console.log('Please enter a 5-digit zip code');
-			}	
+			}
 		} else if ( validation == 'number' ) {
 			if ( validate.number(answer) == true ) {
 				this.showNextScreen(event.currentTarget.value);
 			} else {
 				console.log('Please enter numbers only');
-			}	
-		} 
+			}
+		} else if ( validation == 'textGroup' ) {
+			//TODO: validate multiple answers in object
+			this.showNextScreen(event.currentTarget.value);
+		}
 	}
 
 	checkLicense(answer) {
@@ -142,7 +196,7 @@ class App extends React.Component {
 
 	setNextQuestion(answerValue) {
 		const answers = this.state.questions[this.state.counter].answers;
-		
+
 		// identify which answer option is conditional
 		for ( var i = 0; i < answers.length; i++ ) {
 			if ( answers[i].value == answerValue ) {
@@ -161,7 +215,7 @@ class App extends React.Component {
 			var answerOptions = conditional[0].answers;
 			var answerType = conditional[0].type;
 			var validation = conditional[0].validation;
-		} else { 
+		} else {
 			var counter = this.state.counter + 1;
 			var questionId = this.state.questionId + 1;
 			var question = this.state.questions[counter].question;
@@ -186,9 +240,9 @@ class App extends React.Component {
 	}
 
 	setResults (result) {
-		this.setState({ 
+		this.setState({
 			result: result,
-			view: 'Result' 
+			view: 'Result'
 		});
 	}
 
@@ -212,6 +266,7 @@ class App extends React.Component {
 				answerType={this.state.answerType}
 				questionId={this.state.questionId}
 				question={this.state.question}
+				questionName={this.state.questionName}
 				questionTotal={this.state.questions.length}
 				progress={this.state.progress}
 				onAnswerSelected={this.handleInputSelected}

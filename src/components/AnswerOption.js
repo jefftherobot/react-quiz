@@ -58,15 +58,12 @@ function AnswerOption(props) {
 					type="textGroup"
 					className="textGroupCustomButton"
 					name="textGroupGroup"
-					checked={props.answerValue === props.userAnswer}
 					id={props.id}
-					value={props.answer}
+					value={props.answer[props.id]}
 					onChange={props.onTextTypeChange}
 				/>
-{/*				<button
-					onClick={props.onAnswerSelected}>
-						Continue
-				</button>*/}
+				{ props.id === "SalesPrice3" ? <button onClick={props.onAnswerSelected}>Continue</button> : null }
+
 			</div>
 		)
 	}
@@ -83,7 +80,7 @@ function AnswerOption(props) {
 		} else {
 			return (
 				renderTextGroupType()
-			);
+			)
 		}
 	}
 
