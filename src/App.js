@@ -257,8 +257,7 @@ class App extends React.Component {
 
 	setResults (result) {
 		this.setState({
-			result: result,
-			view: 'Result'
+			result: result
 		});
 	}
 
@@ -268,9 +267,18 @@ class App extends React.Component {
 		console.log(this.state.answers);
 
 		//TODO: fetch results
-		this.state.results = this.state.answers
+		fetch('http://www.mocky.io/v2/58f7bef7100000fb2a24f25c')
+			.then(response => response.json())
+			.then(data => {
+				this.state.result = data
 
-		return this.state.results;
+				//only set results view after data returns sucessfully
+
+				this.setState({
+					view: 'Result'
+				});
+			})
+		//
 	}
 
 	renderQuiz() {
