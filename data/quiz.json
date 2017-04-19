@@ -246,7 +246,7 @@
       ]
     },
     {
-      "name": "SalesPrice",
+      "name": "PurchasePrice",
       "question": "What is the estimated value of the property?",
       "type": "text",
       "validation": "number",

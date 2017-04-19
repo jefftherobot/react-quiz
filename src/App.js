@@ -75,30 +75,46 @@ class App extends React.Component {
 	handleTextTypeChange(event) {// console.log(event)
 		let target = event.currentTarget;
 
+		let setAnswers = {
+			update:() => {
+				let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
+			        downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
+			        downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
+
+				if (validate.numberGroup(target.value, target.id) == true) {
+					document.getElementById('error-messages').innerHTML = '';
+
+					if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
+						downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+					} else if (target.id.indexOf('SalesPrice3')!=-1){
+						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+					}
+				} else {
+					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+				}
+
+				this.setUserAnswer({
+					'SalesPrice1':purchasePrice,
+					'SalesPrice2':downpaymentPercent,
+					'SalesPrice3':downpaymentDollarAmount
+
+				}, true)
+			}
+		}
+
 		//Check for salesprice input group and do down payment calculations
-		if(target.id.indexOf('SalesPrice')!=-1){
+		if (target.id.indexOf('SalesPrice')!=-1) {
 
 			//first set user input value for form field
-			//this.setUserAnswer({[target.id]:target.value,'SalesPrice2':25000});
+			// this.setUserAnswer({
+			// 	'SalesPrice1':75000,
+			// 	'SalesPrice2':0,
+			// 	'SalesPrice3':0
 
-			let purchasePrice          = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
-		      downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
-		      downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
+			// }, true)
 
-			if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
-				downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
-			}else if (target.id.indexOf('SalesPrice3')!=-1){
-				 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
-			}
-
-			this.setUserAnswer({
-				'SalesPrice1':purchasePrice,
-				'SalesPrice2':downpaymentPercent,
-				'SalesPrice3':downpaymentDollarAmount
-
-			}, true)
-
-		}else{
+			setAnswers.update();
+		} else {
 			this.setUserAnswer(target.value);
 		}
 	}
@@ -156,7 +172,8 @@ class App extends React.Component {
 
 	validateInput() {
 		const validation = this.state.validation;
-		const answer = this.state.answer;console.log(validation);
+		const answer = this.state.answer;
+		console.log(validation);
 
 		let validationType = {
 			'zip':() => {
@@ -177,8 +194,20 @@ class App extends React.Component {
 				}
 			},
 			'textGroup': () => {
-				//TODO: validate multiple answers in object
-				this.showNextScreen(event.currentTarget.value);
+				for (var i = 0; i < Object.keys(answer).length; i++) {
+					const itemKey = 'SalesPrice' + [i+1];
+					if (validate.number(answer[itemKey]) == true ) {
+						console.log('good');
+						if (i == Object.keys(answer).length - 1) {
+							console.log('last item, onward!');
+							this.showNextScreen(event.currentTarget.value);
+						}
+					} else {
+						validate.addError('error-messages', 'Please enter numbers only')
+						console.log('no good');
+					}
+				}
+				
 			},
 			'default': () => {
 				console.log(`${type} doesn't have a validation function assigned to it`)

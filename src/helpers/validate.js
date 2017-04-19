@@ -9,8 +9,31 @@ var validate = {
 	},
 
 	number: function(number) {
-		const re = /^-?\d*[\.]?\d+$/;
+		const re = /^\d*[\.]?\d+$/;
 		const test = re.test(number);
+
+		return test;
+	},
+
+	numberGroup: function(number, id) {
+		const re = /^\d*[\.]?\d+$/;
+		const test = re.test(number);
+
+		// IN PROG - min purchase price of 75K
+		// if (test == true && id == 'SalesPrice1') {
+		// 	if ( number < 75000 ) {
+		// 		console.log('too small')
+		// 		validate.addError('error-messages', 'Purchase price must be at least $75K')
+
+		// 		// return test;
+		// 	} else {
+		// 		console.log('return!');
+		// 		// return test;
+		// 	}
+		// } else {
+		// 	console.log('not the first');
+		// 	// return test;
+		// }
 
 		return test;
 	},
