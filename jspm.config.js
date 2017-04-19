@@ -7,6 +7,9 @@ SystemJS.config({
   browserConfig: {
     "baseURL": "/"
   },
+  sassPluginOptions: {
+    "autoprefixer": true
+  },
   devConfig: {
     "map": {
       "plugin-babel": "npm:systemjs-plugin-babel@0.0.21",
