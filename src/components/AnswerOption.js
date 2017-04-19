@@ -6,7 +6,7 @@ function AnswerOption(props) {
 
 	function renderRadioType(){
 		return (
-			<div>
+			<div className="form__item answerOption">
 				<input
 					type="radio"
 					className="radioCustomButton"
@@ -16,8 +16,9 @@ function AnswerOption(props) {
 					value={props.answerValue}
 					disabled={props.userAnswer}
 					onChange={props.onAnswerSelected}
+					aria-labelledby={props.id + '_label'}
 				/>
-				<label className="radioCustomLabel" htmlFor={props.id}>
+				<label className="radioCustomLabel" id={props.id + '_label'} htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 			</div>
@@ -27,8 +28,8 @@ function AnswerOption(props) {
 	function renderTextType(){
 		//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
 		return (
-			<div>
-				<label className="textCustomLabel" htmlFor={props.id}>
+			<div className="form__item answerOption">
+				<label className="textCustomLabel" id={props.id + '_label'} htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 				<input
@@ -39,6 +40,8 @@ function AnswerOption(props) {
 					id={props.id}
 					value={props.answer}
 					onChange={props.onTextTypeChange}
+					aria-labelledby={props.id + '_label'}
+					aria-required="true"
 				/>
 				<button
 					onClick={props.onAnswerSelected}>
@@ -85,9 +88,7 @@ function AnswerOption(props) {
 	}
 
 	return (
-		<li className="answerOption">
-			{ chooseAnswerType() }
-		</li>
+		chooseAnswerType()
 	);
 }
 

@@ -18,6 +18,7 @@ class App extends React.Component {
 			question: '',
 			questionName: '',
 			view: 'Quiz',
+			quizType: '',
 			answerOptions: [],
 			answerConditional: [],
 			answer: '',
@@ -50,6 +51,7 @@ class App extends React.Component {
 				this.state.questions.length = data[$type].length;
 
 				this.setState({
+					quizType: $type,
 					questions: data[$type],
 					question: data[$type][0].question,
 					validation: data[$type][0].validation,
@@ -163,13 +165,13 @@ class App extends React.Component {
 					this.checkLicense(answer);
 				} else { this.showNextScreen(event.currentTarget.value); };
 			} else {
-				console.log('Please enter a 5-digit zip code');
+				validate.addError('error-messages', 'Please enter a 5-digit zip code');
 			}
 		} else if ( validation == 'number' ) {
 			if ( validate.number(answer) == true ) {
 				this.showNextScreen(event.currentTarget.value);
 			} else {
-				console.log('Please enter numbers only');
+				validate.addError('error-messages', 'Please enter numbers only');
 			}
 		} else if ( validation == 'textGroup' ) {
 			//TODO: validate multiple answers in object
@@ -196,6 +198,10 @@ class App extends React.Component {
 
 	setNextQuestion(answerValue) {
 		const answers = this.state.questions[this.state.counter].answers;
+		const errorContainer = document.getElementById('error-messages');
+
+		// if error messages remain from last question, remove
+		errorContainer.innerHTML = '';
 
 		// identify which answer option is conditional
 		for ( var i = 0; i < answers.length; i++ ) {
@@ -277,7 +283,12 @@ class App extends React.Component {
 
 	renderResult() {
 		return (
-			<Result quizResult={this.state.result} />
+			<Result 
+				quizResult={this.state.result}
+				quizType={this.state.quizType}
+				quizQuestions={this.state.questions} 
+				answerOptions={this.state.answerOptions}
+			/>
 		);
 	}
 

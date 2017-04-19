@@ -1,15 +1,15 @@
 import React from 'react';
+import FormOption from '../components/FormOption';
 
 function Result(props) {
 	const resultObj = props.quizResult;
 	const results = Object.keys(resultObj).map(function(key) {
-				    return <li key={key}>{key}: {resultObj[key]}</li>
-				  });
+		return <li className="results__item" key={key}>{key}: {resultObj[key]}</li>
+	});
 
 	return (
 		<div>
-			<p>Your answers:</p>
-			<ul className="result__list">
+			<ul className="results__list">
 				{ results }
 			</ul>
 		</div>
