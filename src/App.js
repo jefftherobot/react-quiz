@@ -74,46 +74,54 @@ class App extends React.Component {
 	// handlers called from AnswerOption
 	handleTextTypeChange(event) {// console.log(event)
 		let target = event.currentTarget;
+		let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
+			downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
+			downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
 
 		let setAnswers = {
-			update:() => {
-				let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
-			        downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
-			        downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
+				init:() => {
+					setAnswers.update();
+				},
 
-				if (validate.numberGroup(target.value, target.id) == true) {
-					document.getElementById('error-messages').innerHTML = '';
-
-					if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
-						downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
-					} else if (target.id.indexOf('SalesPrice3')!=-1){
-						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+				checkMin:() => {
+					if (validate.minVal(target.value, 74999)) {
+						document.getElementById('error-messages').innerHTML = '';
+					} else if (validate.number(target.value) == false) { 
+						validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+					} else {
+						validate.addError('error-messages', 'Purchase price must be at least $75K')
 					}
-				} else {
-					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+				},
+
+				update:() => {
+					if (validate.number(target.value) == true) {
+						document.getElementById('error-messages').innerHTML = '';
+
+						if (target.id == 'SalesPrice1') {
+							document.getElementById(target.id).addEventListener('focusout', function(){ setAnswers.checkMin(); });
+						}
+						
+						if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
+							downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+						} else if (target.id.indexOf('SalesPrice3')!=-1){
+							 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+						}
+					} else {
+						validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+					}
+
+					this.setUserAnswer({
+						'SalesPrice1':purchasePrice,
+						'SalesPrice2':downpaymentPercent,
+						'SalesPrice3':downpaymentDollarAmount
+
+					}, true)
 				}
-
-				this.setUserAnswer({
-					'SalesPrice1':purchasePrice,
-					'SalesPrice2':downpaymentPercent,
-					'SalesPrice3':downpaymentDollarAmount
-
-				}, true)
-			}
-		}
+		};
 
 		//Check for salesprice input group and do down payment calculations
 		if (target.id.indexOf('SalesPrice')!=-1) {
-
-			//first set user input value for form field
-			// this.setUserAnswer({
-			// 	'SalesPrice1':75000,
-			// 	'SalesPrice2':0,
-			// 	'SalesPrice3':0
-
-			// }, true)
-
-			setAnswers.update();
+			setAnswers.init();
 		} else {
 			this.setUserAnswer(target.value);
 		}
