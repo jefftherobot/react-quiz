@@ -72,57 +72,58 @@ class App extends React.Component {
 	// HANDLE USER INPUT ==============================================================================
 
 	// handlers called from AnswerOption
-	handleTextTypeChange(event) {// console.log(event)
+	handleTextTypeChange(event) {
 		let target = event.currentTarget;
 		let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
 			downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
 			downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
 
 		let setAnswers = {
-				init:() => {
-					setAnswers.update();
-				},
+			init:() => {
+				setAnswers.update();
+			},
 
-				checkMin:() => {
-					if (validate.minVal(target.value, 74999)) {
-						document.getElementById('error-messages').innerHTML = '';
-					} else if (validate.number(target.value) == false) { 
-						validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
-					} else {
-						validate.addError('error-messages', 'Purchase price must be at least $75K')
-					}
-				},
-
-				update:() => {
-					if (validate.number(target.value) == true) {
-						document.getElementById('error-messages').innerHTML = '';
-
-						if (target.id == 'SalesPrice1') {
-							document.getElementById(target.id).addEventListener('focusout', function(){ setAnswers.checkMin(); });
-						}
-						
-						if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
-							downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
-						} else if (target.id.indexOf('SalesPrice3')!=-1){
-							 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
-						}
-					} else {
-						validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
-					}
-
-					this.setUserAnswer({
-						'SalesPrice1':purchasePrice,
-						'SalesPrice2':downpaymentPercent,
-						'SalesPrice3':downpaymentDollarAmount
-
-					}, true)
+			checkMin:() => {
+				if (validate.minVal(target.value, 74999)) {
+					document.getElementById('error-messages').innerHTML = '';
+				} else if (validate.number(target.value) == false) { 
+					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+				} else {
+					validate.addError('error-messages', 'Purchase price must be at least $75K')
 				}
+			},
+
+			update:() => {
+				if (validate.number(target.value) == true) {
+					document.getElementById('error-messages').innerHTML = '';
+
+					if (target.id == 'SalesPrice1') {
+						document.getElementById(target.id).addEventListener('focusout', function(){ setAnswers.checkMin(); });
+					}
+					
+					if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
+						downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+					} else if (target.id.indexOf('SalesPrice3')!=-1){
+						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+					}
+				} else {
+					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+				}
+
+				this.setUserAnswer({
+					'SalesPrice1':purchasePrice,
+					'SalesPrice2':downpaymentPercent,
+					'SalesPrice3':downpaymentDollarAmount
+
+				}, true)
+			}
 		};
 
-		//Check for salesprice input group and do down payment calculations
 		if (target.id.indexOf('SalesPrice')!=-1) {
+			// Check for salesprice input group and do down payment calculations
 			setAnswers.init();
 		} else {
+			// easy - just set user answer and proceed onward
 			this.setUserAnswer(target.value);
 		}
 	}
@@ -202,20 +203,25 @@ class App extends React.Component {
 				}
 			},
 			'textGroup': () => {
-				for (var i = 0; i < Object.keys(answer).length; i++) {
-					const itemKey = 'SalesPrice' + [i+1];
-					if (validate.number(answer[itemKey]) == true ) {
-						console.log('good');
-						if (i == Object.keys(answer).length - 1) {
-							console.log('last item, onward!');
-							this.showNextScreen(event.currentTarget.value);
+				if ( Object.keys(answer).length == 0 ) {
+					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.');
+				} else {
+					for (var i = 0; i < Object.keys(answer).length; i++) {
+						const itemKey = 'SalesPrice' + [i+1];
+						console.log(itemKey);
+						if (validate.number(answer[itemKey]) == true ) {
+							console.log('good');
+							if (i == Object.keys(answer).length - 1) {
+								console.log('last item, onward!');
+								this.showNextScreen(event.currentTarget.value);
+							}
+						} else {
+							validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
+							console.log('no good');
+							return;
 						}
-					} else {
-						validate.addError('error-messages', 'Please enter numbers only')
-						console.log('no good');
 					}
 				}
-				
 			},
 			'default': () => {
 				console.log(`${type} doesn't have a validation function assigned to it`)
