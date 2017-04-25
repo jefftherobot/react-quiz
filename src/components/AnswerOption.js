@@ -40,6 +40,7 @@ function AnswerOption(props) {
 					id={props.id}
 					value={props.answer}
 					onChange={props.onTextTypeChange}
+					onKeyDown={props.onKeyDown}
 					aria-labelledby={props.id + '_label'}
 					aria-required="true"
 				/>

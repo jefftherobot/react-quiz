@@ -34,6 +34,7 @@ class App extends React.Component {
 
 		this.handleInputSelected = this.handleInputSelected.bind(this);
 		this.handleTextTypeChange = this.handleTextTypeChange.bind(this);
+		this.handleKeyDown = this.handleKeyDown.bind(this);
 	}
 
 	componentDidMount() {
@@ -125,6 +126,22 @@ class App extends React.Component {
 		} else {
 			// easy - just set user answer and proceed onward
 			this.setUserAnswer(target.value);
+		}
+	}
+
+	handleKeyDown(event) {
+		// check to see if someone presses 'enter'
+		if (event.key !== undefined) {
+			if (event.key == 'Enter') { this.validateInput(); }
+		// Handle the event with KeyboardEvent.key and set handled true.
+		} else if (event.keyIdentifier !== undefined) {
+			if (event.keyIdentifier == 'Enter') { this.validateInput(); }
+		// Handle the event with KeyboardEvent.keyIdentifier and set handled true.
+		} else if (event.keyCode !== undefined) {
+		// Handle the event with KeyboardEvent.keyCode and set handled true.
+			if (event.key == 13) { this.validateInput(); }
+		} else {
+			console.log("can't identify keypress");
 		}
 	}
 
@@ -338,6 +355,7 @@ class App extends React.Component {
 				progress={this.state.progress}
 				onAnswerSelected={this.handleInputSelected}
 				onTextTypeChange={this.handleTextTypeChange}
+				onKeyDown={this.handleKeyDown}
 			/>
 		);
 	}
