@@ -70,9 +70,12 @@ class App extends React.Component {
 		});
 	}
 
+
 	// HANDLE USER INPUT ==============================================================================
+	// ================================================================================================
 
 	// handlers called from AnswerOption
+	// this one watches the value in single line text components
 	handleTextTypeChange(event) {
 		let target = event.currentTarget;
 		let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
@@ -124,24 +127,44 @@ class App extends React.Component {
 			// Check for salesprice input group and do down payment calculations
 			setAnswers.init();
 		} else {
-			// easy - just set user answer and proceed onward
+			// just set user answer and proceed onward!
 			this.setUserAnswer(target.value);
 		}
 	}
 
+	// watch keyDown event for accessibility
 	handleKeyDown(event) {
-		// check to see if someone presses 'enter'
-		if (event.key !== undefined) {
-			if (event.key == 'Enter') { this.validateInput(); }
-		// Handle the event with KeyboardEvent.key and set handled true.
-		} else if (event.keyIdentifier !== undefined) {
-			if (event.keyIdentifier == 'Enter') { this.validateInput(); }
-		// Handle the event with KeyboardEvent.keyIdentifier and set handled true.
-		} else if (event.keyCode !== undefined) {
-		// Handle the event with KeyboardEvent.keyCode and set handled true.
-			if (event.key == 13) { this.validateInput(); }
+		if (event.currentTarget.type == 'radio') {
+			var eventType = 'radio';
 		} else {
-			console.log("can't identify keypress");
+			var eventType = 'text';
+		}
+
+		this.checkForKeys(event, eventType)
+	}
+
+	// check keyDown type
+	checkForKeys(event, eventType) {
+		// check to see if someone presses 'enter' to move to next question, with fallbacks for diff browsers
+		if ((event.key !== undefined && event.key == 'Enter') ||
+			(event.keyIdentifier !== undefined && event.keyIdentifier == 'Enter') ||
+			(event.keyCode !== undefined && event.keyCode == 13)) {
+			eventType == 'radio' ? this.showNextScreen(event.currentTarget.value) : this.validateInput();
+		} 
+
+		// check to see if someone presses the arrow keys to move through radio options, with fallbacks for diff browsers
+		 else if ((event.key !== undefined && (event.key == 'ArrowUp' || event.key == 'ArrowDown' || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Tab')) ||
+			(event.keyIdentifier !== undefined && (event.keyIdentifier == 'ArrowUp' || event.keyIdentifier == 'ArrowDown' || event.keyIdentifier == 'ArrowLeft' || event.keyIdentifier == 'ArrowRight' || event.keyIdentifier == 'Tab')) ||
+			(event.keyCode !== undefined && (event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40 || event.keyCode == 9))) {
+			
+			// prevent onClick event
+			this.setState({ run: false });
+		}
+
+		else {
+			// allow onClick event to go through for radio buttons
+			this.setState({ run: true });
+			if ( eventType == 'radio') { this.showNextScreen(event.currentTarget.value) }
 		}
 	}
 
@@ -151,7 +174,6 @@ class App extends React.Component {
 		let inputs = {
 			'radio':() => {
 				this.setUserAnswer(event.currentTarget.value);
-				this.showNextScreen(event.currentTarget.value);
 			},
 			'submit': () => {
 				this.validateInput();
@@ -163,6 +185,10 @@ class App extends React.Component {
 
 		return (inputs[inputType] || inputs['default'])();
 	}
+
+
+	// SET VALUES IN STATE, VALIDATE ANSWERS ==============================================================================
+	// ====================================================================================================================
 
 	setUserAnswer(answer, isTextGroup=false) {
 		console.log('you picked',answer)
@@ -257,12 +283,19 @@ class App extends React.Component {
 		// this.setState({ view: 'NotLicensed' });
 	}
 
+
+	// MOVE ON TO NEXT QUESTION ===========================================================================================
+	// ====================================================================================================================
+
 	showNextScreen(answerValue){
-		if (this.state.questionId < this.state.questions.length) {
-			setTimeout(() => this.setNextQuestion(answerValue), 300);
-		} else {
-			// quiz is done!
-			setTimeout(() => this.setResults(this.getResults()), 300);
+		if (this.state.run == false ) { return }
+		else {
+			if (this.state.questionId < this.state.questions.length) {
+				setTimeout(() => this.setNextQuestion(answerValue), 300);
+			} else {
+				// quiz is done!
+				setTimeout(() => this.setResults(this.getResults()), 300);
+			}
 		}
 	}
 
@@ -315,6 +348,10 @@ class App extends React.Component {
 		});
 	}
 
+
+	// SET RESULTS AT END OF QUIZ =========================================================================================
+	// ====================================================================================================================
+
 	setResults (result) {
 		this.setState({
 			result: result
@@ -341,6 +378,10 @@ class App extends React.Component {
 		//
 	}
 
+
+	// RENDER VIEWS =======================================================================================================
+	// ====================================================================================================================
+
 	renderQuiz() {
 		return (
 			<Quiz
@@ -356,6 +397,7 @@ class App extends React.Component {
 				onAnswerSelected={this.handleInputSelected}
 				onTextTypeChange={this.handleTextTypeChange}
 				onKeyDown={this.handleKeyDown}
+				onClick={this.handleClick}
 			/>
 		);
 	}

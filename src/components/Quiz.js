@@ -24,6 +24,7 @@ function Quiz(props) {
 				onAnswerSelected={props.onAnswerSelected}
 				onTextTypeChange={props.onTextTypeChange}
 				onKeyDown={props.onKeyDown}
+				onClick={props.onClick}
 			/>
 		);
 	}

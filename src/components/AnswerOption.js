@@ -16,6 +16,8 @@ function AnswerOption(props) {
 					value={props.answerValue}
 					disabled={props.userAnswer}
 					onChange={props.onAnswerSelected}
+					onKeyDown={props.onKeyDown}
+					onClick={props.onKeyDown}
 					aria-labelledby={props.id + '_label'}
 				/>
 				<label className="radioCustomLabel" id={props.id + '_label'} htmlFor={props.id}>
