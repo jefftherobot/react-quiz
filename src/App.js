@@ -34,7 +34,7 @@ class App extends React.Component {
 
 		this.handleInputSelected = this.handleInputSelected.bind(this);
 		this.handleTextTypeChange = this.handleTextTypeChange.bind(this);
-		this.handleKeyDown = this.handleKeyDown.bind(this);
+		this.validateInput = this.validateInput.bind(this);
 	}
 
 	componentDidMount() {
@@ -142,48 +142,13 @@ class App extends React.Component {
 		}
 	}
 
-	// watch keyDown event for accessibility
-	handleKeyDown(event) {
-		if (event.currentTarget.type == 'radio') {
-			var eventType = 'radio';
-		} else {
-			var eventType = 'text';
-		}
-
-		this.checkForKeys(event, eventType)
-	}
-
-	// check keyDown type
-	checkForKeys(event, eventType) {
-		// check to see if someone presses 'enter' to move to next question, with fallbacks for diff browsers
-		if ((event.key !== undefined && event.key == 'Enter') ||
-			(event.keyIdentifier !== undefined && event.keyIdentifier == 'Enter') ||
-			(event.keyCode !== undefined && event.keyCode == 13)) {
-			eventType == 'radio' ? this.showNextScreen(event.currentTarget.value) : this.validateInput();
-		} 
-
-		// check to see if someone presses the arrow keys to move through radio options, with fallbacks for diff browsers
-		 else if ((event.key !== undefined && (event.key == 'ArrowUp' || event.key == 'ArrowDown' || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Tab')) ||
-			(event.keyIdentifier !== undefined && (event.keyIdentifier == 'ArrowUp' || event.keyIdentifier == 'ArrowDown' || event.keyIdentifier == 'ArrowLeft' || event.keyIdentifier == 'ArrowRight' || event.keyIdentifier == 'Tab')) ||
-			(event.keyCode !== undefined && (event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40 || event.keyCode == 9))) {
-			
-			// prevent onClick event
-			this.setState({ run: false });
-		}
-
-		else {
-			// allow onClick event to go through for radio buttons
-			this.setState({ run: true });
-			if ( eventType == 'radio') { this.showNextScreen(event.currentTarget.value) }
-		}
-	}
-
 	handleInputSelected(event) {
 		const inputType = event.currentTarget.type;
 
 		let inputs = {
 			'radio':() => {
 				this.setUserAnswer(event.currentTarget.value);
+				this.showNextScreen(event.currentTarget.value);
 			},
 			'submit': () => {
 				this.validateInput();
@@ -298,14 +263,11 @@ class App extends React.Component {
 	// ====================================================================================================================
 
 	showNextScreen(answerValue){
-		if (this.state.run == false ) { return }
-		else {
-			if (this.state.questionId < this.state.questions.length) {
-				setTimeout(() => this.setNextQuestion(answerValue), 300);
-			} else {
-				// quiz is done!
-				setTimeout(() => this.setResults(this.getResults()), 300);
-			}
+		if (this.state.questionId < this.state.questions.length) {
+			setTimeout(() => this.setNextQuestion(answerValue), 300);
+		} else {
+			// quiz is done!
+			setTimeout(() => this.setResults(this.getResults()), 300);
 		}
 	}
 
@@ -406,8 +368,7 @@ class App extends React.Component {
 				progress={this.state.progress}
 				onAnswerSelected={this.handleInputSelected}
 				onTextTypeChange={this.handleTextTypeChange}
-				onKeyDown={this.handleKeyDown}
-				onClick={this.handleClick}
+				validateInput={this.validateInput}
 			/>
 		);
 	}

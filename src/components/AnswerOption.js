@@ -2,7 +2,37 @@ import React from 'react';
 
 function AnswerOption(props) {
 
-	//Need a range picker for credit score
+	function handleKeyDown(e) {
+		if (e.keyCode == 13 || e.keyIdentifier == 'Enter' || e.key == 'Enter') { 
+			if (props.answerType == 'radio') {
+				props.onAnswerSelected(e);
+			} else {
+				props.validateInput(e);
+			}
+		}
+	}
+
+	function handleClick(e) {
+		// deal with click vs focus issue:
+		// http://stackoverflow.com/a/33400670/3780922
+		var clickedByMouse = false;
+
+	    var keyboardPageX = (e.pageX === 0 || e.pageX === window.scrollLeft) ? true : false,
+	        keyboardPageY = (e.pageY === 0 || e.pageY === window.scrollTop) ? true : false;
+
+	    if((keyboardPageX && keyboardPageY) || (e.button === -1)){
+	       //console.log("keyboard mouseup");
+	    }else{
+	       clickedByMouse = true;
+	    }
+
+	    if(clickedByMouse){
+	        //Reset flag
+	        clickedByMouse = false;
+
+	        props.onAnswerSelected(e);
+	    }
+	}
 
 	function renderRadioType(){
 		return (
@@ -15,9 +45,8 @@ function AnswerOption(props) {
 					id={props.id}
 					value={props.answerValue}
 					disabled={props.userAnswer}
-					onChange={props.onAnswerSelected}
-					onKeyDown={props.onKeyDown}
-					onClick={props.onKeyDown}
+					onKeyDown={handleKeyDown}
+					onMouseUp={handleClick}
 					aria-labelledby={props.id + '_label'}
 				/>
 				<label className="radioCustomLabel" id={props.id + '_label'} htmlFor={props.id}>
@@ -42,7 +71,7 @@ function AnswerOption(props) {
 					id={props.id}
 					value={props.answer}
 					onChange={props.onTextTypeChange}
-					onKeyDown={props.onKeyDown}
+					onKeyDown={handleKeyDown}
 					aria-labelledby={props.id + '_label'}
 					aria-required="true"
 				/>
