@@ -16,7 +16,6 @@ var validate = {
 	},
 
 	minVal: function(number, minimum) {
-		const min = minimum;
 		const test = +number > +minimum;
 
 		return test;

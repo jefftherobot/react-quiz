@@ -107,8 +107,18 @@ class App extends React.Component {
 					
 					if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
 						downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+						if (downpaymentDollarAmount >= purchasePrice) {
+							validate.addError('error-messages', 'Down payment percentage must be less than 100%.');
+							downpaymentPercent = 99;
+						 	downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+						} else { document.getElementById('error-messages').innerHTML = ''; }
 					} else if (target.id.indexOf('SalesPrice3')!=-1){
 						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
+						 if (downpaymentPercent >= 100) {
+						 	validate.addError('error-messages', 'Down payment must be less than purchase price.');
+						 	downpaymentPercent = 99;
+						 	downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
+						 } else { document.getElementById('error-messages').innerHTML = ''; }
 					}
 				} else {
 					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
