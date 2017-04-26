@@ -1,0 +1,16 @@
+.result {
+	$block: &; 
+
+	&__list {
+		&--collapsed {
+			#{$block}__item {
+				// TEMP hide certain number of results
+				&:nth-child(n+2) { display: none; }
+			}
+		}
+	}
+
+	&__item {
+		display: block;
+	}
+}
