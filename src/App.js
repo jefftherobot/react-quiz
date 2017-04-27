@@ -114,7 +114,7 @@ class App extends React.Component {
 						} else { document.getElementById('error-messages').innerHTML = ''; }
 					} else if (target.id.indexOf('SalesPrice3')!=-1){
 						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
-						 if (downpaymentPercent >= 100) {
+						 if (downpaymentPercent >= 100 || downpaymentPercent < 0) {
 						 	validate.addError('error-messages', 'Down payment must be less than purchase price.');
 						 	downpaymentPercent = 99;
 						 	downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
