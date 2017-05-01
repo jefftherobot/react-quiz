@@ -261,10 +261,10 @@ class App extends React.Component {
 				validate.addError('error-messages', 'Please enter a valid USA ZIP code');
 			} else {
 				// IN FUTURE: send ZIP to Mortech to check if it's a licensed state
-				// TEMP: check from list.  Also need to check if zip is in US, google will return other countries
-				let state = result.state;
+				// TEMP: check from list
+				let state = result;
 
-				if (result.inUSA == false || (state == 'Alaska' || state =='Hawaii' || state =='Montana' || state =='Missouri' || state =='New York' || state =='Nevada' || state =='North Dakota' || state =='South Dakota' || state =='Wyoming' || state =='Idaho')) {
+				if (state == 'Alaska' || state =='Hawaii' || state =='Montana' || state =='Missouri' || state =='New York' || state =='Nevada' || state =='North Dakota' || state =='South Dakota' || state =='Wyoming' || state =='Idaho') {
 					this.setState({ view: 'NotLicensed' }); // kick user out of quiz
 				}
 
