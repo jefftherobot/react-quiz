@@ -5,6 +5,7 @@ import Quiz from './components/Quiz';
 import Result from './components/Result';
 import NotLicensed from './components/NotLicensed';
 import validate from './helpers/validate';
+import api from './helpers/api';
 
 class App extends React.Component {
 
@@ -251,11 +252,34 @@ class App extends React.Component {
 	}
 
 	checkLicense(answer) {
-		// SEND ZIP TO MORTECH AND CHECK IF USER IS IN LICENSED STATE
-		// if yes:
-		this.showNextScreen(event.currentTarget.value);
-		// if no:
-		// this.setState({ view: 'NotLicensed' });
+		// Send ZIP to google API to get state
+		api.getState(answer).then((result) => {
+			console.log('result', result);
+
+			// If not a valid ZIP code or there's another API error, give error message
+			if (result == 'api error') {
+				validate.addError('error-messages', 'Please enter a valid USA ZIP code');
+			} else {
+				// IN FUTURE: send ZIP to Mortech to check if it's a licensed state
+				// TEMP: check from list.  Also need to check if zip is in US, google will return other countries
+				let state = result.state;
+
+				if (result.inUSA == false || (state == 'Alaska' || state =='Hawaii' || state =='Montana' || state =='Missouri' || state =='New York' || state =='Nevada' || state =='North Dakota' || state =='South Dakota' || state =='Wyoming' || state =='Idaho')) {
+					this.setState({ view: 'NotLicensed' }); // kick user out of quiz
+				}
+
+				else {
+					// hooray onward!
+					// add zip and state to answers object
+					let updatedAnswers = update(this.state.answers, {
+						$merge: {state: state}
+					});
+
+					this.setState({ answers: updatedAnswers});
+					this.showNextScreen(answer);
+				}
+			}
+		});
 	}
 
 
