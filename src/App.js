@@ -359,7 +359,27 @@ class App extends React.Component {
 
 		console.log(this.state.answers);
 
-		//TODO: fetch results
+		let call = api.buildLoanCall(this.state.answers);
+		console.log(call);
+		
+		//CURRENTLY GETTING ACCESS CONTROL ALLOW ORIGIN ERROR
+		// fetch(call)
+		// 	.then((res) => {
+		// 		return res.json();
+		// 	})
+		// 	.then((data) => {
+		// 		this.state.result = data
+
+		// 		//only set results view after data returns sucessfully
+
+		// 		this.setState({
+		// 			view: 'Result'
+		// 		});
+		// 	})
+		// 	.catch(function(err){
+		// 		console.error('API error: ', err);
+		// 		return 'api error';
+		// 	});
 		fetch('http://www.mocky.io/v2/58f7bef7100000fb2a24f25c')
 			.then(response => response.json())
 			.then(data => {
@@ -371,7 +391,6 @@ class App extends React.Component {
 					view: 'Result'
 				});
 			})
-		//
 	}
 
 
