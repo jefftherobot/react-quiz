@@ -92,7 +92,7 @@
     "start": "npm-run-all --parallel server unbundle",
     "build": "npm-run-all build:*",
     "build:js": "jspm bundle src/main.js Static/dist/js/main.js --inject",
-    "server": "browser-sync start --server --files *.html, src/**/*.js, src/scss/**/*.scss --no-open",
+    "server": "browser-sync start --server --files *.html, react-app/src/**/*.js, react-app/src/scss/**/*.scss --no-open",
     "unbundle": "jspm unbundle Static/src/js/main.js"
   },
   "dependencies": {

@@ -2,7 +2,7 @@ SystemJS.config({
   paths: {
     "npm:": "jspm_packages/npm/",
     "github:": "jspm_packages/github/",
-    "jgw-mortgage-rate/": "src/"
+    "jgw-mortgage-rate/": "react-app/src/"
   },
   browserConfig: {
     "baseURL": "/"
