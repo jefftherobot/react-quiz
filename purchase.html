@@ -2,6 +2,12 @@
 <html>
 	<head>
 		<title>jgw-mortgage-rate</title>
+		<script>
+			window.onload = function() {
+				var quizType = window.location.href.split("/").pop().replace(".html","");
+				document.getElementById('container').setAttribute('data-type', quizType);
+			}
+		</script>
 	</head>
 <body>
 	<header class="rates-app-header">
@@ -16,24 +22,23 @@
 		</div>
 	</header>
 
-	<div id="container" class="rates-app-container" data-type='purchase'></div>
+	<div id="container" class="rates-app-container"></div>
 	
 	<footer class="rates-app-footer">
 		<div class="rates-app-footer__top">
 			<div class="rates-app-inner-container">
 				<div class="rates-app-footer__title">J.G. Wentworth Home Lending has an A+ rating from the Better Business Bureau.</div>
-				<div class="grid rates-app-footer__resources">
-					<div class="grid__col">Equal Housing</div>
-					<div class="grid__col">BBB</div>
-					<div class="grid__col">NMLS</div>
-					<div class="grid__col">Member of US Chamber of Commerce</div>
+				<div class="rates-app-footer__accreditations">
+					<a class="rates-app-footer__accred-item" href="https://www.jgwentworth.com/en/licensing-information" target="_blank"><img src="https://unsplash.it/60/60/?random" /></a>
+					<a class="rates-app-footer__accred-item" href="https://www.bbb.org/washington-dc-eastern-pa/business-reviews/financial-services/j-g-wentworth-in-radnor-pa-80004991" target="_blank"><img src="https://unsplash.it/60/60/?random" /></a>
+					<a class="rates-app-footer__accred-item" target="_blank"><img src="https://unsplash.it/60/60/?random" /></a>
+					<a class="rates-app-footer__accred-item" href="http://www.nmlsconsumeraccess.org/" target="_blank"><img src="https://unsplash.it/60/60/?random" /></a>
+					<a class="rates-app-footer__accred-item" href="https://www.uschamber.com/" target="_blank"><img src="https://unsplash.it/60/60/?random" /></a>
 				</div>
 			</div>
 		</div>
 		<div class="rates-app-footer__bottom">
 			<div class="rates-app-inner-container">
-				<!-- <div class="rates-app-footer__disclaimer">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Nulla consectetur mi velit, quis consequat diam eiusmod ac. Donec eget turpis in risus hendrerit mollis in sollicitudin neque. Morbi nec sem sed lacus maciumus viverra ut quis tellus.
-				</div> -->
 				<div class="rates-app-footer__utilities">
 					<a href="#" class="rates-app-footer__utilities-link">Terms of Use</a>
 					<a href="#" class="rates-app-footer__utilities-link">Privacy Policy</a>

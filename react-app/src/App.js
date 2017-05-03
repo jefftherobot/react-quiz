@@ -41,7 +41,7 @@ class App extends React.Component {
 	componentDidMount() {
 		//http://www.objgen.com/json/models/bZuG
 
-		fetch('./data/quiz.json')
+		fetch('../react-app/data/quiz.json')
 			.then(response => response.json())
 			.then(data => {
 				// console.log(data)
