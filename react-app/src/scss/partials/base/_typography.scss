@@ -1,63 +1,51 @@
-/*
-Typography
-
-This section describes headings, paragraphs, quotes, etc...
-
-Styleguide 1.2
-*/
-
-/*
-Headings
-
-These are our headings
-
-markup:
-<h1>Heading 1</h1>
-<h2>Heading 2</h2>
-<h3>Heading 3</h3>
-<h4>Heading 4</h4>
-<h5>Heading 5</h5>
-
-Styleguide 1.2.1
-*/
-
 @import "fonts";
 
-// body, h1, h2, h3, h4, h5, h6, p, a {
-// 	font-family: sans-serif;
-// }
-h1 {}
-h2 {}
-h3 {}
+body {
+	color: $color-font-main;
+	font-family: $font-roboto;
+	font-weight: $font-med;
+}
 
-/*
-Body Text
-
-Paragraphs.
-
-markup:
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, tincidunt vel convallis in, suscipit et risus. Morbi erat dolor, mattis
-
-Styleguide 1.2.3
-*/
-
-body {}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 rem(15);
+	color: $color-font-main;
+	font-family: $font-roboto-slab;
+	font-weight: $font-bold;
+}
 
 p {}
 
+a {
+	color: $color-font-secondary;
+	font-weight: $font-med;
+	text-decoration: underline;
 
-/*
-Lists
+	&:hover, &:active, &:focus, &:visited {
+		color: $color-font-secondary;
+		text-decoration: none;
+	}
+}
 
-These are our lists.
+ul {
+	padding-left: 0;
+	list-style: none;
+}
 
-markup:
-<ul>
-	<li>Lorem Ipsum</li>
-	<li>dolor</li>
-</ul>
+img {
+	display: block;
+	max-width: 100%;
+}
 
-Styleguide 1.2.4
-*/
+@include breakpoint($large) {
+	body {
+		font-size: rem(20);
+	}
 
-ul {}
+	h1 {
+		font-size: rem(60);
+	}
+
+	h3 {
+		font-size: rem(28);
+	}
+}

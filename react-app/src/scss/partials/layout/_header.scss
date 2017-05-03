@@ -1,2 +1,42 @@
 // Header content styles
 // ------------------------------------------------------------------------------
+
+.rates-app-header {
+	@include clearfix();
+	padding: rem($pad * 2) 0 rem($pad * 7);
+	color: $color-font-main;
+	text-align: center;
+
+	&__prompt {
+		&-text {
+			margin: 0;
+			font-family: $font-roboto;
+			font-size: rem(14);
+			font-weight: $font-med;
+		}
+
+		&-number {
+			margin: 0;
+			font-family: $font-roboto-slab;
+			font-size: rem(24);
+			font-weight: $font-bold;
+		}
+	}
+}
+
+@include breakpoint($medium) {
+	.rates-app-header {
+		&__logo {
+			float: left;
+			width: 50%;
+			text-align: left;
+		}
+
+		&__prompt {
+			float: left;
+			width: 50%;
+			text-align: right;
+			line-height: 1;
+		}
+	}
+}

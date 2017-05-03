@@ -1,0 +1,21 @@
+.rates-app-intro {
+	text-align: center;
+
+	&__header, &__subheader {
+		line-height: 1;
+	}
+}
+
+@include breakpoint($medium) {
+	.rates-app-intro {
+		&__fact {
+			margin-bottom: 0;
+		}
+		
+		&__fact {
+			display: inline-block;
+			padding-right: rem($pad * 4);
+			// TODO add checkmark
+		}
+	}
+}

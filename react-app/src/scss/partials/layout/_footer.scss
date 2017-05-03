@@ -1,2 +1,55 @@
-// Footer content styles
-// ------------------------------------------------------------------------------
+.rates-app-footer {
+	color: $color-font-secondary;
+	font-weight: $font-reg;
+	text-align: center;
+
+	&__top {
+		padding: rem(35) 0;
+		background: $color-footer-top-background;
+	}
+
+	&__bottom {
+		max-width: 700px;
+		margin: 0 auto;
+		padding: rem(30) 0;
+		font-size: rem(12);
+	}
+
+	&__utilities {
+		padding-bottom: 25px;
+
+		&-link {
+			padding-right: 15px;
+
+			&:last-child { padding: 0; }
+		}
+	}
+
+	&__contact {
+		padding-bottom: 25px;
+	}
+
+	&__legal {
+		padding-bottom: 25px;
+	}
+}
+
+@include breakpoint($medium) {
+	.rates-app-footer {
+		&__top {
+			font-size: rem(18);
+		}
+
+		&__title {
+			margin-bottom: rem(20);
+		}
+
+		&__accred-item {
+			display: inline-block;
+			margin-right: 28px;
+			line-height: 1;
+
+			&:last-child {margin: 0;}
+		}
+	}
+}

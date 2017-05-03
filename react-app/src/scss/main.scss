@@ -3,13 +3,17 @@
 
 @import "partials/settings";
 
+@import "partials/mixins/rems";
+@import "partials/mixins/clearfix";
+@import "partials/mixins/gradients";
+
 @import "partials/base/helpers";
 @import "partials/base/normalize";
 @import "partials/base/colors";
 @import "partials/base/typography";
+@import "partials/mixins/buttons";
 @import "partials/base/svg";
 @import "partials/base/scaffolding";
-@import "partials/base/links";
 @import "partials/base/buttons";
 @import "partials/base/inputs";
 
@@ -19,3 +23,7 @@
 
 @import "partials/components/progress";
 @import "partials/components/result";
+
+@import "partials/components/landing/intro";
+@import "partials/components/landing/ctas";
+@import "partials/components/landing/testimonial";

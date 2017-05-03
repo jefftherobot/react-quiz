@@ -1,0 +1,24 @@
+@mixin btn-base() {
+	@include gradient-animation-hover($btn-gradient-bottom, $btn-gradient-top, $btn-gradient-bottom, 0.25s);
+	display: inline-block;
+	padding: 25px 45px;
+	font-family: $font-roboto-slab;
+	font-size: rem(20);
+	font-weight: $font-bold;
+	color: white;
+	line-height: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	border: 1px solid $btn-gradient-bottom;
+	border-radius: 20px;
+
+	&:hover, &:focus, &:active, &:visited {
+		text-decoration: none;
+		color: white;
+		border-radius: 20px;
+	}
+}
+
+a.rates-app__btn {
+	@include btn-base();
+}

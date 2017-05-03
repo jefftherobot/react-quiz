@@ -1,0 +1,31 @@
+.rates-app-testimonial {
+	text-align: center;
+
+	&__item {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	&__quote {
+		margin-bottom: rem($pad * 2);
+		color: $color-font-secondary;
+		font-weight: $font-reg;
+		font-style: italic;
+	}
+
+	&__name, &__location {
+		display: inline-block;
+	}
+
+	&__location {
+		font-weight: $font-light;
+		font-style: italic;
+	}
+}
+
+@include breakpoint($medium) {
+	.rates-app-testimonial {
+		padding: rem($pad * 5) 0;
+		font-size: rem(18);
+	}
+}
