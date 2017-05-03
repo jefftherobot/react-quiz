@@ -37,6 +37,8 @@ function AnswerOption(props) {
 	function renderRadioType(){
 		return (
 			<div className="form__item answerOption">
+				
+				<label className="radioCustomLabel" id={props.id + '_label'} htmlFor={props.id} onMouseUp={handleClick}>
 				<input
 					type="radio"
 					className="radioCustomButton"
@@ -46,10 +48,9 @@ function AnswerOption(props) {
 					value={props.answerValue}
 					disabled={props.userAnswer}
 					onKeyDown={handleKeyDown}
-					onMouseUp={handleClick}
+					// onMouseUp={handleClick}
 					aria-labelledby={props.id + '_label'}
 				/>
-				<label className="radioCustomLabel" id={props.id + '_label'} htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 			</div>

@@ -155,7 +155,13 @@ class App extends React.Component {
 				this.validateInput();
 			},
 			'default': () => {
-				console.log(`${type} doesn't have a function assigned to it`)
+				if (event.currentTarget.tagName == 'LABEL') {
+					console.log('its a label');
+					this.setUserAnswer(event.currentTarget.children[0].getAttribute('value'));
+					this.showNextScreen(event.currentTarget.children[0].getAttribute('value'));
+				} else {
+					console.log(`${type} doesn't have a function assigned to it`)
+				}
 			}
 		}
 

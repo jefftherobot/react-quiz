@@ -19,6 +19,7 @@
 	}
 }
 
-a.rates-app__btn {
+a.rates-app__btn,
+.rates-app__btn {
 	@include btn-base();
 }
