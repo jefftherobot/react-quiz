@@ -36,12 +36,12 @@ function AnswerOption(props) {
 
 	function renderRadioType(){
 		return (
-			<div className="form__item answerOption">
+			<div className="rates-app-form__item rates-app-radio-btn">
 				
-				<label className="radioCustomLabel" id={props.id + '_label'} htmlFor={props.id} onMouseUp={handleClick}>
+				<label className="rates-app-radio-btn__label" id={props.id + '_label'} htmlFor={props.id} onMouseUp={handleClick}>
 				<input
 					type="radio"
-					className="radioCustomButton"
+					className="rates-app-radio-btn__btn"
 					name="radioGroup"
 					checked={props.answerValue === props.userAnswer}
 					id={props.id}
@@ -60,13 +60,13 @@ function AnswerOption(props) {
 	function renderTextType(){
 		//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
 		return (
-			<div className="form__item answerOption">
-				<label className="textCustomLabel" id={props.id + '_label'} htmlFor={props.id}>
+			<div className="rates-app-form__item rates-app-text">
+				<label className="rates-app-text__label" id={props.id + '_label'} htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 				<input
 					type="text"
-					className="textCustomButton"
+					className="rates-app-text__input"
 					name="textGroup"
 					checked={props.answerValue === props.userAnswer}
 					id={props.id}

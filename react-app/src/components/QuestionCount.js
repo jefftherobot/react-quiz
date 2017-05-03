@@ -10,9 +10,9 @@ function QuestionCount(props) {
 
 	return (
 		<div>
-			<div className="questionCount">
+			{/*<div className="questionCount">
 				Question <span>{props.counter}</span> of <span>{props.total}</span>
-			</div>
+			</div>*/}
 			<div className="progress">
 				<div className="progress__bar" style={styles.bar}></div>
 				<div className="progress__circle progress__circle--1"></div>

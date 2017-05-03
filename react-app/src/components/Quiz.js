@@ -29,16 +29,15 @@ function Quiz(props) {
 	}
 
 	return (
-		<div className="quiz">
-
-			<QuestionCount counter={props.questionId} total={props.questionTotal} progress={props.progress}/>
-
+		<div className="rates-app-quiz">
 			<Question content={props.question} />
 
-			<div className="answerOptions">
+			<div className="rates-app-answer-options">
 				<div id="error-messages"></div>
 				{props.answerOptions.map(renderAnswerOptions)}
 			</div>
+
+			<QuestionCount counter={props.questionId} total={props.questionTotal} progress={props.progress}/>
 
 		</div>
 	);
