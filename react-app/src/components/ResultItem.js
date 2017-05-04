@@ -14,7 +14,7 @@ function ResultItem(props) {
 				<p className="loan__APR">APR: {props.loanAPR}%</p>
 			</div>
 			<p className="loan__fees">J.G. Wentworth Fees or Credits: ${props.loanFees}</p>
-			<button>I like this loan option</button>
+			<button onClick={() => {props.onLoanSelected(props.loan)}}>I like this loan option</button>
 		</li>
 	)
 }

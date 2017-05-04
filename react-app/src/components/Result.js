@@ -38,6 +38,7 @@ function Result(props) {
 				loanPayment={props.quizResult[counter - 1].monthlyPayment}
 				loanAPR={props.quizResult[counter - 1].apr}
 				loanFees={props.quizResult[counter - 1].lenderFees}
+				onLoanSelected={props.onLoanSelected}
 			/>
 		);
 	}

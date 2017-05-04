@@ -4,6 +4,7 @@ import update from 'react-addons-update';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import NotLicensed from './components/NotLicensed';
+import NextSteps from './components/NextSteps';
 import validate from './helpers/validate';
 import api from './helpers/api';
 
@@ -36,6 +37,7 @@ class App extends React.Component {
 		this.handleInputSelected = this.handleInputSelected.bind(this);
 		this.handleTextTypeChange = this.handleTextTypeChange.bind(this);
 		this.validateInput = this.validateInput.bind(this);
+		this.setNextSteps = this.setNextSteps.bind(this);
 	}
 
 	componentDidMount() {
@@ -354,7 +356,7 @@ class App extends React.Component {
 	// SET RESULTS AT END OF QUIZ =========================================================================================
 	// ====================================================================================================================
 
-	setResults (result) {
+	setResults(result) {
 		this.setState({
 			result: result
 		});
@@ -399,6 +401,14 @@ class App extends React.Component {
 			})
 	}
 
+	setNextSteps(loan) {
+		console.log(loan);
+		this.setState({ 
+			view: 'NextSteps',
+			loan: loan 
+		});
+	}
+
 
 	// RENDER VIEWS =======================================================================================================
 	// ====================================================================================================================
@@ -429,18 +439,40 @@ class App extends React.Component {
 				quizType={this.state.quizType}
 				quizQuestions={this.state.questions}
 				answerOptions={this.state.answerOptions}
+				onLoanSelected={this.setNextSteps}
 			/>
 		);
 	}
 
+	renderNextSteps() {
+		return (
+			<NextSteps
+				quizAnswers={this.state.answers}
+				loan={this.state.loan}
+			/>
+		)
+	}
+
 	render() {
-		if ( this.state.view == 'NotLicensed' ) {
-			var component = <NotLicensed />;
-		} else if ( this.state.view == 'Result' ) {
-			var component = this.renderResult();
-		} else {
-			var component = this.renderQuiz();
-		}
+		let view = this.state.view;
+		let component;
+
+		let viewType = {
+			'NotLicensed':() => {
+				component = <NotLicensed />;
+			},
+			'Result':() => {
+				component = this.renderResult();
+			},
+			'NextSteps':() => {
+				component = this.renderNextSteps();
+			},
+			'default':() => {
+				component = this.renderQuiz();
+			}
+		};
+
+		(viewType[view] || viewType['default'])();
 
 		return (
 			<div className="App">
