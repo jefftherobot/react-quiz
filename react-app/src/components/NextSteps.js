@@ -1,6 +1,25 @@
 import React from 'react';
+import HiddenField from '../components/HiddenField';
 
 function NextSteps(props) {
+	let counter = 0;
+
+	function renderHiddenFields(key) {
+		// get the hidden field object key
+		let label;
+		for ( var prop in key ) { label = prop; }
+
+		counter++
+
+		return (
+			<HiddenField
+				key={'hiddenField' + counter}
+				id={'hiddenField' + counter}
+				fieldValue={key[prop]}
+				fieldLabel={prop}
+			/>
+		);
+	}
 
 	return (
 		<div>
@@ -17,54 +36,34 @@ function NextSteps(props) {
 				<form className="rates-app-form">
 					<p>* required field</p>
 					<div className="rates-app-form__item">
-						<label className="rates-app-form__label" 
-							   id="rates-app__label1"
-							   htmlFor="rates-app__input1">
+						<label className="rates-app-form__label" id="rates-app__label1" htmlFor="rates-app__input1">
 							   First Name*
 						</label>
-						<input className="rates-app-form__input" 
-							   id="rates-app__input1"
-							   aria-labelledby="rates-app__label1" 
-							   aria-required="true"
-							   type="text" />
+						<input className="rates-app-form__input" id="rates-app__input1" aria-labelledby="rates-app__label1" aria-required="true" type="text" name="firstName" />
 					</div>
 					<div className="rates-app-form__item">
-						<label className="rates-app-form__label" 
-							   id="rates-app__label2"
-							   htmlFor="rates-app__input2">
+						<label className="rates-app-form__label" id="rates-app__label2" htmlFor="rates-app__input2">
 							   Last Name*
 						</label>
-						<input className="rates-app-form__input" 
-							   id="rates-app__input2"
-							   aria-labelledby="rates-app__label2" 
-							   aria-required="true"
-							   type="text" />
+						<input className="rates-app-form__input" id="rates-app__input2" aria-labelledby="rates-app__label2" aria-required="true" type="text" name="lastName" />
 					</div>
 					<div className="rates-app-form__item">
-						<label className="rates-app-form__label" 
-							   id="rates-app__label3"
-							   htmlFor="rates-app__input3">
+						<label className="rates-app-form__label" id="rates-app__label3" htmlFor="rates-app__input3">
 							   Email Address*
 						</label>
-						<input className="rates-app-form__input" 
-							   id="rates-app__input3"
-							   aria-labelledby="rates-app__label3" 
-							   aria-required="true"
-							   type="text" />
+						<input className="rates-app-form__input" id="rates-app__input3" aria-labelledby="rates-app__label3" aria-required="true" type="text" name="emailAddress" />
 					</div>
 					<div className="rates-app-form__item">
-						<label className="rates-app-form__label" 
-							   id="rates-app__label4"
-							   htmlFor="rates-app__input4">
+						<label className="rates-app-form__label" id="rates-app__label4" htmlFor="rates-app__input4">
 							   Phone Number*
 						</label>
-						<input className="rates-app-form__input" 
-							   id="rates-app__input4"
-							   aria-labelledby="rates-app__label4" 
-							   aria-required="true"
-							   type="text" />
+						<input className="rates-app-form__input" id="rates-app__input4" aria-labelledby="rates-app__label4" aria-required="true" type="text" name="phoneNumber" />
 					</div>
-					<button className="rates-app-form__btn" type="submit">Submit</button>
+					<div className="rates-app-form__hidden-fields">
+						{props.hiddenFields.map(renderHiddenFields)}
+					</div>
+
+					<button className="rates-app-form__btn" type="submit" onClick={props.onFormSubmit}>Submit</button>
 					{/* TEMP disclaimer needs to be editable; should be conditional in footer*/}
 					<p className="rates-app-form__disclaimer">By submitting this form, I am providing J.G Wentworth with express written consent to contact me regarging product offerings by SMS/text messages or by usig an auto dialer (or automated means) on the phone number(s) provided and such consent is not a condition of a purchase. I also consent and agree to J.G. Wentworth's Privacy Policy and Terms of Use.</p>
 				</form>

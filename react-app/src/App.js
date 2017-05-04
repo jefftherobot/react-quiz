@@ -38,6 +38,7 @@ class App extends React.Component {
 		this.handleTextTypeChange = this.handleTextTypeChange.bind(this);
 		this.validateInput = this.validateInput.bind(this);
 		this.setNextSteps = this.setNextSteps.bind(this);
+		this.postForm = this.postForm.bind(this);
 	}
 
 	componentDidMount() {
@@ -363,11 +364,12 @@ class App extends React.Component {
 	}
 
 	getResults() {
-		//get results
+		//flatten the answers object
+		let flattened = api.flatten(this.state.answers);
+		console.log(flattened);
 
-		console.log(this.state.answers);
-
-		let call = api.buildLoanCall(this.state.answers);
+		// build call for the api
+		let call = api.buildLoanCall(flattened);
 		console.log(call);
 		
 		//CURRENTLY GETTING ACCESS CONTROL ALLOW ORIGIN ERROR
@@ -401,12 +403,22 @@ class App extends React.Component {
 			})
 	}
 
+
+	// NEXT STEPS AFTER LOAN SELECTION ====================================================================================
+	// ====================================================================================================================
+
 	setNextSteps(loan) {
 		console.log(loan);
 		this.setState({ 
 			view: 'NextSteps',
 			loan: loan 
 		});
+	}
+
+	postForm(e) {
+		e.preventDefault();
+		
+		//return call;
 	}
 
 
@@ -445,10 +457,21 @@ class App extends React.Component {
 	}
 
 	renderNextSteps() {
+		// flatten answers object and merge with loan object
+		let flattened = api.flatten(this.state.answers);
+		let merged = api.mergeObjs(flattened, this.state.loan);
+		let hiddenFields = [];
+		
+		// put merged object into an array, in order to map it
+		for (var item in merged) {
+			hiddenFields.push({[item]: merged[item]});
+		}
+
 		return (
 			<NextSteps
-				quizAnswers={this.state.answers}
+				hiddenFields={hiddenFields}
 				loan={this.state.loan}
+				onFormSubmit={this.postForm}
 			/>
 		)
 	}

@@ -37,7 +37,7 @@ function Quiz(props) {
 				{props.answerOptions.map(renderAnswerOptions)}
 			</div>
 
-			<QuestionCount counter={props.questionId} total={props.questionTotal} progress={props.progress}/>
+			{/*<QuestionCount counter={props.questionId} total={props.questionTotal} progress={props.progress}/>*/}
 
 		</div>
 	);
