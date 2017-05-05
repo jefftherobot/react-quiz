@@ -89,7 +89,7 @@
       ]
     },
     {
-      "name": "serviceMember",
+      "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
       "validation": "none",
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "name": "additionalCash",
+      "name": "additionalCashBinary",
       "question": "Would you like to borrow additional cash?",
       "type": "radio",
       "validation": "none",
@@ -283,7 +283,7 @@
           "value": "true",
           "conditional": [
             {
-              "name": "AdditionalCashAmount",
+              "name": "additionalCash",
               "question": "How much additional cash?",
               "type": "text",
               "validation": "number",
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "name": "serviceMember",
+      "name": "ServiceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
       "validation": "none",
@@ -314,7 +314,7 @@
           "value": "true",
           "conditional": [
             {
-              "name": "currentVaLoan",
+              "name": "CurrentVaLoan",
               "question": "Is your current loan to be refinanced a VA loan?",
               "type": "radio",
               "validation": "none",

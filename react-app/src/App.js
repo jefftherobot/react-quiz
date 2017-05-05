@@ -464,9 +464,14 @@ class App extends React.Component {
 		// flatten answers object and merge with loan object
 		let flattened = api.flatten(this.state.answers);
 		let merged = api.mergeObjs(flattened, this.state.loan);
-		let hiddenFields = [];
-		
+
+		// directly edit the merged object, update field names for velocify reqs
+		api.editKey(merged, 'salesPrice.salesPrice1', 'salesPrice');
+		api.editKey(merged, 'salesPrice.salesPrice2', 'downPaymentPercentage');
+		api.editKey(merged, 'salesPrice.salesPrice3', 'DownPayment');
+
 		// put merged object into an array, in order to map it
+		let hiddenFields = [];
 		for (var item in merged) {
 			hiddenFields.push({[item]: merged[item]});
 		}

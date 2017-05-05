@@ -32,25 +32,25 @@ var api = {
 				purchaseCall += "&homeType=" + quiz.homeType;
 				purchaseCall += "&homeUse=" + quiz.homeUse;
 				purchaseCall += "&salesPrice=" + quiz['salesPrice.salesPrice1'];
-				purchaseCall += "&serviceMember=" + quiz.serviceMember;
+				purchaseCall += "&serviceMember=" + quiz.ServiceMember;
 				purchaseCall += "&state=" + quiz.State;
 				purchaseCall += "&zip_Code=" + quiz.ZipCode;
 
 			return purchaseCall;
 		} else {
-			let AdditionalCashAmount = quiz.AdditionalCashAmount !== undefined ? quiz.AdditionalCashAmount : 0;
-			let currentVaLoan = quiz.currentVaLoan !== undefined ? quiz.currentVaLoan : false;
+			let additionalCash = quiz.additionalCash !== undefined ? quiz.additionalCash : 0;
+			let CurrentVaLoan = quiz.CurrentVaLoan !== undefined ? quiz.CurrentVaLoan : false;
 
 			let refinanceCall = "https://stagesitecore.jgwentworth.com/api/mortgage/refinance?"
-				refinanceCall += "additionalCash=" + AdditionalCashAmount;
+				refinanceCall += "additionalCash=" + additionalCash;
 				refinanceCall += "&LoanPurpose=" + quizType;
 				refinanceCall += "&creditScore=" + quiz.creditScore;
 				refinanceCall += "&currentMortgageAmount=" + quiz.currentMortgageAmount;
 				refinanceCall += "&homeType=" + quiz.homeType;
 				refinanceCall += "&homeUse=" + quiz.homeUse;
 				refinanceCall += "&homeValue=" + quiz.homeValue;
-				refinanceCall += "&serviceMember=" + quiz.serviceMember;
-				refinanceCall += "&currentVaLoan=" + currentVaLoan;
+				refinanceCall += "&serviceMember=" + quiz.ServiceMember;
+				refinanceCall += "&currentVaLoan=" + CurrentVaLoan;
 				refinanceCall += "&state=" + quiz.State;
 				refinanceCall += "&zip_Code=" + quiz.ZipCode;
 
@@ -94,5 +94,13 @@ var api = {
 	    }
 	    recurse(data, "");
 	    return result;
+	},
+
+	editKey(obj, oldKey, newKey) {
+		if (oldKey !== newKey) {
+		    Object.defineProperty(obj, newKey,
+		        Object.getOwnPropertyDescriptor(obj, oldKey));
+		    delete obj[oldKey];
+		}
 	}
 }
