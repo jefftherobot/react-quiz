@@ -14,7 +14,7 @@
       ]
     },
     {
-      "name": "HomeType",
+      "name": "homeType",
       "question": "What type of property?",
       "type": "radio",
       "validation": "none",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "name": "HomeUse",
+      "name": "homeUse",
       "question": "How will you use the property?",
       "type": "radio",
       "validation": "none",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "name": "PrimaryResidenceZIP",
+      "name": "borrower-zip",
       "question": "What is your current zip code?",
       "type": "text",
       "validation": "zip",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "name": "SalesPrice",
+      "name": "salesPrice",
       "question": "What is the purchase price and down payment?",
       "type": "textGroup",
       "validation": "textGroup",
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "name": "ServiceMember",
+      "name": "serviceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
       "validation": "none",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "name": "Realtor",
+      "name": "realtor",
       "question": "Are you working with a realtor?",
       "type": "radio",
       "validation": "none",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "name": "CreditScore",
+      "name": "creditScore",
       "question": "What is your estimated credit score?",
       "type": "radio",
       "validation": "none",
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "name": "HomeType",
+      "name": "homeType",
       "question": "What type of property?",
       "type": "radio",
       "validation": "none",
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "name": "HomeUse",
+      "name": "homeUse",
       "question": "How will you use the property?",
       "type": "radio",
       "validation": "none",
@@ -212,7 +212,7 @@
           "value": 2,
           "conditional": [
             {
-              "name": "PrimaryResidenceZIP",
+              "name": "borrower-zip",
               "question": "What is your current zip code?",
               "type": "text",
               "validation": "zip",
@@ -230,7 +230,7 @@
           "value": 1,
           "conditional": [
             {
-              "name": "PrimaryResidenceZIP",
+              "name": "borrower-zip",
               "question": "What is your current zip code?",
               "type": "text",
               "validation": "zip",
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "name": "PurchasePrice",
+      "name": "homeValue",
       "question": "What is the estimated value of the property?",
       "type": "text",
       "validation": "number",
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "name": "MortgageBalance",
+      "name": "currentMortgageAmount",
       "question": "What is the balance of the current mortgage?",
       "type": "text",
       "validation": "number",
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "name": "AdditionalCash",
+      "name": "additionalCash",
       "question": "Would you like to borrow additional cash?",
       "type": "radio",
       "validation": "none",
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "name": "ServiceMember",
+      "name": "serviceMember",
       "question": "Have you or your spouse served in the military?",
       "type": "radio",
       "validation": "none",
@@ -314,7 +314,7 @@
           "value": "true",
           "conditional": [
             {
-              "name": "ServiceMemberVALoan",
+              "name": "currentVaLoan",
               "question": "Is your current loan to be refinanced a VA loan?",
               "type": "radio",
               "validation": "none",
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "name": "CreditScore",
+      "name": "creditScore",
       "question": "What is your estimated credit score?",
       "type": "radio",
       "validation": "none",

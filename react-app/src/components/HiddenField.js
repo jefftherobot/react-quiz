@@ -7,7 +7,7 @@ function HiddenField(props) {
 			<label className="rates-app-form__label">
 				   {props.fieldLabel}
 			</label>
-			<input className="rates-app-form__input" type="text" readOnly value={props.fieldValue} />
+			<input className="rates-app-form__input" type="text" readOnly name={props.fieldLabel} value={props.fieldValue} />
 		</div>
 	);
 }

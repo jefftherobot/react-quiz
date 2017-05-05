@@ -25,10 +25,10 @@ class App extends React.Component {
 			answerConditional: [],
 			answer: '',
 			answers: {
-				SalesPrice: {
-					SalesPrice1:'',
-					SalesPrice2:'',
-					SalesPrice3:''
+				salesPrice: {
+					salesPrice1:'',
+					salesPrice2:'',
+					salesPrice3:''
 				}
 			},
 			result: []
@@ -67,6 +67,12 @@ class App extends React.Component {
 					questionName: data[$type][0].name
 				})
 
+				let updatedAnswers = update(this.state.answers, {
+					$merge: { LoanPurpose: this.state.quizType }
+				});
+
+				this.setState({ answers: updatedAnswers});
+
 				//console.log(this.state)
 			})
 			.catch(function (error) {
@@ -82,9 +88,9 @@ class App extends React.Component {
 	// this one watches the value in single line text components
 	handleTextTypeChange(event) {
 		let target = event.currentTarget;
-		let purchasePrice            = (target.id.indexOf('SalesPrice1')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice1,
-			downpaymentPercent       = (target.id.indexOf('SalesPrice2')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice2,
-			downpaymentDollarAmount  = (target.id.indexOf('SalesPrice3')!=-1) ? target.value : this.state.answers.SalesPrice.SalesPrice3;
+		let purchasePrice            = (target.id.indexOf('salesPrice1')!=-1) ? target.value : this.state.answers.salesPrice.salesPrice1,
+			downpaymentPercent       = (target.id.indexOf('salesPrice2')!=-1) ? target.value : this.state.answers.salesPrice.salesPrice2,
+			downpaymentDollarAmount  = (target.id.indexOf('salesPrice3')!=-1) ? target.value : this.state.answers.salesPrice.salesPrice3;
 
 		let setAnswers = {
 			init:() => {
@@ -105,18 +111,18 @@ class App extends React.Component {
 				if (validate.number(target.value) == true) {
 					document.getElementById('error-messages').innerHTML = '';
 
-					if (target.id == 'SalesPrice1') {
+					if (target.id == 'salesPrice1') {
 						document.getElementById(target.id).addEventListener('focusout', function(){ setAnswers.checkMin(); });
 					}
 					
-					if (target.id.indexOf('SalesPrice2')!=-1 || target.id.indexOf('SalesPrice1')!=-1){
+					if (target.id.indexOf('salesPrice2')!=-1 || target.id.indexOf('salesPrice1')!=-1){
 						downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
 						if (downpaymentDollarAmount >= purchasePrice) {
 							validate.addError('error-messages', 'Down payment percentage must be less than 100%.');
 							downpaymentPercent = 99;
 						 	downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
 						} else { document.getElementById('error-messages').innerHTML = ''; }
-					} else if (target.id.indexOf('SalesPrice3')!=-1){
+					} else if (target.id.indexOf('salesPrice3')!=-1){
 						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
 						 if (downpaymentPercent >= 100 || downpaymentPercent < 0) {
 						 	validate.addError('error-messages', 'Down payment must be less than purchase price.');
@@ -129,15 +135,15 @@ class App extends React.Component {
 				}
 
 				this.setUserAnswer({
-					'SalesPrice1':purchasePrice,
-					'SalesPrice2':downpaymentPercent,
-					'SalesPrice3':downpaymentDollarAmount
+					'salesPrice1':purchasePrice,
+					'salesPrice2':downpaymentPercent,
+					'salesPrice3':downpaymentDollarAmount
 
 				}, true)
 			}
 		};
 
-		if (target.id.indexOf('SalesPrice')!=-1) {
+		if (target.id.indexOf('salesPrice')!=-1) {
 			// Check for salesprice input group and do down payment calculations
 			setAnswers.init();
 		} else {
@@ -158,8 +164,8 @@ class App extends React.Component {
 				this.validateInput();
 			},
 			'default': () => {
+				// check whether user is clicking label of radio button, actually button is hidden
 				if (event.currentTarget.tagName == 'LABEL') {
-					console.log('its a label');
 					this.setUserAnswer(event.currentTarget.children[0].getAttribute('value'));
 					this.showNextScreen(event.currentTarget.children[0].getAttribute('value'));
 				} else {
@@ -199,8 +205,6 @@ class App extends React.Component {
 			});
 		}
 
-		//console.log(updatedAnswers)
-
 		this.setState({
 			answer: answer,
 			answers: updatedAnswers
@@ -215,10 +219,8 @@ class App extends React.Component {
 		let validationType = {
 			'zip':() => {
 				if ( validate.zip(answer) == true ) {
-				// Check which zip field we're testing, for zip to state conversion
-					if ( this.state.questionName == "ZipCode" ) {
-						this.checkLicense(answer);
-					} else { this.showNextScreen(event.currentTarget.value); };
+					// zip to state conversion
+					this.getUsState(this.state.questionName, answer);
 				} else {
 					validate.addError('error-messages', 'Please enter a 5-digit zip code');
 				}
@@ -235,7 +237,7 @@ class App extends React.Component {
 					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.');
 				} else {
 					for (var i = 0; i < Object.keys(answer).length; i++) {
-						const itemKey = 'SalesPrice' + [i+1];
+						const itemKey = 'salesPrice' + [i+1];
 						console.log(itemKey);
 						if (validate.number(answer[itemKey]) == true ) {
 							console.log('good');
@@ -260,7 +262,7 @@ class App extends React.Component {
 		(validationType[validation] || validationType['default'])();
 	}
 
-	checkLicense(answer) {
+	getUsState(question, answer) {
 		// Send ZIP to google API to get state
 		api.getState(answer).then((result) => {
 			console.log('result', result);
@@ -269,19 +271,21 @@ class App extends React.Component {
 			if (result == 'api error') {
 				validate.addError('error-messages', 'Please enter a valid USA ZIP code');
 			} else {
+				let usState = result;
+
 				// IN FUTURE: send ZIP to Mortech to check if it's a licensed state
 				// TEMP: check from list
-				let state = result;
+				if ( question == "ZipCode" && (usState == 'Alaska' || usState =='Hawaii' || usState =='Montana' || usState =='Missouri' || usState =='New York' || usState =='Nevada' || usState =='North Dakota' || usState =='South Dakota' || usState =='Wyoming' || usState =='Idaho')) {
+						this.setState({ view: 'NotLicensed' }); // kick user out of quiz
+				} else {
+					// check which ZIP field we're looking at, property zip or current zip
+					let propName = question == "ZipCode" ? 'State' : 'borrower-state';
 
-				if (state == 'Alaska' || state =='Hawaii' || state =='Montana' || state =='Missouri' || state =='New York' || state =='Nevada' || state =='North Dakota' || state =='South Dakota' || state =='Wyoming' || state =='Idaho') {
-					this.setState({ view: 'NotLicensed' }); // kick user out of quiz
-				}
-
-				else {
-					// hooray onward!
-					// add zip and state to answers object
+					// hooray onward! add zip and state to answers object.
 					let updatedAnswers = update(this.state.answers, {
-						$merge: {state: state}
+						$merge: {
+							[propName]: usState
+						}
 					});
 
 					this.setState({ answers: updatedAnswers});

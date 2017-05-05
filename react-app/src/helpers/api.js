@@ -25,33 +25,33 @@ var api = {
 		
 		if (quizType == 'purchase') {
 			let purchaseCall = "https://stagesitecore.jgwentworth.com/api/mortgage/purchase?"
-				purchaseCall += "DownPayment=" + quiz['SalesPrice.SalesPrice3'];
+				purchaseCall += "DownPayment=" + quiz['salesPrice.salesPrice3'];
 				purchaseCall += "&LoanPurpose=" + quizType;
-				purchaseCall += "&creditScore=" + quiz.CreditScore;
-				purchaseCall += "&downPaymentPercentage=" + quiz['SalesPrice.SalesPrice2'];
-				purchaseCall += "&homeType=" + quiz.HomeType;
-				purchaseCall += "&homeUse=" + quiz.HomeUse;
-				purchaseCall += "&salesPrice=" + quiz['SalesPrice.SalesPrice1'];
-				purchaseCall += "&serviceMember=" + quiz.ServiceMember;
-				purchaseCall += "&state=" + quiz.state;
+				purchaseCall += "&creditScore=" + quiz.creditScore;
+				purchaseCall += "&downPaymentPercentage=" + quiz['salesPrice.salesPrice2'];
+				purchaseCall += "&homeType=" + quiz.homeType;
+				purchaseCall += "&homeUse=" + quiz.homeUse;
+				purchaseCall += "&salesPrice=" + quiz['salesPrice.salesPrice1'];
+				purchaseCall += "&serviceMember=" + quiz.serviceMember;
+				purchaseCall += "&state=" + quiz.State;
 				purchaseCall += "&zip_Code=" + quiz.ZipCode;
 
 			return purchaseCall;
 		} else {
 			let AdditionalCashAmount = quiz.AdditionalCashAmount !== undefined ? quiz.AdditionalCashAmount : 0;
-			let ServiceMemberVALoan = quiz.ServiceMemberVALoan !== undefined ? quiz.ServiceMemberVALoan : false;
+			let currentVaLoan = quiz.currentVaLoan !== undefined ? quiz.currentVaLoan : false;
 
 			let refinanceCall = "https://stagesitecore.jgwentworth.com/api/mortgage/refinance?"
 				refinanceCall += "additionalCash=" + AdditionalCashAmount;
 				refinanceCall += "&LoanPurpose=" + quizType;
-				refinanceCall += "&creditScore=" + quiz.CreditScore;
-				refinanceCall += "&currentMortgageAmount=" + quiz.MortgageBalance;
-				refinanceCall += "&homeType=" + quiz.HomeType;
-				refinanceCall += "&homeUse=" + quiz.HomeUse;
-				refinanceCall += "&homeValue=" + quiz.PurchasePrice;
-				refinanceCall += "&serviceMember=" + quiz.ServiceMember;
-				refinanceCall += "&currentVaLoan=" + ServiceMemberVALoan;
-				refinanceCall += "&state=" + quiz.state;
+				refinanceCall += "&creditScore=" + quiz.creditScore;
+				refinanceCall += "&currentMortgageAmount=" + quiz.currentMortgageAmount;
+				refinanceCall += "&homeType=" + quiz.homeType;
+				refinanceCall += "&homeUse=" + quiz.homeUse;
+				refinanceCall += "&homeValue=" + quiz.homeValue;
+				refinanceCall += "&serviceMember=" + quiz.serviceMember;
+				refinanceCall += "&currentVaLoan=" + currentVaLoan;
+				refinanceCall += "&state=" + quiz.State;
 				refinanceCall += "&zip_Code=" + quiz.ZipCode;
 
 			return refinanceCall;

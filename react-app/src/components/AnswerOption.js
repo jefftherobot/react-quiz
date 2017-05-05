@@ -98,7 +98,7 @@ function AnswerOption(props) {
 					value={props.answer[props.id]}
 					onChange={props.onTextTypeChange}
 				/>
-				{ props.id === "SalesPrice3" ? <button onClick={props.onAnswerSelected}>Continue</button> : null }
+				{ props.id === "salesPrice3" ? <button onClick={props.onAnswerSelected}>Continue</button> : null }
 
 			</div>
 		)
