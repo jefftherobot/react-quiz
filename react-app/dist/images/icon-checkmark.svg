@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #026943;
+        stroke: #026943;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="icon-checkmark" class="cls-1" d="M0.842,7.238L1.611,6.6l4,5-0.769.64Zm14.772-5L14.846,1.6l-10,10,0.769,0.64Z"/>
+</svg>
