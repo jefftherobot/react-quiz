@@ -11,10 +11,10 @@ html {
 	@include breakpoint($large) {
 		font-family: "desktop";
 	}
-}
+} 
 
 body {
-	background: url('../react-app/images/logo.svg'), linear-gradient($color-main-background, white 75%);
+	background: url('../images/logo.svg'), linear-gradient($color-main-background, white 75%);
 	background-repeat: no-repeat;
 	background-position: center -45px;
 }

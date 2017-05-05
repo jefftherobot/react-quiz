@@ -39,6 +39,12 @@ SystemJS.config({
           "lodash": "npm:lodash@4.17.4",
           "to-fast-properties": "npm:to-fast-properties@1.0.2"
         }
+      },
+      "npm:babel-runtime@6.23.0": {
+        "map": {
+          "core-js": "npm:core-js@2.4.1",
+          "regenerator-runtime": "npm:regenerator-runtime@0.10.3"
+        }
       }
     }
   },
@@ -83,7 +89,6 @@ SystemJS.config({
     "react": "npm:react@15.4.2",
     "react-addons-update": "npm:react-addons-update@15.4.2",
     "react-dom": "npm:react-dom@15.4.2",
-    "scss": "github:dougludlow/plugin-sass@0.6.0",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
     "url": "npm:jspm-nodelibs-url@0.2.0",
@@ -375,84 +380,6 @@ SystemJS.config({
         "object-assign": "npm:object-assign@4.1.1"
       }
     },
-    "npm:babel-runtime@6.23.0": {
-      "map": {
-        "core-js": "npm:core-js@2.4.1",
-        "regenerator-runtime": "npm:regenerator-runtime@0.10.3"
-      }
-    },
-    "github:dougludlow/plugin-sass@0.6.0": {
-      "map": {
-        "sass.js": "npm:sass.js@0.9.13",
-        "css-url-rewriter-ex": "npm:css-url-rewriter-ex@1.0.6",
-        "postcss": "npm:postcss@5.2.17",
-        "css-asset-copier": "npm:css-asset-copier@1.0.2",
-        "autoprefixer": "npm:autoprefixer@6.7.7",
-        "reqwest": "github:ded/reqwest@2.0.5"
-      }
-    },
-    "npm:postcss@5.2.17": {
-      "map": {
-        "supports-color": "npm:supports-color@3.2.3",
-        "chalk": "npm:chalk@1.1.3",
-        "source-map": "npm:source-map@0.5.6",
-        "js-base64": "npm:js-base64@2.1.9"
-      }
-    },
-    "npm:css-asset-copier@1.0.2": {
-      "map": {
-        "fs-extra": "npm:fs-extra@0.30.0",
-        "babel-runtime": "npm:babel-runtime@6.23.0"
-      }
-    },
-    "npm:css-url-rewriter-ex@1.0.6": {
-      "map": {
-        "babel-runtime": "npm:babel-runtime@6.23.0"
-      }
-    },
-    "npm:chalk@1.1.3": {
-      "map": {
-        "supports-color": "npm:supports-color@2.0.0",
-        "escape-string-regexp": "npm:escape-string-regexp@1.0.5",
-        "strip-ansi": "npm:strip-ansi@3.0.1",
-        "has-ansi": "npm:has-ansi@2.0.0",
-        "ansi-styles": "npm:ansi-styles@2.2.1"
-      }
-    },
-    "npm:fs-extra@0.30.0": {
-      "map": {
-        "graceful-fs": "npm:graceful-fs@4.1.11",
-        "jsonfile": "npm:jsonfile@2.4.0",
-        "klaw": "npm:klaw@1.3.1",
-        "rimraf": "npm:rimraf@2.6.1",
-        "path-is-absolute": "npm:path-is-absolute@1.0.1"
-      }
-    },
-    "npm:autoprefixer@6.7.7": {
-      "map": {
-        "postcss": "npm:postcss@5.2.17",
-        "postcss-value-parser": "npm:postcss-value-parser@3.3.0",
-        "normalize-range": "npm:normalize-range@0.1.2",
-        "browserslist": "npm:browserslist@1.7.7",
-        "num2fraction": "npm:num2fraction@1.2.2",
-        "caniuse-db": "npm:caniuse-db@1.0.30000655"
-      }
-    },
-    "npm:supports-color@3.2.3": {
-      "map": {
-        "has-flag": "npm:has-flag@1.0.0"
-      }
-    },
-    "npm:strip-ansi@3.0.1": {
-      "map": {
-        "ansi-regex": "npm:ansi-regex@2.1.1"
-      }
-    },
-    "npm:has-ansi@2.0.0": {
-      "map": {
-        "ansi-regex": "npm:ansi-regex@2.1.1"
-      }
-    },
     "npm:stream-http@2.7.0": {
       "map": {
         "readable-stream": "npm:readable-stream@2.2.9",
@@ -460,17 +387,6 @@ SystemJS.config({
         "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
         "xtend": "npm:xtend@4.0.1",
         "inherits": "npm:inherits@2.0.3"
-      }
-    },
-    "npm:browserslist@1.7.7": {
-      "map": {
-        "caniuse-db": "npm:caniuse-db@1.0.30000655",
-        "electron-to-chromium": "npm:electron-to-chromium@1.3.4"
-      }
-    },
-    "npm:rimraf@2.6.1": {
-      "map": {
-        "glob": "npm:glob@7.1.1"
       }
     },
     "npm:browserify-sign@4.0.4": {
@@ -482,16 +398,6 @@ SystemJS.config({
         "bn.js": "npm:bn.js@4.11.6",
         "browserify-rsa": "npm:browserify-rsa@4.0.1",
         "parse-asn1": "npm:parse-asn1@5.1.0"
-      }
-    },
-    "npm:glob@7.1.1": {
-      "map": {
-        "path-is-absolute": "npm:path-is-absolute@1.0.1",
-        "inherits": "npm:inherits@2.0.3",
-        "inflight": "npm:inflight@1.0.6",
-        "minimatch": "npm:minimatch@3.0.3",
-        "fs.realpath": "npm:fs.realpath@1.0.0",
-        "once": "npm:once@1.4.0"
       }
     },
     "npm:readable-stream@2.2.9": {
@@ -510,33 +416,11 @@ SystemJS.config({
         "buffer-shims": "npm:buffer-shims@1.0.0"
       }
     },
-    "npm:inflight@1.0.6": {
-      "map": {
-        "once": "npm:once@1.4.0",
-        "wrappy": "npm:wrappy@1.0.2"
-      }
-    },
-    "npm:minimatch@3.0.3": {
-      "map": {
-        "brace-expansion": "npm:brace-expansion@1.1.7"
-      }
-    },
-    "npm:once@1.4.0": {
-      "map": {
-        "wrappy": "npm:wrappy@1.0.2"
-      }
-    },
     "npm:hmac-drbg@1.0.1": {
       "map": {
         "hash.js": "npm:hash.js@1.0.3",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0",
         "minimalistic-crypto-utils": "npm:minimalistic-crypto-utils@1.0.1"
-      }
-    },
-    "npm:brace-expansion@1.1.7": {
-      "map": {
-        "balanced-match": "npm:balanced-match@0.4.2",
-        "concat-map": "npm:concat-map@0.0.1"
       }
     }
   }

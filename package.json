@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/delphic-digital/react-quiz#readme",
   "devDependencies": {
+    "cpx": "^1.5.0",
     "jspm": "^0.17.0-beta.40",
     "npm-run-all": "^4.0.2",
     "sane": "^1.6.0"
@@ -24,7 +25,6 @@
     "dependencies": {
       "react-addons-update": "npm:react-addons-update@^15.4.2",
       "react-dom": "npm:react-dom@^15.4.2",
-      "scss": "github:dougludlow/plugin-sass@^0.6.0",
       "whatwg-fetch": "npm:whatwg-fetch@^2.0.3"
     },
     "devDependencies": {
@@ -75,25 +75,19 @@
           "buffer": "@empty",
           "process": "@empty"
         }
-      },
-      "npm:sass.js@0.9.13": {
-        "map": {
-          "ws": "@empty"
-        },
-        "meta": {
-          "dist/sass.worker.js": {
-            "format": "global"
-          }
-        }
       }
     }
   },
   "scripts": {
-    "start": "npm-run-all --parallel server unbundle",
-    "build": "npm-run-all build:*",
-    "build:js": "jspm bundle src/main.js Static/dist/js/main.js --inject",
-    "server": "browser-sync start --server --files *.html, react-app/src/**/*.js, react-app/src/scss/**/*.scss --no-open",
-    "unbundle": "jspm unbundle Static/src/js/main.js"
+    "start": "npm-run-all --parallel server unbundle watch:css",
+    "watch:css": "sane \"npm run build:css -- --source-map true --output-style expanded\" react-app/src/scss --glob=**/*.scss",
+    "clean": "del-cli react-app/dist/**/*",
+    "build": "npm-run-all clean build:*",
+    "build:images": "cpx \"react-app/**/*.{png,jpg,svg}\" react-app/dist",
+    "build:css": "node-sass react-app/src/scss -o react-app/dist/css",
+    "build:js": "jspm bundle react-app/src/index.js react-app/dist/js/main.js --inject",
+    "server": "browser-sync start --server --files *.html, react-app/src/**/*.js, react-app/dist/css/*.css --no-open",
+    "unbundle": "jspm unbundle react-app/src/js/index.js"
   },
   "dependencies": {
     "breakpoint-sass": "^2.7.1"
