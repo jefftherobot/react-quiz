@@ -26,9 +26,9 @@ class App extends React.Component {
 			answer: '',
 			answers: {
 				salesPrice: {
-					salesPrice1:'',
-					salesPrice2:'',
-					salesPrice3:''
+					salesPrice1:'75000',
+					salesPrice2:'0',
+					salesPrice3:'0'
 				}
 			},
 			result: []

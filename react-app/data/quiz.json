@@ -69,7 +69,7 @@
     },
     {
       "name": "salesPrice",
-      "question": "What is the purchase price and down payment?",
+      "question": "What's the purchase price?",
       "type": "textGroup",
       "validation": "textGroup",
       "progress": 33.33,
@@ -80,11 +80,11 @@
         },
         {
           "label": "Down Payment Percent",
-          "value": 1
+          "value": 0
         },
         {
           "label": "Down Payment Dollar Amount",
-          "value": 2
+          "value": 0
         }
       ]
     },

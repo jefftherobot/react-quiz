@@ -1,7 +1,7 @@
 import React from 'react';
 
 function AnswerOption(props) {
-
+	
 	function handleKeyDown(e) {
 		if (e.keyCode == 13 || e.keyIdentifier == 'Enter' || e.key == 'Enter') { 
 			if (props.answerType == 'radio') {
@@ -88,21 +88,23 @@ function AnswerOption(props) {
 
 	function renderTextGroupType() {
 		return (
-			<div className="rates-app-form__item rates-app-quiz__item">
+			<div className={`rates-app-form__item rates-app-quiz__item rates-app-quiz__item--${props.id}`}>
 				{ props.id === "salesPrice2" ? <h2 className="rates-app-quiz__question">Down payment amount?</h2> : null }
 				<label className="rates-app-quiz__label sr-only" htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
-				<input
-					type="textGroup"
-					className="rates-app-quiz__input"
-					name="textGroupGroup"
-					id={props.id}
-					value={props.answer[props.id]}
-					onChange={props.onTextTypeChange}
-				/>
+				<span className={`rates-app-quiz__span--${props.id}`}>
+					<input
+						type="textGroup"
+						className="rates-app-quiz__input"
+						name="textGroupGroup"
+						id={props.id}
+						value={props.answer[props.id]}
+						placeholder={props.answerValue}
+						onChange={props.onTextTypeChange}
+					/>
+				</span>
 				{ props.id === "salesPrice3" ? <button className="rates-app__btn" onClick={props.onAnswerSelected}>Continue</button> : null }
-
 			</div>
 		)
 	}

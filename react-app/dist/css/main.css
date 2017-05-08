@@ -861,8 +861,9 @@ input:focus {
   width: 100%;
   max-width: 625px;
   margin: 0 0 1.5625rem;
-  padding: 1.125rem;
+  padding: 0.9375rem;
   font-family: "Roboto Slab", serif;
+  font-size: 1.875rem;
   font-weight: 700;
   border: none;
   border-radius: 3px;
@@ -872,8 +873,69 @@ input:focus {
 .rates-app-quiz__input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-family: "Roboto", sans-serif;
+  font-size: 1.5625rem;
   font-weight: 400;
   font-style: italic;
+  opacity: 1;
+}
+
+.rates-app-quiz__input#salesPrice1, .rates-app-quiz__input#salesPrice3 {
+  padding: 0.9375rem 0.9375rem 0.9375rem 2rem;
+}
+
+.rates-app-quiz__input#salesPrice2 {
+  padding: 0.9375rem 2rem 0.9375rem 0.9375rem;
+}
+
+.rates-app-quiz__input#salesPrice3 {
+  width: 70%;
+}
+
+.rates-app-quiz__span--salesPrice1, .rates-app-quiz__span--salesPrice3 {
+  position: relative;
+}
+
+.rates-app-quiz__span--salesPrice1:before, .rates-app-quiz__span--salesPrice3:before {
+  position: absolute;
+  content: '$';
+  top: -4px;
+  left: 15px;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.rates-app-quiz__span--salesPrice1 input::-webkit-input-placeholder, .rates-app-quiz__span--salesPrice3 input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #026943;
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  font-style: normal;
+  opacity: 1;
+}
+
+.rates-app-quiz__span--salesPrice2 {
+  float: left;
+  position: relative;
+  width: 26%;
+  margin-right: 10px;
+}
+
+.rates-app-quiz__span--salesPrice2:before {
+  position: absolute;
+  content: '%';
+  top: 25px;
+  right: 13px;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.rates-app-quiz__span--salesPrice1 input::-webkit-input-placeholder, .rates-app-quiz__span--salesPrice2 input::-webkit-input-placeholder, .rates-app-quiz__span--salesPrice3 input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: rgba(2, 105, 67, 0.7);
+  font-family: "Roboto Slab", serif;
+  font-size: 1.875rem;
+  font-weight: 700;
+  font-style: normal;
   opacity: 1;
 }
 
