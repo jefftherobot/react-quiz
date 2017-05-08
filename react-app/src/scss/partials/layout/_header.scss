@@ -3,11 +3,18 @@
 
 .rates-app-header {
 	@include clearfix();
-	padding: rem($pad * 2) 0 rem($pad * 7);
+	padding: rem($pad * 1.5) rem($space-small) 0;
 	color: $color-font-main;
 	text-align: center;
 
+	&__logo {
+		margin-bottom: rem($pad * 4.5);
+		img { margin: 0 auto; }
+	}
+
 	&__prompt {
+		display: none;
+
 		&-text {
 			margin: 0;
 			font-family: $font-roboto;

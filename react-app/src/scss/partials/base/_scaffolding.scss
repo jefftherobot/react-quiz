@@ -1,6 +1,10 @@
 // Scaffolding styles are declared here. e.g containers, grid
 // ------------------------------------------------------------------------------
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html {
 	font-family: "mobile";
 
@@ -16,12 +20,24 @@ html {
 body {
 	background: url('../images/logo.svg'), linear-gradient($color-main-background, white 75%);
 	background-repeat: no-repeat;
-	background-position: center -45px;
+	background-position: left -45px;
+	background-size: 188%;
 }
 
 .rates-app {
+	&-main-container {
+		padding: 0 rem($space-small);
+	}
+
 	&-inner-container {
 		max-width: 1060px;
 		margin: 0 auto;
+	}
+}
+
+@include breakpoint($medium) {
+	body {
+		background-position: center -45px;
+		background-size: 100%;
 	}
 } 

@@ -1,0 +1,38 @@
+.rates-app-facts {
+	text-align: center;
+
+	.rates-app-inner-container {
+		padding: rem($pad * 3.5) 0;
+		border-bottom: 1px solid $rule-green;
+	}
+
+	&__list {
+		margin: 0;
+	}
+
+	&__item {
+		padding-bottom: rem(12);
+		font-size: rem(14);
+		line-height: 1;
+
+		&:before {
+			content: url('../images/icon-checkmark.svg');
+			padding-right: 12px;
+		}
+
+		&:last-child { padding-bottom: 0; }
+	}
+}
+
+@include breakpoint($medium) {
+	.rates-app-facts {
+		&__list {
+			margin-bottom: 0;
+		}
+
+		&__item {
+			display: inline-block;
+			padding-right: rem($pad * 4);
+		}
+	}
+}

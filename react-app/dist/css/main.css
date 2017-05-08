@@ -1,3 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700");
+.rates-app-quiz__label.sr-only {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 /* Show on Mobile, hide on Tablet & Desktop */
 /* Hide on Mobile, show on Tablet & Desktop */
 /* Hide on Mobile, display table on Tablet & Desktop */
@@ -8,8 +20,6 @@
  * 2. Prevent iOS and IE text size adjust after device orientation change,
  *    without disabling user zoom.
  */
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700");
 html {
   font-family: sans-serif;
   /* 1 */
@@ -408,7 +418,9 @@ th {
 body {
   color: #026943;
   font-family: "Roboto", sans-serif;
+  font-size: 1.125rem;
   font-weight: 500;
+  line-height: 1.375rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -416,6 +428,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #026943;
   font-family: "Roboto Slab", serif;
   font-weight: 700;
+}
+
+h1 {
+  font-size: 2.8125rem;
+}
+
+h3 {
+  font-size: 1.125rem;
 }
 
 a {
@@ -458,7 +478,10 @@ a.rates-app__btn,
   position: relative;
   z-index: 100;
   display: inline-block;
-  padding: 25px 45px;
+  width: 100%;
+  max-width: 625px;
+  margin: 0 auto;
+  padding: 25px 20px;
   font-family: "Roboto Slab", serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -467,7 +490,7 @@ a.rates-app__btn,
   text-decoration: none;
   text-transform: uppercase;
   border: 1px solid #f8842d;
-  border-radius: 20px;
+  border-radius: 12px;
   cursor: pointer;
 }
 
@@ -483,7 +506,7 @@ a.rates-app__btn:before,
   opacity: 0;
   width: 100%;
   z-index: -100;
-  border-radius: 20px;
+  border-radius: 12px;
   transition: opacity 0.25s;
 }
 
@@ -499,7 +522,19 @@ a.rates-app__btn:hover, a.rates-app__btn:focus, a.rates-app__btn:active, a.rates
 .rates-app__btn:visited {
   text-decoration: none;
   color: white;
-  border-radius: 20px;
+  border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+  a.rates-app__btn,
+  .rates-app__btn {
+    width: auto;
+    padding: 25px 45px;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
 html {
@@ -521,12 +556,24 @@ html {
 body {
   background: url("../images/logo.svg"), linear-gradient(#c3e6d6, white 75%);
   background-repeat: no-repeat;
-  background-position: center -45px;
+  background-position: left -45px;
+  background-size: 188%;
+}
+
+.rates-app-main-container {
+  padding: 0 1.25rem;
 }
 
 .rates-app-inner-container {
   max-width: 1060px;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  body {
+    background-position: center -45px;
+    background-size: 100%;
+  }
 }
 
 /*
@@ -592,19 +639,38 @@ input:focus {
   background: #c7dcd4;
 }
 
+.rates-app-footer__top .rates-app-inner-container {
+  padding: 0 1.25rem;
+}
+
+.rates-app-footer__title {
+  margin-bottom: 2.5rem;
+}
+
+.rates-app-footer__accred-item {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 1;
+}
+
+.rates-app-footer__accred-item:last-child {
+  margin: 0;
+}
+
 .rates-app-footer__bottom {
   max-width: 700px;
   margin: 0 auto;
-  padding: 1.875rem 0;
+  padding: 1.875rem 1.25rem;
   font-size: 0.75rem;
 }
 
 .rates-app-footer__utilities {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 }
 
 .rates-app-footer__utilities-link {
   padding-right: 15px;
+  font-size: 0.6875rem;
 }
 
 .rates-app-footer__utilities-link:last-child {
@@ -612,11 +678,34 @@ input:focus {
 }
 
 .rates-app-footer__contact {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 }
 
 .rates-app-footer__legal {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
+}
+
+.rates-app-footer__prompt {
+  padding: 0.9375rem 1.25rem;
+  color: white;
+  background: #026943;
+}
+
+.rates-app-footer__prompt-text {
+  display: inline-block;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.rates-app-footer__prompt-number {
+  display: inline-block;
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -626,18 +715,10 @@ input:focus {
   .rates-app-footer__title {
     margin-bottom: 1.25rem;
   }
-  .rates-app-footer__accred-item {
-    display: inline-block;
-    margin-right: 28px;
-    line-height: 1;
-  }
-  .rates-app-footer__accred-item:last-child {
-    margin: 0;
-  }
 }
 
 .rates-app-header {
-  padding: 1.25rem 0 4.375rem;
+  padding: 0.9375rem 1.25rem 0;
   color: #026943;
   text-align: center;
 }
@@ -649,6 +730,18 @@ input:focus {
 
 .rates-app-header:after {
   clear: both;
+}
+
+.rates-app-header__logo {
+  margin-bottom: 2.8125rem;
+}
+
+.rates-app-header__logo img {
+  margin: 0 auto;
+}
+
+.rates-app-header__prompt {
+  display: none;
 }
 
 .rates-app-header__prompt-text {
@@ -750,6 +843,40 @@ input:focus {
   text-align: center;
 }
 
+.rates-app-quiz__question {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.rates-app-quiz__item {
+  margin-bottom: 0.9375rem;
+}
+
+.rates-app-quiz__item:last-child {
+  margin-bottom: 0;
+}
+
+.rates-app-quiz__input {
+  width: 100%;
+  max-width: 625px;
+  margin: 0 0 1.5625rem;
+  padding: 1.125rem;
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 7px 2px rgba(167, 212, 191, 0.6);
+}
+
+.rates-app-quiz__input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 1;
+}
+
 .rates-app-answer-options {
   padding-bottom: 50px;
   text-align: center;
@@ -761,7 +888,10 @@ input:focus {
   position: relative;
   z-index: 100;
   display: inline-block;
-  padding: 25px 45px;
+  width: 100%;
+  max-width: 625px;
+  margin: 0 auto;
+  padding: 25px 20px;
   font-family: "Roboto Slab", serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -770,7 +900,7 @@ input:focus {
   text-decoration: none;
   text-transform: uppercase;
   border: 1px solid #f8842d;
-  border-radius: 20px;
+  border-radius: 12px;
   cursor: pointer;
 }
 
@@ -785,7 +915,7 @@ input:focus {
   opacity: 0;
   width: 100%;
   z-index: -100;
-  border-radius: 20px;
+  border-radius: 12px;
   transition: opacity 0.25s;
 }
 
@@ -796,7 +926,14 @@ input:focus {
 .rates-app-radio-btn__label:hover, .rates-app-radio-btn__label:focus, .rates-app-radio-btn__label:active, .rates-app-radio-btn__label:visited {
   text-decoration: none;
   color: white;
-  border-radius: 20px;
+  border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+  .rates-app-radio-btn__label {
+    width: auto;
+    padding: 25px 45px;
+  }
 }
 
 .rates-app-radio-btn__btn {
@@ -822,6 +959,14 @@ input:focus {
   line-height: 1;
 }
 
+.rates-app-intro__header {
+  margin-bottom: 1.25rem;
+}
+
+.rates-app-intro__subheader {
+  margin-bottom: 1.5625rem;
+}
+
 @media (min-width: 768px) {
   .rates-app-intro__fact {
     margin-bottom: 0;
@@ -840,8 +985,8 @@ input:focus {
   text-align: center;
 }
 
-.rates-app-ctas .rates-app-inner-container {
-  border-bottom: 1px solid #026943;
+.rates-app-ctas .rates-app__btn:first-child {
+  margin-bottom: 0.9375rem;
 }
 
 @media (min-width: 768px) {
@@ -849,11 +994,51 @@ input:focus {
     padding: 3.125rem 0;
   }
   .rates-app-ctas .rates-app__btn:first-child {
+    margin-bottom: 0;
     margin-right: 1.25rem;
   }
 }
 
+.rates-app-facts {
+  text-align: center;
+}
+
+.rates-app-facts .rates-app-inner-container {
+  padding: 2.1875rem 0;
+  border-bottom: 1px solid #026943;
+}
+
+.rates-app-facts__list {
+  margin: 0;
+}
+
+.rates-app-facts__item {
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.rates-app-facts__item:before {
+  content: url("../images/icon-checkmark.svg");
+  padding-right: 12px;
+}
+
+.rates-app-facts__item:last-child {
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .rates-app-facts__list {
+    margin-bottom: 0;
+  }
+  .rates-app-facts__item {
+    display: inline-block;
+    padding-right: 2.5rem;
+  }
+}
+
 .rates-app-testimonial {
+  padding: 2.1875rem 0;
   text-align: center;
 }
 

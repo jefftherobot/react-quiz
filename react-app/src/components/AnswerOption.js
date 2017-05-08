@@ -36,12 +36,12 @@ function AnswerOption(props) {
 
 	function renderRadioType(){
 		return (
-			<div className="rates-app-form__item rates-app-radio-btn">
+			<div className="rates-app-form__item rates-app-radio-btn rates-app-quiz__item">
 				
-				<label className="rates-app-radio-btn__label" id={props.id + '_label'} htmlFor={props.id} onMouseUp={handleClick}>
+				<label className="rates-app-radio-btn__label rates-app-quiz__label rates-app-quiz__label--radio" id={props.id + '_label'} htmlFor={props.id} onMouseUp={handleClick}>
 				<input
 					type="radio"
-					className="rates-app-radio-btn__btn"
+					className="rates-app-radio-btn__btn rates-app-quiz__radio-input"
 					name="radioGroup"
 					checked={props.answerValue === props.userAnswer}
 					id={props.id}
@@ -60,14 +60,15 @@ function AnswerOption(props) {
 	function renderTextType(){
 		//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
 		return (
-			<div className="rates-app-form__item rates-app-text">
-				<label className="rates-app-text__label" id={props.id + '_label'} htmlFor={props.id}>
+			<div className="rates-app-form__item rates-app-quiz__item">
+				<label className="rates-app-quiz__label sr-only" id={props.id + '_label'} htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 				<input
 					type="text"
-					className="rates-app-text__input"
+					className="rates-app-quiz__input"
 					name="textGroup"
+					placeholder={props.answerLabel}
 					checked={props.answerValue === props.userAnswer}
 					id={props.id}
 					value={props.answer}
@@ -77,6 +78,7 @@ function AnswerOption(props) {
 					aria-required="true"
 				/>
 				<button
+					className="rates-app__btn"
 					onClick={props.onAnswerSelected}>
 						Continue
 				</button>
@@ -86,19 +88,20 @@ function AnswerOption(props) {
 
 	function renderTextGroupType() {
 		return (
-			<div>
-				<label className="textGroupCustomLabel" htmlFor={props.id}>
+			<div className="rates-app-form__item rates-app-quiz__item">
+				{ props.id === "salesPrice2" ? <h2 className="rates-app-quiz__question">Down payment amount?</h2> : null }
+				<label className="rates-app-quiz__label sr-only" htmlFor={props.id}>
 					{props.answerLabel}
 				</label>
 				<input
 					type="textGroup"
-					className="textGroupCustomButton"
+					className="rates-app-quiz__input"
 					name="textGroupGroup"
 					id={props.id}
 					value={props.answer[props.id]}
 					onChange={props.onTextTypeChange}
 				/>
-				{ props.id === "salesPrice3" ? <button onClick={props.onAnswerSelected}>Continue</button> : null }
+				{ props.id === "salesPrice3" ? <button className="rates-app__btn" onClick={props.onAnswerSelected}>Continue</button> : null }
 
 			</div>
 		)

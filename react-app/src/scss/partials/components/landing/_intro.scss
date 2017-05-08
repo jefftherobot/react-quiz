@@ -4,6 +4,14 @@
 	&__header, &__subheader {
 		line-height: 1;
 	}
+
+	&__header {
+		margin-bottom: rem($pad * 2);
+	}
+
+	&__subheader {
+		margin-bottom: rem($pad * 2.5);
+	}
 }
 
 @include breakpoint($medium) {

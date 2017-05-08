@@ -3,7 +3,9 @@
 body {
 	color: $color-font-main;
 	font-family: $font-roboto;
+	font-size: rem(18);
 	font-weight: $font-med;
+	line-height: rem(22);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -11,6 +13,14 @@ h1, h2, h3, h4, h5, h6 {
 	color: $color-font-main;
 	font-family: $font-roboto-slab;
 	font-weight: $font-bold;
+}
+
+h1 {
+	font-size: rem(45);
+}
+
+h3 {
+	font-size: rem(18); //temp??
 }
 
 p {}

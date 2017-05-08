@@ -1,8 +1,10 @@
 .rates-app-ctas {
 	text-align: center;
 
-	.rates-app-inner-container {
-		border-bottom: 1px solid $rule-green;
+	.rates-app__btn {
+		&:first-child {
+			margin-bottom: rem($pad * 1.5);
+		}
 	}
 }
 
@@ -14,6 +16,7 @@
 		
 		.rates-app__btn {
 			&:first-child {
+				margin-bottom: 0;
 				margin-right: rem($pad * 2);
 			}
 		}

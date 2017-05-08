@@ -6,31 +6,70 @@
 	&__top {
 		padding: rem(35) 0;
 		background: $color-footer-top-background;
+
+		.rates-app-inner-container { padding: 0 rem($space-small); }
+	}
+
+	&__title {
+		margin-bottom: rem(40);
+	}
+
+	&__accred-item {
+		display: inline-block;
+		// max-width: calc(20% - 12px); images are not all same width
+		margin-right: 10px;
+		line-height: 1;
+
+		&:last-child {margin: 0;}
 	}
 
 	&__bottom {
 		max-width: 700px;
 		margin: 0 auto;
-		padding: rem(30) 0;
+		padding: rem(30) rem($space-small);
 		font-size: rem(12);
 	}
 
 	&__utilities {
-		padding-bottom: 25px;
+		padding-bottom: 15px;
 
 		&-link {
 			padding-right: 15px;
+			font-size: rem(11);
 
 			&:last-child { padding: 0; }
 		}
 	}
 
 	&__contact {
-		padding-bottom: 25px;
+		padding-bottom: 15px;
 	}
 
 	&__legal {
-		padding-bottom: 25px;
+		padding-bottom: 15px;
+	}
+
+	&__prompt {
+		padding: rem(15) rem($space-small);
+		color: white;
+		background: $color-footer-prompt-background;
+
+		&-text {
+			display: inline-block;
+			margin: 0;
+			font-family: $font-roboto;
+			font-size: rem(11);
+			font-weight: $font-med;
+			vertical-align: middle;
+		}
+
+		&-number {
+			display: inline-block;
+			margin: 0;
+			font-family: $font-roboto-slab;
+			font-size: rem(17);
+			font-weight: $font-bold;
+		}
 	}
 }
 
@@ -42,14 +81,6 @@
 
 		&__title {
 			margin-bottom: rem(20);
-		}
-
-		&__accred-item {
-			display: inline-block;
-			margin-right: 28px;
-			line-height: 1;
-
-			&:last-child {margin: 0;}
 		}
 	}
 }
