@@ -91,6 +91,7 @@ class App extends React.Component {
 		let purchasePrice            = (target.id.indexOf('salesPrice1')!=-1) ? target.value : this.state.answers.salesPrice.salesPrice1,
 			downpaymentPercent       = (target.id.indexOf('salesPrice2')!=-1) ? target.value : this.state.answers.salesPrice.salesPrice2,
 			downpaymentDollarAmount  = (target.id.indexOf('salesPrice3')!=-1) ? target.value : this.state.answers.salesPrice.salesPrice3;
+		let errorMessages = document.getElementById('error-messages');
 
 		let setAnswers = {
 			init:() => {
@@ -99,7 +100,8 @@ class App extends React.Component {
 
 			checkMin:() => {
 				if (validate.minVal(target.value, 74999)) {
-					document.getElementById('error-messages').innerHTML = '';
+					errorMessages.classList.remove('error-added');
+					errorMessages.innerHTML = '';
 				} else if (validate.number(target.value) == false) { 
 					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
 				} else {
@@ -109,7 +111,8 @@ class App extends React.Component {
 
 			update:() => {
 				if (validate.number(target.value) == true) {
-					document.getElementById('error-messages').innerHTML = '';
+					errorMessages.classList.remove('error-added');
+					errorMessages.innerHTML = '';
 
 					if (target.id == 'salesPrice1') {
 						document.getElementById(target.id).addEventListener('focusout', function(){ setAnswers.checkMin(); });
@@ -121,14 +124,20 @@ class App extends React.Component {
 							validate.addError('error-messages', 'Down payment percentage must be less than 100%.');
 							downpaymentPercent = 99;
 						 	downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
-						} else { document.getElementById('error-messages').innerHTML = ''; }
+						} else { 
+							errorMessages.classList.remove('error-added');
+							errorMessages.innerHTML = ''; 
+						}
 					} else if (target.id.indexOf('salesPrice3')!=-1){
 						 downpaymentPercent     = Math.floor(((purchasePrice/(purchasePrice - downpaymentDollarAmount))-1)*100)
 						 if (downpaymentPercent >= 100 || downpaymentPercent < 0) {
 						 	validate.addError('error-messages', 'Down payment must be less than purchase price.');
 						 	downpaymentPercent = 99;
 						 	downpaymentDollarAmount = Math.floor(purchasePrice*(downpaymentPercent/100));
-						 } else { document.getElementById('error-messages').innerHTML = ''; }
+						 } else { 
+						 	errorMessages.classList.remove('error-added');
+						 	errorMessages.innerHTML = ''; 
+						 }
 					}
 				} else {
 					validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.')
@@ -219,6 +228,7 @@ class App extends React.Component {
 		let validationType = {
 			'zip':() => {
 				if ( validate.zip(answer) == true ) {
+					document.getElementById('error-messages').classList.remove('error-added');
 					// zip to state conversion
 					this.getUsState(this.state.questionName, answer);
 				} else {
@@ -227,6 +237,7 @@ class App extends React.Component {
 			},
 			'number': () => {
 				if ( validate.number(answer) == true ) {
+					document.getElementById('error-messages').classList.remove('error-added');
 					this.showNextScreen(event.currentTarget.value);
 				} else {
 					validate.addError('error-messages', 'Please enter numbers only');

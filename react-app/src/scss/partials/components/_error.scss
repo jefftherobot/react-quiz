@@ -1,0 +1,24 @@
+.error {
+	&-messages {
+		display: none;
+		position: relative;
+		margin-bottom: rem(15);
+		padding: rem(15) rem(10) rem(15) rem(45);
+		color: white;
+		font-size: rem(14);
+		font-weight: 400;
+		text-align: left;
+		background: $color-error;
+		border-radius: 3px;
+
+		&:before {
+			position: absolute;
+			content: url('../images/icon-error.png');
+			left: 14px;
+		}
+
+		&.error-added { display: block; }
+
+		p {margin:0;}
+	}
+}

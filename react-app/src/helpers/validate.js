@@ -29,7 +29,8 @@ var validate = {
 		const textTitle = document.createTextNode('Error Messages');
 		
 		// create error container title
-		errorTitle.setAttribute('tabindex', -1);
+		// errorTitle.setAttribute('tabindex', -1);
+		errorTitle.setAttribute('class', 'sr-only');
 		errorTitle.appendChild(textTitle);
 
 		// create the error element with message
@@ -40,9 +41,10 @@ var validate = {
 		errorContainer.innerHTML = '';
 
 		// append the error message and focus on it
+		errorContainer.classList.add('error-added');
 		errorContainer.appendChild(errorTitle);
 		errorContainer.appendChild(spanError);
-		errorTitle.focus();
+		errorContainer.focus();
 	}
 }
 

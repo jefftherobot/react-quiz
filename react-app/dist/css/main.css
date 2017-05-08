@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700");
-.rates-app-quiz__label.sr-only {
+.sr-only, .rates-app-quiz__label.sr-only {
   position: absolute !important;
   overflow: hidden;
   width: 1px;
@@ -1011,6 +1011,33 @@ input:focus {
   .rates-app-radio-btn:last-child {
     margin: 0;
   }
+}
+
+.error-messages {
+  display: none;
+  position: relative;
+  margin-bottom: 0.9375rem;
+  padding: 0.9375rem 0.625rem 0.9375rem 2.8125rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-align: left;
+  background: #eb5151;
+  border-radius: 3px;
+}
+
+.error-messages:before {
+  position: absolute;
+  content: url("../images/icon-error.png");
+  left: 14px;
+}
+
+.error-messages.error-added {
+  display: block;
+}
+
+.error-messages p {
+  margin: 0;
 }
 
 .rates-app-intro {

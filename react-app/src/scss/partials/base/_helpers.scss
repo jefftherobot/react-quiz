@@ -56,3 +56,7 @@
     display: table;
   }
 }
+
+.sr-only {
+  @extend %is-vishidden;
+}

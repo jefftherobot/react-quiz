@@ -18109,9 +18109,9 @@ System.register('jgw-mortgage-rate/components/AnswerOption.js', ['react'], funct
 		}
 
 		function renderRadioType() {
-			return React.createElement('div', { className: 'rates-app-form__item rates-app-radio-btn' }, React.createElement('label', { className: 'rates-app-radio-btn__label', id: props.id + '_label', htmlFor: props.id, onMouseUp: handleClick }, React.createElement('input', {
+			return React.createElement('div', { className: 'rates-app-form__item rates-app-radio-btn rates-app-quiz__item' }, React.createElement('label', { className: 'rates-app-radio-btn__label rates-app-quiz__label rates-app-quiz__label--radio', id: props.id + '_label', htmlFor: props.id, onMouseUp: handleClick }, React.createElement('input', {
 				type: 'radio',
-				className: 'rates-app-radio-btn__btn',
+				className: 'rates-app-radio-btn__btn rates-app-quiz__radio-input',
 				name: 'radioGroup',
 				checked: props.answerValue === props.userAnswer,
 				id: props.id,
@@ -18125,10 +18125,11 @@ System.register('jgw-mortgage-rate/components/AnswerOption.js', ['react'], funct
 
 		function renderTextType() {
 			//https://gist.github.com/markerikson/d71cfc81687f11609d2559e8daee10cc
-			return React.createElement('div', { className: 'rates-app-form__item rates-app-text' }, React.createElement('label', { className: 'rates-app-text__label', id: props.id + '_label', htmlFor: props.id }, props.answerLabel), React.createElement('input', {
+			return React.createElement('div', { className: 'rates-app-form__item rates-app-quiz__item' }, React.createElement('label', { className: 'rates-app-quiz__label sr-only', id: props.id + '_label', htmlFor: props.id }, props.answerLabel), React.createElement('input', {
 				type: 'text',
-				className: 'rates-app-text__input',
+				className: 'rates-app-quiz__input',
 				name: 'textGroup',
+				placeholder: props.answerLabel,
 				checked: props.answerValue === props.userAnswer,
 				id: props.id,
 				value: props.answer,
@@ -18137,18 +18138,20 @@ System.register('jgw-mortgage-rate/components/AnswerOption.js', ['react'], funct
 				'aria-labelledby': props.id + '_label',
 				'aria-required': 'true'
 			}), React.createElement('button', {
+				className: 'rates-app__btn',
 				onClick: props.onAnswerSelected }, 'Continue'));
 		}
 
 		function renderTextGroupType() {
-			return React.createElement('div', null, React.createElement('label', { className: 'textGroupCustomLabel', htmlFor: props.id }, props.answerLabel), React.createElement('input', {
+			return React.createElement('div', { className: 'rates-app-form__item rates-app-quiz__item rates-app-quiz__item--' + props.id }, props.id === "salesPrice2" ? React.createElement('h2', { className: 'rates-app-quiz__question' }, 'Down payment amount?') : null, React.createElement('label', { className: 'rates-app-quiz__label sr-only', htmlFor: props.id }, props.answerLabel), React.createElement('span', { className: 'rates-app-quiz__span--' + props.id }, React.createElement('input', {
 				type: 'textGroup',
-				className: 'textGroupCustomButton',
+				className: 'rates-app-quiz__input',
 				name: 'textGroupGroup',
 				id: props.id,
 				value: props.answer[props.id],
+				placeholder: props.answerValue,
 				onChange: props.onTextTypeChange
-			}), props.id === "SalesPrice3" ? React.createElement('button', { onClick: props.onAnswerSelected }, 'Continue') : null);
+			})), props.id === "salesPrice3" ? React.createElement('button', { className: 'rates-app__btn', onClick: props.onAnswerSelected }, 'Continue') : null);
 		}
 
 		function chooseAnswerType() {
@@ -18201,7 +18204,7 @@ System.register('jgw-mortgage-rate/components/Quiz.js', ['react', '../components
 			});
 		}
 
-		return React.createElement('div', { className: 'rates-app-quiz' }, React.createElement(Question, { content: props.question }), React.createElement('div', { className: 'rates-app-answer-options' }, React.createElement('div', { id: 'error-messages' }), props.answerOptions.map(renderAnswerOptions)));
+		return React.createElement('div', { className: 'rates-app-quiz' }, React.createElement(Question, { content: props.question }), React.createElement('div', { className: 'rates-app-answer-options' }, React.createElement('div', { id: 'error-messages', className: 'error-messages' }), props.answerOptions.map(renderAnswerOptions)));
 	}
 
 	return {
@@ -18226,7 +18229,7 @@ System.register("jgw-mortgage-rate/components/Question.js", ["react"], function 
 
 
 	function Question(props) {
-		return React.createElement("h2", { className: "rates-app-question" }, props.content);
+		return React.createElement("h2", { className: "rates-app-quiz__question" }, props.content);
 	}
 
 	return {
@@ -22382,7 +22385,7 @@ System.register("jgw-mortgage-rate/components/HiddenField.js", ["react"], functi
 
 	function HiddenField(props) {
 
-		return React.createElement("div", { className: "rates-app-form__item rates-app-form__hidden" }, React.createElement("label", { className: "rates-app-form__label" }, props.fieldLabel), React.createElement("input", { className: "rates-app-form__input", type: "text", readOnly: true, value: props.fieldValue }));
+		return React.createElement("div", { className: "rates-app-form__item rates-app-form__hidden" }, React.createElement("label", { className: "rates-app-form__label" }, props.fieldLabel), React.createElement("input", { className: "rates-app-form__input", type: "text", readOnly: true, name: props.fieldLabel, value: props.fieldValue }));
 	}
 
 	return {
@@ -22520,33 +22523,33 @@ System.registerDynamic('jgw-mortgage-rate/helpers/api.js', [], false, function (
 
 				if (quizType == 'purchase') {
 					let purchaseCall = "https://stagesitecore.jgwentworth.com/api/mortgage/purchase?";
-					purchaseCall += "DownPayment=" + quiz['SalesPrice.SalesPrice3'];
+					purchaseCall += "DownPayment=" + quiz['salesPrice.salesPrice3'];
 					purchaseCall += "&LoanPurpose=" + quizType;
-					purchaseCall += "&creditScore=" + quiz.CreditScore;
-					purchaseCall += "&downPaymentPercentage=" + quiz['SalesPrice.SalesPrice2'];
-					purchaseCall += "&homeType=" + quiz.HomeType;
-					purchaseCall += "&homeUse=" + quiz.HomeUse;
-					purchaseCall += "&salesPrice=" + quiz['SalesPrice.SalesPrice1'];
+					purchaseCall += "&creditScore=" + quiz.creditScore;
+					purchaseCall += "&downPaymentPercentage=" + quiz['salesPrice.salesPrice2'];
+					purchaseCall += "&homeType=" + quiz.homeType;
+					purchaseCall += "&homeUse=" + quiz.homeUse;
+					purchaseCall += "&salesPrice=" + quiz['salesPrice.salesPrice1'];
 					purchaseCall += "&serviceMember=" + quiz.ServiceMember;
-					purchaseCall += "&state=" + quiz.state;
+					purchaseCall += "&state=" + quiz.State;
 					purchaseCall += "&zip_Code=" + quiz.ZipCode;
 
 					return purchaseCall;
 				} else {
-					let AdditionalCashAmount = quiz.AdditionalCashAmount !== undefined ? quiz.AdditionalCashAmount : 0;
-					let ServiceMemberVALoan = quiz.ServiceMemberVALoan !== undefined ? quiz.ServiceMemberVALoan : false;
+					let additionalCash = quiz.additionalCash !== undefined ? quiz.additionalCash : 0;
+					let CurrentVaLoan = quiz.CurrentVaLoan !== undefined ? quiz.CurrentVaLoan : false;
 
 					let refinanceCall = "https://stagesitecore.jgwentworth.com/api/mortgage/refinance?";
-					refinanceCall += "additionalCash=" + AdditionalCashAmount;
+					refinanceCall += "additionalCash=" + additionalCash;
 					refinanceCall += "&LoanPurpose=" + quizType;
-					refinanceCall += "&creditScore=" + quiz.CreditScore;
-					refinanceCall += "&currentMortgageAmount=" + quiz.MortgageBalance;
-					refinanceCall += "&homeType=" + quiz.HomeType;
-					refinanceCall += "&homeUse=" + quiz.HomeUse;
-					refinanceCall += "&homeValue=" + quiz.PurchasePrice;
+					refinanceCall += "&creditScore=" + quiz.creditScore;
+					refinanceCall += "&currentMortgageAmount=" + quiz.currentMortgageAmount;
+					refinanceCall += "&homeType=" + quiz.homeType;
+					refinanceCall += "&homeUse=" + quiz.homeUse;
+					refinanceCall += "&homeValue=" + quiz.homeValue;
 					refinanceCall += "&serviceMember=" + quiz.ServiceMember;
-					refinanceCall += "&currentVaLoan=" + ServiceMemberVALoan;
-					refinanceCall += "&state=" + quiz.state;
+					refinanceCall += "&currentVaLoan=" + CurrentVaLoan;
+					refinanceCall += "&state=" + quiz.State;
 					refinanceCall += "&zip_Code=" + quiz.ZipCode;
 
 					return refinanceCall;
@@ -22586,6 +22589,13 @@ System.registerDynamic('jgw-mortgage-rate/helpers/api.js', [], false, function (
 				}
 				recurse(data, "");
 				return result;
+			},
+
+			editKey(obj, oldKey, newKey) {
+				if (oldKey !== newKey) {
+					Object.defineProperty(obj, newKey, Object.getOwnPropertyDescriptor(obj, oldKey));
+					delete obj[oldKey];
+				}
 			}
 		};
 		$__global['api'] = api;
@@ -22647,10 +22657,10 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 						answerConditional: [],
 						answer: '',
 						answers: {
-							SalesPrice: {
-								SalesPrice1: '',
-								SalesPrice2: '',
-								SalesPrice3: ''
+							salesPrice: {
+								salesPrice1: '75000',
+								salesPrice2: '0',
+								salesPrice3: '0'
 							}
 						},
 						result: []
@@ -22694,6 +22704,12 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 								questionName: data[$type][0].name
 							});
 
+							var updatedAnswers = update(_this2.state.answers, {
+								$merge: { LoanPurpose: _this2.state.quizType }
+							});
+
+							_this2.setState({ answers: updatedAnswers });
+
 							//console.log(this.state)
 						}).catch(function (error) {
 							console.log('Request failed', error);
@@ -22712,9 +22728,9 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 						var _this3 = this;
 
 						var target = event.currentTarget;
-						var purchasePrice = target.id.indexOf('SalesPrice1') != -1 ? target.value : this.state.answers.SalesPrice.SalesPrice1,
-						    downpaymentPercent = target.id.indexOf('SalesPrice2') != -1 ? target.value : this.state.answers.SalesPrice.SalesPrice2,
-						    downpaymentDollarAmount = target.id.indexOf('SalesPrice3') != -1 ? target.value : this.state.answers.SalesPrice.SalesPrice3;
+						var purchasePrice = target.id.indexOf('salesPrice1') != -1 ? target.value : this.state.answers.salesPrice.salesPrice1,
+						    downpaymentPercent = target.id.indexOf('salesPrice2') != -1 ? target.value : this.state.answers.salesPrice.salesPrice2,
+						    downpaymentDollarAmount = target.id.indexOf('salesPrice3') != -1 ? target.value : this.state.answers.salesPrice.salesPrice3;
 
 						var setAnswers = {
 							init: function init() {
@@ -22735,13 +22751,13 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 								if (validate.number(target.value) == true) {
 									document.getElementById('error-messages').innerHTML = '';
 
-									if (target.id == 'SalesPrice1') {
+									if (target.id == 'salesPrice1') {
 										document.getElementById(target.id).addEventListener('focusout', function () {
 											setAnswers.checkMin();
 										});
 									}
 
-									if (target.id.indexOf('SalesPrice2') != -1 || target.id.indexOf('SalesPrice1') != -1) {
+									if (target.id.indexOf('salesPrice2') != -1 || target.id.indexOf('salesPrice1') != -1) {
 										downpaymentDollarAmount = Math.floor(purchasePrice * (downpaymentPercent / 100));
 										if (downpaymentDollarAmount >= purchasePrice) {
 											validate.addError('error-messages', 'Down payment percentage must be less than 100%.');
@@ -22750,7 +22766,7 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 										} else {
 											document.getElementById('error-messages').innerHTML = '';
 										}
-									} else if (target.id.indexOf('SalesPrice3') != -1) {
+									} else if (target.id.indexOf('salesPrice3') != -1) {
 										downpaymentPercent = Math.floor((purchasePrice / (purchasePrice - downpaymentDollarAmount) - 1) * 100);
 										if (downpaymentPercent >= 100 || downpaymentPercent < 0) {
 											validate.addError('error-messages', 'Down payment must be less than purchase price.');
@@ -22765,15 +22781,15 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 								}
 
 								_this3.setUserAnswer({
-									'SalesPrice1': purchasePrice,
-									'SalesPrice2': downpaymentPercent,
-									'SalesPrice3': downpaymentDollarAmount
+									'salesPrice1': purchasePrice,
+									'salesPrice2': downpaymentPercent,
+									'salesPrice3': downpaymentDollarAmount
 
 								}, true);
 							}
 						};
 
-						if (target.id.indexOf('SalesPrice') != -1) {
+						if (target.id.indexOf('salesPrice') != -1) {
 							// Check for salesprice input group and do down payment calculations
 							setAnswers.init();
 						} else {
@@ -22797,8 +22813,8 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 								_this4.validateInput();
 							},
 							'default': function _default() {
+								// check whether user is clicking label of radio button, actually button is hidden
 								if (event.currentTarget.tagName == 'LABEL') {
-									console.log('its a label');
 									_this4.setUserAnswer(event.currentTarget.children[0].getAttribute('value'));
 									_this4.showNextScreen(event.currentTarget.children[0].getAttribute('value'));
 								} else {
@@ -22839,8 +22855,6 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 							}));
 						}
 
-						//console.log(updatedAnswers)
-
 						this.setState({
 							answer: answer,
 							answers: updatedAnswers
@@ -22858,12 +22872,8 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 						var validationType = {
 							'zip': function zip() {
 								if (validate.zip(answer) == true) {
-									// Check which zip field we're testing, for zip to state conversion
-									if (_this5.state.questionName == "ZipCode") {
-										_this5.checkLicense(answer);
-									} else {
-										_this5.showNextScreen(event.currentTarget.value);
-									};
+									// zip to state conversion
+									_this5.getUsState(_this5.state.questionName, answer);
 								} else {
 									validate.addError('error-messages', 'Please enter a 5-digit zip code');
 								}
@@ -22880,7 +22890,7 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 									validate.addError('error-messages', 'Please enter positive numbers only.  All fields are required.');
 								} else {
 									for (var i = 0; i < Object.keys(answer).length; i++) {
-										var itemKey = 'SalesPrice' + [i + 1];
+										var itemKey = 'salesPrice' + [i + 1];
 										console.log(itemKey);
 										if (validate.number(answer[itemKey]) == true) {
 											console.log('good');
@@ -22905,8 +22915,8 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 						(validationType[validation] || validationType['default'])();
 					}
 				}, {
-					key: 'checkLicense',
-					value: function checkLicense(answer) {
+					key: 'getUsState',
+					value: function getUsState(question, answer) {
 						var _this6 = this;
 
 						// Send ZIP to google API to get state
@@ -22917,17 +22927,19 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 							if (result == 'api error') {
 								validate.addError('error-messages', 'Please enter a valid USA ZIP code');
 							} else {
+								var usState = result;
+
 								// IN FUTURE: send ZIP to Mortech to check if it's a licensed state
 								// TEMP: check from list
-								var state = result;
-
-								if (state == 'Alaska' || state == 'Hawaii' || state == 'Montana' || state == 'Missouri' || state == 'New York' || state == 'Nevada' || state == 'North Dakota' || state == 'South Dakota' || state == 'Wyoming' || state == 'Idaho') {
+								if (question == "ZipCode" && (usState == 'Alaska' || usState == 'Hawaii' || usState == 'Montana' || usState == 'Missouri' || usState == 'New York' || usState == 'Nevada' || usState == 'North Dakota' || usState == 'South Dakota' || usState == 'Wyoming' || usState == 'Idaho')) {
 									_this6.setState({ view: 'NotLicensed' }); // kick user out of quiz
 								} else {
-									// hooray onward!
-									// add zip and state to answers object
+									// check which ZIP field we're looking at, property zip or current zip
+									var propName = question == "ZipCode" ? 'State' : 'borrower-state';
+
+									// hooray onward! add zip and state to answers object.
 									var updatedAnswers = update(_this6.state.answers, {
-										$merge: { state: state }
+										$merge: _defineProperty({}, propName, usState)
 									});
 
 									_this6.setState({ answers: updatedAnswers });
@@ -23119,9 +23131,14 @@ System.register('jgw-mortgage-rate/App.js', ['npm:systemjs-plugin-babel@0.0.21/b
 						// flatten answers object and merge with loan object
 						var flattened = api.flatten(this.state.answers);
 						var merged = api.mergeObjs(flattened, this.state.loan);
-						var hiddenFields = [];
+
+						// directly edit the merged object, update field names for velocify reqs
+						api.editKey(merged, 'salesPrice.salesPrice1', 'salesPrice');
+						api.editKey(merged, 'salesPrice.salesPrice2', 'downPaymentPercentage');
+						api.editKey(merged, 'salesPrice.salesPrice3', 'DownPayment');
 
 						// put merged object into an array, in order to map it
+						var hiddenFields = [];
 						for (var item in merged) {
 							hiddenFields.push(_defineProperty({}, item, merged[item]));
 						}
