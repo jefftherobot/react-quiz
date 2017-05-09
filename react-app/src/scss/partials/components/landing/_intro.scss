@@ -16,12 +16,29 @@
 
 @include breakpoint($medium) {
 	.rates-app-intro {
-		&__fact {
-			margin-bottom: 0;
+		&__header {
+			margin-bottom: rem(40);
+		}
+
+		&__subheader {
+			margin-bottom: rem(50);
+		}
+	}
+}
+
+@include breakpoint($large) {
+	.rates-app-intro {
+		&__header {
+			margin-bottom: rem(20);
+		}
+
+		&__subheader {
+			margin-bottom: rem(34);
 		}
 
 		&__fact {
 			display: inline-block;
+			margin-bottom: 0;
 			padding-right: rem($pad * 4);
 
 			&:before {

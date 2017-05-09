@@ -459,7 +459,16 @@ img {
   max-width: 100%;
 }
 
-@media (min-width: 1224px) {
+@media (min-width: 768px) {
+  h1 {
+    font-size: 5.625rem;
+  }
+  h3 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1025px) {
   body {
     font-size: 1.25rem;
   }
@@ -481,7 +490,7 @@ a.rates-app__btn,
   width: 100%;
   max-width: 625px;
   margin: 0 auto;
-  padding: 25px 20px;
+  padding: 22px 20px;
   font-family: "Roboto Slab", serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -528,8 +537,18 @@ a.rates-app__btn:hover, a.rates-app__btn:focus, a.rates-app__btn:active, a.rates
 @media (min-width: 768px) {
   a.rates-app__btn,
   .rates-app__btn {
+    padding: 45px;
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  a.rates-app__btn,
+  .rates-app__btn {
     width: auto;
-    padding: 25px 45px;
+    min-width: 271px;
+    padding: 25px 40px;
+    font-size: 1.25rem;
   }
 }
 
@@ -547,7 +566,7 @@ html {
   }
 }
 
-@media (min-width: 1224px) {
+@media (min-width: 1025px) {
   html {
     font-family: "desktop";
   }
@@ -618,16 +637,6 @@ markup:
 
 Styleguide 2.3
 */
-input {
-  margin: 8px;
-  padding: 8px;
-  border: 1px solid #000;
-}
-
-input:focus {
-  border: 1px solid #CCC;
-}
-
 .rates-app-footer {
   color: #323232;
   font-weight: 400;
@@ -710,10 +719,75 @@ input:focus {
 
 @media (min-width: 768px) {
   .rates-app-footer__top {
+    padding: 4.6875rem 0;
+  }
+  .rates-app-footer__title {
+    margin-bottom: 4.375rem;
+    font-size: 2.25rem;
+    line-height: 2.8125rem;
+  }
+  .rates-app-footer__bottom {
+    padding: 4.6875rem 0 4.125rem;
+    font-size: 1.375rem;
+    line-height: 1.625rem;
+  }
+  .rates-app-footer__utilities {
+    padding-bottom: 1.875rem;
+  }
+  .rates-app-footer__utilities-link {
+    font-size: 1.375rem;
+    line-height: 1.625rem;
+  }
+  .rates-app-footer__contact {
+    padding-bottom: 30px;
+  }
+  .rates-app-footer__legal {
+    padding-bottom: 30px;
+  }
+  .rates-app-footer__prompt {
+    padding: 1.875rem 1.25rem 1.25rem;
+  }
+  .rates-app-footer__prompt-text {
+    height: 36px;
+    padding-right: 40px;
+    font-size: 1.375rem;
+    vertical-align: middle;
+  }
+  .rates-app-footer__prompt-number {
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-footer__top {
+    padding: 1.875rem 0;
     font-size: 1.125rem;
   }
   .rates-app-footer__title {
     margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+  }
+  .rates-app-footer__bottom {
+    padding: 1.875rem 0;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+  .rates-app-footer__utilities {
+    padding-bottom: 1.5rem;
+  }
+  .rates-app-footer__utilities-link {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+  .rates-app-footer__contact {
+    padding-bottom: 24px;
+  }
+  .rates-app-footer__legal {
+    padding-bottom: 24px;
+  }
+  .rates-app-footer__prompt {
+    display: none;
   }
 }
 
@@ -759,12 +833,26 @@ input:focus {
 }
 
 @media (min-width: 768px) {
+  .rates-app-header {
+    padding: 2.375rem 1.25rem 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-header {
+    padding: 0.9375rem 1.25rem 0;
+  }
   .rates-app-header__logo {
     float: left;
     width: 50%;
+    margin-bottom: 4.6875rem;
     text-align: left;
   }
+  .rates-app-header__logo img {
+    margin: 0;
+  }
   .rates-app-header__prompt {
+    display: block;
     float: left;
     width: 50%;
     text-align: right;
@@ -840,7 +928,23 @@ input:focus {
 }
 
 .rates-app-quiz {
+  max-width: 625px;
+  margin: 0 auto;
   text-align: center;
+}
+
+.rates-app-quiz--textGroup .rates-app-quiz__input {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
+.rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice1:before, .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice3:before {
+  z-index: 1;
+}
+
+.rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice2 {
+  width: 26%;
+  margin-right: 10px;
 }
 
 .rates-app-quiz__question {
@@ -857,9 +961,18 @@ input:focus {
   margin-bottom: 0;
 }
 
+.rates-app-quiz__label-helper {
+  display: inline-block;
+  padding-left: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
 .rates-app-quiz__input {
+  display: block;
   width: 100%;
-  max-width: 625px;
   margin: 0 0 1.5625rem;
   padding: 0.9375rem;
   font-family: "Roboto Slab", serif;
@@ -873,7 +986,7 @@ input:focus {
 .rates-app-quiz__input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-family: "Roboto", sans-serif;
-  font-size: 1.5625rem;
+  font-size: 1.125rem;
   font-weight: 400;
   font-style: italic;
   opacity: 1;
@@ -939,9 +1052,145 @@ input:focus {
   opacity: 1;
 }
 
+@media (min-width: 768px) {
+  .rates-app-quiz__question {
+    margin-bottom: 1.25rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .rates-app-quiz__item {
+    margin-bottom: 1.5625rem;
+  }
+  .rates-app-quiz__item--salesPrice2 {
+    margin-bottom: 0;
+  }
+  .rates-app-quiz__label-helper {
+    padding: 0 0 3px 20px;
+    font-size: 1.375rem;
+  }
+  .rates-app-quiz__input {
+    margin: 0 0 3.125rem;
+    padding: 1.75rem 1.875rem;
+    font-size: 3.75rem;
+  }
+  .rates-app-quiz__input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 1.875rem;
+  }
+  .rates-app-quiz__input#salesPrice1, .rates-app-quiz__input#salesPrice3 {
+    padding: 1.75rem 1.875rem 1.75rem 4rem;
+  }
+  .rates-app-quiz__input#salesPrice2 {
+    padding: 1.75rem 4rem 1.75rem 1.875rem;
+  }
+  .rates-app-quiz__span--salesPrice1:before, .rates-app-quiz__span--salesPrice3:before {
+    top: -15px;
+    left: 28px;
+    font-size: 3.75rem;
+  }
+  .rates-app-quiz__span--salesPrice2 {
+    width: 26%;
+    margin-right: 10px;
+  }
+  .rates-app-quiz__span--salesPrice2:before {
+    top: 59px;
+    right: 25px;
+    font-size: 3.75rem;
+  }
+  .rates-app-quiz__span--salesPrice1 input::-webkit-input-placeholder, .rates-app-quiz__span--salesPrice2 input::-webkit-input-placeholder, .rates-app-quiz__span--salesPrice3 input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-quiz {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .rates-app-quiz--textGroup {
+    max-width: 520px;
+  }
+  .rates-app-quiz--textGroup .rates-app-quiz__input {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+  .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice1:before, .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice3:before {
+    z-index: 1;
+    top: -5px;
+    left: 28px;
+    font-size: 2.25rem;
+  }
+  .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice2 {
+    width: 26%;
+    margin-right: 10px;
+  }
+  .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice2:before {
+    top: 31px;
+    right: 25px;
+    font-size: 2.25rem;
+  }
+  .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice1 input::-webkit-input-placeholder, .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice2 input::-webkit-input-placeholder, .rates-app-quiz--textGroup .rates-app-quiz__span--salesPrice3 input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 2.25rem;
+  }
+  .rates-app-quiz__question {
+    max-width: 520px;
+    margin: 0 auto 1.25rem;
+    font-size: 2rem;
+  }
+  .rates-app-quiz__question--text, .rates-app-quiz__question--textGroup {
+    text-align: left;
+  }
+  .rates-app-quiz__item {
+    margin-bottom: 0rem;
+  }
+  .rates-app-quiz__item--salesPrice1 {
+    margin-bottom: 1.25rem;
+  }
+  .rates-app-quiz__label-helper {
+    padding: 0 0 2px 10px;
+    font-size: 0.875rem;
+  }
+  .rates-app-quiz__input {
+    max-width: 520px;
+    margin: 0 auto 3.125rem;
+    padding: 0.9375rem 1.5625rem;
+    font-size: 2.25rem;
+  }
+  .rates-app-quiz__input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 1.625rem;
+  }
+  .rates-app-quiz__input#salesPrice1, .rates-app-quiz__input#salesPrice3 {
+    padding: 0.9375rem 1.5625rem 0.9375rem 3.125rem;
+  }
+  .rates-app-quiz__input#salesPrice2 {
+    padding: 0.9375rem 3.125rem 0.9375rem 1.5625rem;
+  }
+  .rates-app-quiz .columns {
+    column-count: 2;
+  }
+  .rates-app-quiz .columns .rates-app-quiz__item {
+    margin-bottom: 1.25rem;
+  }
+}
+
 .rates-app-answer-options {
-  padding-bottom: 50px;
+  padding-bottom: 3.125rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .rates-app-answer-options {
+    padding-bottom: 6.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .rates-app-answer-options {
+    padding-bottom: 4.375rem;
+  }
 }
 
 .rates-app-radio-btn__label {
@@ -953,7 +1202,7 @@ input:focus {
   width: 100%;
   max-width: 625px;
   margin: 0 auto;
-  padding: 25px 20px;
+  padding: 22px 20px;
   font-family: "Roboto Slab", serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -993,8 +1242,17 @@ input:focus {
 
 @media (min-width: 768px) {
   .rates-app-radio-btn__label {
+    padding: 45px;
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-radio-btn__label {
     width: auto;
-    padding: 25px 45px;
+    min-width: 271px;
+    padding: 25px 40px;
+    font-size: 1.25rem;
   }
 }
 
@@ -1003,7 +1261,7 @@ input:focus {
   margin: 0;
 }
 
-@media (min-width: 1224px) {
+@media (min-width: 1025px) {
   .rates-app-radio-btn {
     display: inline-block;
     margin-right: 1.25rem;
@@ -1029,7 +1287,10 @@ input:focus {
 .error-messages:before {
   position: absolute;
   content: url("../images/icon-error.png");
+  top: calc(50% - 9px);
   left: 14px;
+  width: 18px;
+  height: 18px;
 }
 
 .error-messages.error-added {
@@ -1038,6 +1299,24 @@ input:focus {
 
 .error-messages p {
   margin: 0;
+}
+
+@media (min-width: 768px) {
+  .error-messages {
+    max-width: 520px;
+    margin: 0 auto 1.875rem;
+    padding: 1.875rem 1.25rem 1.875rem 5.625rem;
+    font-size: 1.375rem;
+  }
+  .error-messages:before {
+    top: calc(50% - 18px);
+    left: 28px;
+    width: 32px;
+    height: 32px;
+  }
+  .error-messages p {
+    line-height: 1.4;
+  }
 }
 
 .rates-app-intro {
@@ -1057,11 +1336,24 @@ input:focus {
 }
 
 @media (min-width: 768px) {
-  .rates-app-intro__fact {
-    margin-bottom: 0;
+  .rates-app-intro__header {
+    margin-bottom: 2.5rem;
+  }
+  .rates-app-intro__subheader {
+    margin-bottom: 3.125rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-intro__header {
+    margin-bottom: 1.25rem;
+  }
+  .rates-app-intro__subheader {
+    margin-bottom: 2.125rem;
   }
   .rates-app-intro__fact {
     display: inline-block;
+    margin-bottom: 0;
     padding-right: 2.5rem;
   }
   .rates-app-intro__fact:before {
@@ -1079,9 +1371,12 @@ input:focus {
 }
 
 @media (min-width: 768px) {
-  .rates-app-ctas .rates-app-inner-container {
-    padding: 3.125rem 0;
+  .rates-app__btn:first-child {
+    margin-bottom: 1.5625rem;
   }
+}
+
+@media (min-width: 1025px) {
   .rates-app-ctas .rates-app__btn:first-child {
     margin-bottom: 0;
     margin-right: 1.25rem;
@@ -1117,12 +1412,32 @@ input:focus {
 }
 
 @media (min-width: 768px) {
+  .rates-app-facts .rates-app-inner-container {
+    padding: 4.375rem 0;
+  }
+  .rates-app-facts__list {
+    margin-bottom: 0;
+  }
+  .rates-app-facts__item {
+    padding-bottom: 1.875rem;
+    font-size: 1.75rem;
+  }
+  .rates-app-facts__item:last-child {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-facts .rates-app-inner-container {
+    padding: 2.5rem 0 3.4375rem;
+  }
   .rates-app-facts__list {
     margin-bottom: 0;
   }
   .rates-app-facts__item {
     display: inline-block;
     padding-right: 2.5rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -1154,8 +1469,23 @@ input:focus {
 
 @media (min-width: 768px) {
   .rates-app-testimonial {
+    padding: 5rem 0 4.1875rem;
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+  .rates-app-testimonial__quote {
+    margin-bottom: 2.1875rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .rates-app-testimonial {
     padding: 3.125rem 0;
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  .rates-app-testimonial__quote {
+    margin-bottom: 1.125rem;
   }
 }
 

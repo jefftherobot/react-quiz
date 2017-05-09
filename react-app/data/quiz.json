@@ -130,32 +130,44 @@
       "progress": 90,
       "answers": [
         {
-          "label": "740 - 850 (Excellent)",
+          "label": "740 - 850",
+          "labelHelper": "Excellent",
           "value": "850"
         },
         {
-          "label": "700 - 739 (Very Good)",
+          "label": "720 - 739",
+          "labelHelper": "Great",
           "value": "739"
         },
         {
-          "label": "660 - 699 (Good)",
+          "label": "700 - 719",
+          "labelHelper": "Very Good",
+          "value": "719"
+        },
+        {
+          "label": "680 - 699",
+          "labelHelper": "Good",
           "value": "699"
         },
         {
-          "label": "640 - 659 (Average)",
+          "label": "660 - 679",
+          "labelHelper": "Above Average",
+          "value": "679"
+        },
+        {
+          "label": "640 - 659",
+          "labelHelper": "Average",
           "value": "659"
         },
         {
-          "label": "620 - 639 (Poor)",
+          "label": "620 - 639",
+          "labelHelper": "Fair",
           "value": "639"
         },
         {
-          "label": "600 - 619 (Needs Work)",
-          "value": "619"
-        },
-        {
-          "label": "599 & below (Credit Repair)",
-          "value": "599"
+          "label": "600 & Below",
+          "labelHelper": "Needs Work",
+          "value": "600"
         }
       ]
     }
@@ -342,35 +354,47 @@
       "question": "What is your estimated credit score?",
       "type": "radio",
       "validation": "none",
-      "progress": 83.33,
+      "progress": 90,
       "answers": [
         {
-          "label": "740 - 850 (Excellent)",
+          "label": "740 - 850",
+          "labelHelper": "Excellent",
           "value": "850"
         },
         {
-          "label": "700 - 739 (Very Good)",
+          "label": "720 - 739",
+          "labelHelper": "Great",
           "value": "739"
         },
         {
-          "label": "660 - 699 (Good)",
+          "label": "700 - 719",
+          "labelHelper": "Very Good",
+          "value": "719"
+        },
+        {
+          "label": "680 - 699",
+          "labelHelper": "Good",
           "value": "699"
         },
         {
-          "label": "640 - 659 (Average)",
+          "label": "660 - 679",
+          "labelHelper": "Above Average",
+          "value": "679"
+        },
+        {
+          "label": "640 - 659",
+          "labelHelper": "Average",
           "value": "659"
         },
         {
-          "label": "620 - 639 (Poor)",
+          "label": "620 - 639",
+          "labelHelper": "Fair",
           "value": "639"
         },
         {
-          "label": "600 - 619 (Needs Work)",
-          "value": "619"
-        },
-        {
-          "label": "599 & below (Credit Repair)",
-          "value": "599"
+          "label": "600 & Below",
+          "labelHelper": "Needs Work",
+          "value": "600"
         }
       ]
     }

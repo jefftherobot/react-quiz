@@ -26,6 +26,28 @@
 
 @include breakpoint($medium) {
 	.rates-app-facts {
+		.rates-app-inner-container {
+			padding: rem(70) 0;
+		}
+
+		&__list {
+			margin-bottom: 0;
+		}
+
+		&__item {
+			padding-bottom: rem(30);
+			font-size: rem(28);
+			&:last-child { padding-bottom: 0; }
+		}
+	}
+}
+
+@include breakpoint($large) {
+	.rates-app-facts {
+		.rates-app-inner-container {
+			padding: rem(40) 0 rem(55);
+		}
+
 		&__list {
 			margin-bottom: 0;
 		}
@@ -33,6 +55,7 @@
 		&__item {
 			display: inline-block;
 			padding-right: rem($pad * 4);
+			font-size: rem(20);
 		}
 	}
 }

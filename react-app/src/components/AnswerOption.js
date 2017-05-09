@@ -52,6 +52,7 @@ function AnswerOption(props) {
 					aria-labelledby={props.id + '_label'}
 				/>
 					{props.answerLabel}
+					{props.answerLabelHelper !== undefined ? <span className="rates-app-quiz__label-helper">{props.answerLabelHelper}</span> : null }
 				</label>
 			</div>
 		);
@@ -89,7 +90,7 @@ function AnswerOption(props) {
 	function renderTextGroupType() {
 		return (
 			<div className={`rates-app-form__item rates-app-quiz__item rates-app-quiz__item--${props.id}`}>
-				{ props.id === "salesPrice2" ? <h2 className="rates-app-quiz__question">Down payment amount?</h2> : null }
+				{ props.id === "salesPrice2" ? <h2 className="rates-app-quiz__question rates-app-quiz__question--textGroup">Down payment amount?</h2> : null }
 				<label className="rates-app-quiz__label sr-only" htmlFor={props.id}>
 					{props.answerLabel}
 				</label>

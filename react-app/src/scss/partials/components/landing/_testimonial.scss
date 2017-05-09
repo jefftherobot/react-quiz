@@ -26,7 +26,24 @@
 
 @include breakpoint($medium) {
 	.rates-app-testimonial {
+		padding: rem(80) 0 rem(67);
+		font-size: rem(36);
+		line-height: rem(44);
+
+		&__quote {
+			margin-bottom: rem(35);
+		}
+	}
+}
+
+@include breakpoint($large) {
+	.rates-app-testimonial {
 		padding: rem($pad * 5) 0;
 		font-size: rem(18);
+		line-height: rem(28);
+
+		&__quote {
+			margin-bottom: rem(18);
+		}
 	}
 }

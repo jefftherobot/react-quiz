@@ -14,11 +14,34 @@
 		&:before {
 			position: absolute;
 			content: url('../images/icon-error.png');
+			top: calc(50% - 9px); // vertical center
 			left: 14px;
+			width: 18px;
+			height: 18px;
 		}
 
 		&.error-added { display: block; }
 
 		p {margin:0;}
+	}
+}
+
+@include breakpoint($medium) {
+	.error {
+		&-messages {
+			max-width: 520px;
+			margin: 0 auto rem(30);
+			padding: rem(30) rem(20) rem(30) rem(90);
+			font-size: rem(22);
+
+			&:before {
+				top: calc(50% - 18px); // vertical center
+				left: 28px;
+				width: 32px;
+				height: 32px;
+			}
+
+			p { line-height: 1.4; }
+		}
 	}
 }

@@ -76,11 +76,91 @@
 @include breakpoint($medium) {
 	.rates-app-footer {
 		&__top {
+			padding: rem(75) 0;
+		}
+
+		&__title {
+			margin-bottom: rem(70);
+			font-size: rem(36);
+			line-height: rem(45);
+		}
+
+		&__bottom {
+			padding: rem(75) 0 rem(66);
+			font-size: rem(22);
+			line-height: rem(26);
+		}
+
+		&__utilities {
+			padding-bottom: rem(30);
+
+			&-link {
+				font-size: rem(22);
+				line-height: rem(26);
+			}
+		}
+
+		&__contact {
+			padding-bottom: 30px;
+		}
+
+		&__legal {
+			padding-bottom: 30px;
+		}
+
+		&__prompt {
+			padding: rem(30) rem($space-small) rem(20);
+
+			&-text {
+				height: 36px; // match number height
+				padding-right: 40px;
+				font-size: rem(22);
+				vertical-align: middle;
+			}
+			
+			&-number {
+				font-size: rem(36);
+				line-height: 1;
+			}
+		}
+	}
+}
+
+@include breakpoint($large) {
+	.rates-app-footer {
+		&__top {
+			padding: rem(30) 0;
 			font-size: rem(18);
 		}
 
 		&__title {
 			margin-bottom: rem(20);
+			font-size: rem(18);
 		}
+
+		&__bottom {
+			padding: rem(30) 0;
+			font-size: rem(12);
+			line-height: rem(18);
+		}
+
+		&__utilities {
+			padding-bottom: rem(24);
+
+			&-link {
+				font-size: rem(12);
+				line-height: rem(18);
+			}
+		}
+
+		&__contact {
+			padding-bottom: 24px;
+		}
+
+		&__legal {
+			padding-bottom: 24px;
+		}
+
+		&__prompt { display: none; }
 	}
 }

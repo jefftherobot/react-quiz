@@ -1,4 +1,16 @@
 .rates-app-answer-options {
-	padding-bottom: 50px; //TEMP
+	padding-bottom: rem(50);
 	text-align: center;
+}
+
+@include breakpoint($medium) {
+	.rates-app-answer-options {
+		padding-bottom: rem(100);
+	}
+}
+
+@include breakpoint($medium) {
+	.rates-app-answer-options {
+		padding-bottom: rem(70);
+	}
 }

@@ -4,7 +4,7 @@
 	width: 100%;
 	max-width: 625px;
 	margin: 0 auto;
-	padding: 25px 20px;
+	padding: 22px 20px;
 	font-family: $font-roboto-slab;
 	font-size: rem(20);
 	font-weight: $font-bold;
@@ -23,8 +23,15 @@
 	}
 
 	@include breakpoint($medium) {
+		padding: 45px;
+		font-size: rem(36);
+	}
+
+	@include breakpoint($large) {
 		width: auto;
-		padding: 25px 45px;
+		min-width: 271px;
+		padding: 25px 40px;
+		font-size: rem(20);
 	}
 }
 

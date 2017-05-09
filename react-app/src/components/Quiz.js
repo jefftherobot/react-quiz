@@ -17,6 +17,7 @@ function Quiz(props) {
 				id={props.questionName + counter}
 				answerValue={key.value}
 				answerLabel={key.label}
+				answerLabelHelper={key.labelHelper !== null ? key.labelHelper : ""}
 				answer={props.answer}
 				answerConditional={props.answerConditional}
 				answerType={props.answerType}
@@ -29,11 +30,11 @@ function Quiz(props) {
 	}
 
 	return (
-		<div className="rates-app-quiz">
+		<div className={`rates-app-quiz rates-app-quiz--${props.answerType}`}>
 			<div id="error-messages" className="error-messages" tabIndex="-1"></div>
-			<Question content={props.question} />
+			<Question content={props.question} questionType={props.answerType} />
 
-			<div className="rates-app-answer-options">
+			<div className={`rates-app-answer-options ${props.questionName == 'creditScore' ? 'columns' : ''}`}>
 				{props.answerOptions.map(renderAnswerOptions)}
 			</div>
 

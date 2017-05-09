@@ -33,13 +33,24 @@
 
 @include breakpoint($medium) {
 	.rates-app-header {
+		padding: rem(38) rem($space-small) 0;
+	}
+}
+
+@include breakpoint($large) {
+	.rates-app-header {
+		padding: rem(15) rem($space-small) 0;
+
 		&__logo {
 			float: left;
 			width: 50%;
+			margin-bottom: rem(75);
 			text-align: left;
+			img { margin: 0; }
 		}
 
 		&__prompt {
+			display: block;
 			float: left;
 			width: 50%;
 			text-align: right;

@@ -3,8 +3,8 @@ $oldIE: false !default;
 $breakpoints: (
 	small:  320px,  /* Smartphones --------------- */
 	medium: 768px,  /* Tablets Portrait ---------- */
-	large:  1224px, /* Desktops and laptops ------ */
-	xlarge: 1824px  /* Large screens ------------- */
+	large:  1025px, /* Desktops and laptops ------ */
+	xlarge: 1224px  /* Large screens ------------- */
 );
 
 $min-medium: map-get($breakpoints, medium);

@@ -9,11 +9,15 @@
 }
 
 @include breakpoint($medium) {
-	.rates-app-ctas {
-		.rates-app-inner-container {
-			padding: rem($pad * 5) 0; 
+	.rates-app__btn {
+		&:first-child {
+			margin-bottom: rem(25);
 		}
-		
+	}
+}
+
+@include breakpoint($large) {
+	.rates-app-ctas {
 		.rates-app__btn {
 			&:first-child {
 				margin-bottom: 0;

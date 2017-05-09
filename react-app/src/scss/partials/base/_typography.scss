@@ -46,6 +46,16 @@ img {
 	max-width: 100%;
 }
 
+@include breakpoint($medium) {
+	h1 {
+		font-size: rem(90);
+	}
+
+	h3 {
+		font-size: rem(36);
+	}
+}
+
 @include breakpoint($large) {
 	body {
 		font-size: rem(20);
